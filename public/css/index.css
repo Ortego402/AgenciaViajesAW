@@ -1,0 +1,52 @@
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Estilos para la barra de navegación */
+nav {
+    background-color: #444;
+    text-align: right;
+    padding: 10px 0;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 20px;
+}
+
+/* Estilos para el cuerpo de la página */
+main {
+    padding: 20px;
+}
+
+.card {
+    width: 285px; 
+    margin: 5px;
+    cursor: pointer; /* Cambia el cursor al pasar por encima de la tarjeta */
+    transition: transform 0.2s; /* Agrega una transición suave */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Escala la tarjeta ligeramente al pasar el cursor */
+}
+
+.card-body{
+    background-color: rgb(222, 222, 222);
+}
+
+.card-img-top {
+    width: 150px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-text {
+    overflow: hidden; /* Oculta el contenido que desborda */
+    text-overflow: ellipsis; /* Agrega puntos suspensivos al texto truncado */
+    white-space: nowrap; /* Evita que el texto se divida en múltiples líneas */
+    max-height: 5em; /* Altura máxima para mostrar hasta dos líneas de texto */
+}

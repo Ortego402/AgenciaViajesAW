@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <title>Título de tu página</title>
+</head>
+<body>
+    <header>
+        <h1>AgenciaViajes</h1>
+    </header>
+    
+    <nav>
+        <a href="#">Inicio</a>
+        <a href="#">Acerca de</a>
+        <a href="#">Servicios</a>
+        <a href="#">Contacto</a>
+        <a href="#">Perfil</a>
+    </nav>
+
+    <main>
+        <!-- Contenido de tu página va aquí -->
+        <h2>Destinos disponibles</h2>
+        <p>Este es el contenido de tu página.</p>
+        <table>
+            <tr>
+              <% results.forEach(function(destino, index) { %>
+                <% if (index % 5 === 0) { %>
+                  </tr><tr> <!-- Cerrar fila y abrir una nueva fila para cada tres tarjetas -->
+                <% } %>
+                <td>
+                  <div class="card">
+                    <!-- Mostrar la imagen del destino -->
+                    <img src="<%= destino.imagen %>" class="card-img-top" alt="<%= destino.nombre %>">
+          
+                    <div class="card-body">
+                      <h5 class="card-title"><%= destino.nombre %></h5>
+                      <p class="card-text"><%= destino.descripcion %></p>
+                    </div>
+                  </div>
+                </td>
+              <% }); %>
+            </tr>
+          </table>
+          
+    </main>
+</body>
+</html>
