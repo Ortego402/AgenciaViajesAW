@@ -7,8 +7,8 @@ header {
 
 /* Estilos para la barra de navegación */
 nav {
-    background-color: #444;
-    text-align: right;
+    background-color: #444444;
+    text-align: center;
     padding: 10px 0;
 }
 
@@ -39,7 +39,7 @@ main {
 }
 
 .card-img-top {
-    width: 150px;
+    width: 200%;
     height: 200px;
     object-fit: cover;
 }
@@ -49,4 +49,49 @@ main {
     text-overflow: ellipsis; /* Agrega puntos suspensivos al texto truncado */
     white-space: nowrap; /* Evita que el texto se divida en múltiples líneas */
     max-height: 5em; /* Altura máxima para mostrar hasta dos líneas de texto */
+}
+
+.botonnav{
+    background-color: #636aa5;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Estilos para la barra de búsqueda */
+ .buscador {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.caja {
+    width: 60%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.boton{
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.contenedor{
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto; 
+    overflow: hidden;
+}
+
+/*Responsive*/
+@media (max-width: 800px) {
+    .card-img-top {
+        width:100%;
+    }
 }
