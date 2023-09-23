@@ -28,6 +28,9 @@ main {
     margin: 5px;
     cursor: pointer; /* Cambia el cursor al pasar por encima de la tarjeta */
     transition: transform 0.2s; /* Agrega una transición suave */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .card:hover {
@@ -36,6 +39,7 @@ main {
 
 .card-body{
     background-color: rgb(222, 222, 222);
+    padding: 5px;
 }
 
 .card-img-top {
@@ -94,4 +98,17 @@ main {
     .card-img-top {
         width:100%;
     }
+}
+
+@media (max-width: 800px) {
+    .card {
+      width: 100%; /* Tarjetas ocupan todo el ancho disponible */
+      margin-bottom: 30px; /* Espacio entre las tarjetas */
+    }
+}
+
+.destinos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Ajusta automáticamente el número de columnas */
+    gap: 20px; /* Espacio entre las tarjetas */
 }
