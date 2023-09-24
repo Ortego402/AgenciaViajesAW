@@ -15,10 +15,12 @@
     </header>
 
     <nav>
-        <div class="buscador">
-          <input type="text" class="caja" placeholder="Buscar...">
-          <button class="boton"><i class="bi bi-search"></i> Buscar</button>
-        </div>
+        <form action="/" method="get">
+          <div class="buscador">
+            <input id="busquedaGlobal" type="search" class="caja form-control" placeholder="Buscar..." name="nombreBuscar" required>
+            <button class="boton" type="submit"><i class="bi bi-search"></i></button>
+          </div>
+        </form>
         <a href="#"><button class="botonnav"></i> Inicio</button></a>
         <a href="#"><button class="botonnav"></i> Acerca de</button></a>
         <a href="#"><button class="botonnav"></i> Servicios</button></a>
@@ -27,19 +29,28 @@
     </nav>
 
     <main>
-      <div class="destinos-grid">
-        <% results.forEach(function(destino, index) { %>
-          <div class="card">
-            <!-- Mostrar la imagen del destino -->
-            <img src="<%= destino.imagen %>" class="card-img-top" alt="<%= destino.nombre %>">
-        
-            <div class="card-body">
-              <h5 class="card-title"><%= destino.nombre %></h5>
-              <p class="card-text"><%= destino.descripcion %></p>
-            </div>
-          </div>
-        <% }); %>
-      </div>
+        <!-- Contenido de tu página va aquí -->
+        <table>
+            <tr>
+              <% results.forEach(function(destino, index) { %>
+                <% if (index % 5 === 0) { %>
+                  </tr><tr> <!-- Cerrar fila y abrir una nueva fila para cada tres tarjetas -->
+                <% } %>
+                <td>
+                  <div class="card">
+                    <!-- Mostrar la imagen del destino -->
+                    <img src="<%= destino.imagen %>" class="card-img-top" alt="<%= destino.nombre %>">
+          
+                    <div class="card-body">
+                      <h5 class="card-title"><%= destino.nombre %></h5>
+                      <p class="card-text"><%= destino.descripcion %></p>
+                    </div>
+                  </div>
+                </td>
+              <% }); %>
+            </tr>
+          </table>
+          
     </main>
 </body>
 </html>
