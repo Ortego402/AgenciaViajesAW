@@ -1,13 +1,19 @@
-header {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 20px 0;
+h3{
+    font-style: oblique; 
+    color:#333;  
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(249, 54, 44);
+    padding: 20px;
 }
 
 /* Estilos para la barra de navegación */
 nav {
-    background-color: #444444;
+    background-color:#f77f7f;
     text-align: center;
     padding: 10px 0;
 }
@@ -24,7 +30,7 @@ main {
 }
 
 .card {
-    width: 285px; 
+    width: 100%;
     margin: 5px;
     cursor: pointer; /* Cambia el cursor al pasar por encima de la tarjeta */
     transition: transform 0.2s; /* Agrega una transición suave */
@@ -56,7 +62,17 @@ main {
 }
 
 .botonnav{
-    background-color: #636aa5;
+    background-color:#333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    /* margin-left: 10px; */
+}
+
+.botonperfil{
+    background-color:#333;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -66,12 +82,11 @@ main {
 
 /* Estilos para la barra de búsqueda */
  .buscador {
+    flex-grow: 1; /* Expande el buscador para ocupar el espacio restante */
     text-align: center;
-    margin-bottom: 20px;
 }
 
 .caja {
-    width: 60%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -86,25 +101,16 @@ main {
     cursor: pointer;
 }
 
-.contenedor{
-    width: 100%;
-    max-width: 1000px;
-    margin: 0 auto; 
-    overflow: hidden;
-}
-
 /*Responsive*/
 @media (max-width: 800px) {
     .card-img-top {
         width:100%;
     }
-}
 
-@media (max-width: 800px) {
     .card {
-      width: 100%; /* Tarjetas ocupan todo el ancho disponible */
-      margin-bottom: 30px; /* Espacio entre las tarjetas */
-    }
+        width: 100%; /* Tarjetas ocupan todo el ancho disponible */
+        margin-bottom: 30px; /* Espacio entre las tarjetas */
+      }
 }
 
 .destinos-grid {
