@@ -49,3 +49,18 @@ INSERT INTO comentarios (destino_id, nombre_usuario, comentario) VALUES
 (2, 'Elena Martínez', 'La Torre Eiffel es impresionante, especialmente de noche.'),
 (3, 'Javier Sánchez', 'Machu Picchu es un lugar mágico, vale la pena visitarlo.'),
 (4, 'Sofía Fernández', 'El Gran Cañón es asombroso, las vistas son espectaculares.');
+
+
+
+INSERT INTO `destinos` (`id`, `nombre`, `descripcion`, `imagen`, `precio`) VALUES
+(1, 'Playa de Cancún', 'Hermosa playa en México', 'https://www.barcelo.com/guia-turismo/wp-content/uploads/2021/03/riviera-maya-cancun-pal.jpg', 500.00),
+(2, 'Torre Eiffel', 'Icono de París', 'https://upload.wikimedia.org/wikipedia/commons/6/6e/Paris_-_Eiffelturm_und_Marsfeld2.jpg', 75.50),
+(3, 'Machu Picchu', 'Antigua ciudad inca en Perú', 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Machu_Picchu%2C_Peru_%282018%29.jpg/400px-Machu_Picchu%2C_Peru_%282018%29.jpg', 200.00),
+(4, 'Gran Cañón', 'Impresionante cañón en Estados Unidos', 'https://grandcanyonwest.com/wp-content/uploads/SkwalkHero_B.jpg', 120.75),
+(5, 'Playa de Cancún', 'Hermosa playa en México', 'https://www.barcelo.com/guia-turismo/wp-content/uploads/2021/03/riviera-maya-cancun-pal.jpg', 500.00),
+(6, 'Playa de Cancún', 'Hermosa playa en México', 'https://www.barcelo.com/guia-turismo/wp-content/uploads/2021/03/riviera-maya-cancun-pal.jpg', 500.00),
+(7, 'Playa de Cancún', 'Hermosa playa en México', 'https://www.barcelo.com/guia-turismo/wp-content/uploads/2021/03/riviera-maya-cancun-pal.jpg', 500.00),
+(8, 'Torre Eiffel', 'Icono de París', 'https://upload.wikimedia.org/wikipedia/commons/6/6e/Paris_-_Eiffelturm_und_Marsfeld2.jpg', 75.50),
+(9, 'Playa de Cancún', 'Hermosa playa en México', 'https://www.barcelo.com/guia-turismo/wp-content/uploads/2021/03/riviera-maya-cancun-pal.jpg', 500.00),
+(10, 'Playa de Cancún', 'Hermosa playa en México', 'https://www.barcelo.com/guia-turismo/wp-content/uploads/2021/03/riviera-maya-cancun-pal.jpg', 500.00),
+(11, 'Torre Eiffel', 'Icono de París', 'https://upload.wikimedia.org/wikipedia/commons/6/6e/Paris_-_Eiffelturm_und_Marsfeld2.jpg', 75.50);
