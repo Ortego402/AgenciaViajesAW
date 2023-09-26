@@ -1,10 +1,10 @@
-h3{
-    font-style: oblique; 
-    color:#333;  
+h2{
+    font-style: oblique;
+    margin-left: 20px;
 }
 
-.container {
-    display: flex;
+.container-fluid {
+    display:flex;
     justify-content: space-between;
     align-items: center;
     background-color: rgb(249, 54, 44);
@@ -25,13 +25,17 @@ nav a {
 }
 
 /* Estilos para el cuerpo de la página */
+body{
+    margin: 0;
+    padding: 0;
+}
+
 main {
     padding: 20px;
 }
 
 .card {
     width: 100%;
-    margin: 5px;
     cursor: pointer; /* Cambia el cursor al pasar por encima de la tarjeta */
     transition: transform 0.2s; /* Agrega una transición suave */
     border: 1px solid #ddd;
@@ -45,11 +49,9 @@ main {
 
 .card-body{
     background-color: rgb(222, 222, 222);
-    padding: 5px;
 }
 
 .card-img-top {
-    width: 200%;
     height: 200px;
     object-fit: cover;
 }
@@ -68,7 +70,6 @@ main {
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    /* margin-left: 10px; */
 }
 
 .botonperfil{
@@ -78,18 +79,19 @@ main {
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+    margin-right: 20px;
 }
 
 /* Estilos para la barra de búsqueda */
- .buscador {
-    flex-grow: 1; /* Expande el buscador para ocupar el espacio restante */
-    text-align: center;
+.buscador {
+    text-align: left;
 }
 
 .caja {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    width: 50em;
 }
 
 .boton{
@@ -99,6 +101,7 @@ main {
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+    margin-left: 10px;
 }
 
 /*Responsive*/
