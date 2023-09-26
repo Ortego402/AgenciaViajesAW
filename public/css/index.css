@@ -13,6 +13,18 @@ h2 {
     padding: 20px;
 }
 
+.botoninicio{
+    background-color:rgb(249, 54, 44);;
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 20px;
+    font-size: 20px;
+    text-decoration: none;
+}
+
 /* Estilos para la barra de navegación */
 nav {
     background-color:#f77f7f;
