@@ -1,7 +1,9 @@
-h2{
+h2 {
     font-style: oblique;
     margin-left: 20px;
+    color: #333; /* Cambia el color del texto a tu elección */
 }
+
 
 .container-fluid {
     display:flex;
@@ -60,7 +62,12 @@ main {
     overflow: hidden; /* Oculta el contenido que desborda */
     text-overflow: ellipsis; /* Agrega puntos suspensivos al texto truncado */
     white-space: nowrap; /* Evita que el texto se divida en múltiples líneas */
-    max-height: 5em; /* Altura máxima para mostrar hasta dos líneas de texto */
+}
+
+.card-top{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .botonnav{

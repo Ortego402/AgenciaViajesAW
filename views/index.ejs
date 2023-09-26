@@ -36,7 +36,10 @@
             <img src="<%= destino.imagen %>" class="card-img-top" alt="<%= destino.nombre %>">
         
             <div class="card-body">
-              <h5 class="card-title"><%= destino.nombre %></h5>
+              <div class ="card-top">
+                <h5 class="card-title"><%= destino.nombre %> </h5>
+                <h5 class="card-price"><%= destino.precio %>€</h5>
+              </div>
               <p class="card-text"><%= destino.descripcion %></p>
             </div>
           </div>
