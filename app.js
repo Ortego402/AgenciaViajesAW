@@ -9,7 +9,7 @@ app.set('view engine', 'ejs');
 
 app.use(express.static('public'));
 
-// Ruta para servir la página HTML
+// Mostrar todos los destinos
 app.get('/', (req, res) => {
   // Realiza la consulta a la base de datos
   dbConnection.query('SELECT * FROM destinos', (err, results) => {
@@ -23,6 +23,24 @@ app.get('/', (req, res) => {
     res.render('index', { results: results });
   });
 });
+
+// Mostrar un único destino
+app.get('/destino/:id', (req, res) => {
+  // Realiza la consulta a la base de datos
+  let id = req.params.id;
+  console.log(id);
+  dbConnection.query('SELECT * FROM destinos WHERE id = ?' , [id], (err, result) => {
+    if (err) {
+      console.error('Error al ejecutar la consulta:', err);
+      res.status(500).json({ error: 'Error de la base de datos' });
+      return;
+    }
+    console.log(result);
+    // Renderiza la vista "index.ejs" con los resultados como datos
+    res.render('destino', { result: result });
+  });
+});
+
 
 app.listen(port, () => {
   console.log(`Servidor Express escuchando en el puerto ${port}`);
