@@ -55,6 +55,8 @@ main {
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    color: #333;
 }
 
 .card:hover {
@@ -63,6 +65,7 @@ main {
 
 .card-body{
     background-color: rgb(222, 222, 222);
+    text-decoration: none;
 }
 
 .card-img-top {

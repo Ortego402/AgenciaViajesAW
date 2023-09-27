@@ -33,7 +33,7 @@
     <main>
       <div class="destinos-grid">
         <% results.forEach(function(destino, index) { %>
-          <a href="/destino/<%= destino.id %>">
+          <a href="/destino/<%= destino.id %>" class="card">
             <div class="card">
               <!-- Mostrar la imagen del destino -->
               <img src="<%= destino.imagen %>" class="card-img-top" alt="<%= destino.nombre %>">
