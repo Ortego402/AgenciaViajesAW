@@ -24,10 +24,12 @@ app.get('/', (req, res) => {
   });
 });
 
+app.get('/reserva', (req, res) => {
+      res.render('reserva');
+});
+
 app.get('/destino/:id', (req, res) => {
   const id = req.params.id;
-  console.log('ID:', id);
-
   dbConnection.query('SELECT * FROM destinos WHERE id = ?', [id], (err, result) => {
     if (err) {
       console.error('Error al ejecutar la consulta:', err);
@@ -47,10 +49,6 @@ app.get('/destino/:id', (req, res) => {
         return res.status(500).json({ error: 'Error de la base de datos' });
       }
 
-      console.log('Resultado de la consulta de imágenes:', results);
-
-
-    console.log('Resultado de la consulta:', result);
     res.render('destino', { result: result[0], results: results});
     });
   });
