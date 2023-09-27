@@ -1,10 +1,4 @@
-.destinos-grid .card a {
-    text-decoration: none !important;
-    color: inherit !important;
-}
-
-
-  h2 {
+h2 {
     font-style: oblique;
     margin-left: 20px;
     color: #333; /* Cambia el color del texto a tu elección */
@@ -61,6 +55,8 @@ main {
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    color: #333;
 }
 
 .card:hover {
@@ -69,6 +65,7 @@ main {
 
 .card-body{
     background-color: rgb(222, 222, 222);
+    text-decoration: none;
 }
 
 .card-img-top {
@@ -82,22 +79,26 @@ main {
     white-space: nowrap; /* Evita que el texto se divida en múltiples líneas */
 }
 
-
-  
-
 .card-top{
     display:flex;
     justify-content: space-between;
     align-items: center;
 }
-  
+
 .botonnav{
-    background-color:#333;
+    background-color:#5e3636;
     color: #fff;
+    transition: background-color 0.3s;
     border: none;
     padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
+}
+
+.navbar{
+    background-color:#5e3636;
+}
+
+.botonnav:hover{
+    background-color: #333;
 }
 
 .botonperfil{
