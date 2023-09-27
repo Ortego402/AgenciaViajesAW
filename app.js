@@ -23,6 +23,7 @@ app.get('/', (req, res) => {
     res.render('index', { results: results });
   });
 });
+
 app.get('/destino/:id', (req, res) => {
   const id = req.params.id;
   console.log('ID:', id);
@@ -38,12 +39,22 @@ app.get('/destino/:id', (req, res) => {
       return res.status(404).send('Destino no encontrado');
     }
 
+    
+    // Consulta para obtener las imágenes del destino
+    dbConnection.query('SELECT * FROM imagenes_destino WHERE destino_id = ?', [id], (err, results) => {
+      if (err) {
+        console.error('Error al ejecutar la consulta de imágenes:', err);
+        return res.status(500).json({ error: 'Error de la base de datos' });
+      }
+
+      console.log('Resultado de la consulta de imágenes:', results);
+
+
     console.log('Resultado de la consulta:', result);
-    res.render('destino', { result: result[0] });
+    res.render('destino', { result: result[0], results: results});
+    });
   });
-});
-
-
+}); 
 
 app.listen(port, () => {
   console.log(`Servidor Express escuchando en el puerto ${port}`);
