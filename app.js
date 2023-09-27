@@ -23,23 +23,26 @@ app.get('/', (req, res) => {
     res.render('index', { results: results });
   });
 });
-
-// Mostrar un único destino
 app.get('/destino/:id', (req, res) => {
-  // Realiza la consulta a la base de datos
-  let id = req.params.id;
-  console.log(id);
-  dbConnection.query('SELECT * FROM destinos WHERE id = ?' , [id], (err, result) => {
+  const id = req.params.id;
+  console.log('ID:', id);
+
+  dbConnection.query('SELECT * FROM destinos WHERE id = ?', [id], (err, result) => {
     if (err) {
       console.error('Error al ejecutar la consulta:', err);
-      res.status(500).json({ error: 'Error de la base de datos' });
-      return;
+      return res.status(500).json({ error: 'Error de la base de datos' });
     }
-    console.log(result);
-    // Renderiza la vista "index.ejs" con los resultados como datos
-    res.render('destino', { result: result });
+
+    if (result.length === 0) {
+      console.log('No se encontraron resultados para el ID:', id);
+      return res.status(404).send('Destino no encontrado');
+    }
+
+    console.log('Resultado de la consulta:', result);
+    res.render('destino', { result: result[0] });
   });
 });
+
 
 
 app.listen(port, () => {
