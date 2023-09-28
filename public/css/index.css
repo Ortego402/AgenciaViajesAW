@@ -25,6 +25,11 @@ h2 {
     text-decoration: none;
 }
 
+.img {
+    max-width: 100%;
+    height: auto; 
+}
+
 /* Estilos para la barra de navegación */
 nav {
     background-color:#f77f7f;
@@ -114,14 +119,15 @@ main {
 
 /* Estilos para la barra de búsqueda */
 .buscador {
-    text-align: left;
+    display: flex;
+    align-items: center;
 }
 
 .caja {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    width: 50em;
+    width: 100%;
 }
 
 .boton{
