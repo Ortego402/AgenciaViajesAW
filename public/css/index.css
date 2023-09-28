@@ -33,7 +33,7 @@ h2 {
 /* Estilos para la barra de navegación */
 nav {
     background-color:#f77f7f;
-    text-align: center;
+    text-align: right;
     padding: 10px 0;
 }
 
@@ -100,6 +100,7 @@ main {
 
 .navbar{
     background-color:#5e3636;
+    position: relative;
 }
 
 .botonnav:hover{
@@ -156,4 +157,22 @@ main {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Ajusta automáticamente el número de columnas */
     gap: 20px; /* Espacio entre las tarjetas */
+}
+
+.moving-text {
+    position: absolute;
+    animation: moveText 5s linear forwards; /* Aplica la animación */
+    text-align: center;
+    align-items: center;
+    margin-bottom: 100px;
+}
+
+/* Define la animación llamada "moveText" */
+@keyframes moveText {
+    0% {
+        left: -100%; /* Inicio: posición izquierda fuera de la pantalla */
+    }
+    100% {
+        left: 0; /* Fin: posición derecha fuera de la pantalla */
+    }
 }
