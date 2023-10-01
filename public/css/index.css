@@ -41,24 +41,33 @@ p{
     padding: 10px 10px;
 }
 
-/* Estilos para la barra de navegación */
-nav {
-    background-color:#f77f7f;
-    text-align: right;
-    padding: 10px 0;
-}
-
-nav a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 20px;
-}
-
 /* Estilos para el cuerpo de la página */
-body{
+body {
     margin: 0;
     padding: 0;
 }
+
+/* Estilos para el nav */
+nav {
+    background-color: #f77f7f;
+    text-align: center;
+    padding: 10px 0;
+    display: flex; /* Usa flexbox para alinear los elementos <a> */
+    justify-content: space-around; /* Distribuye el espacio entre los elementos <a> */
+    width: 100%; /* Ocupa todo el ancho disponible */
+}
+
+/* Estilos para los elementos <a> en el nav */
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0;
+    padding: 10px 0; /* Ajusta el espaciado vertical para centrar el texto */
+    width: calc(100% / 3); /* Divide el ancho del nav en tres partes iguales */
+    box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
+    display: block; /* Convierte los elementos <a> en bloques para ocupar todo el ancho disponible */
+}
+
 
 main {
     padding: 20px;
@@ -113,7 +122,6 @@ main {
 
 .navbar{
     background-color:#5e3636;
-    position: relative;
 }
 
 .botonnav:hover{
