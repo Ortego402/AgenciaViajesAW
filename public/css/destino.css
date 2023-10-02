@@ -12,7 +12,7 @@
 .img-mediana {
     width: 35em; /* Tamaño máximo de la imagen */
     height: auto; /* Altura automática para mantener la proporción */
-    padding: 40px;
+    padding: 20px;
     border-radius: 70px;
 }
 
