@@ -1,55 +1,45 @@
-  /* Estilo para el título */
-  .titulo-dest {
-    font-size: 2em;
-    font-weight: bold;
-    text-align: center;
-    color: #333; /* Cambia el color según tus preferencias */
-    text-transform: uppercase; /* Poner en mayúsculas */
-    padding: 10px;
-  }
-  
-  /* Estilos para la imagen mediana */
+/* Estilo para el título */
+.titulo-dest {
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  color: #333; /* Cambia el color según tus preferencias */
+  text-transform: uppercase; /* Poner en mayúsculas */
+  padding: 10px;
+}
+
+/* Estilos para la imagen mediana */
 .img-mediana {
-    width: 35em; /* Tamaño máximo de la imagen */
-    height: auto; /* Altura automática para mantener la proporción */
-    padding: 20px;
-    border-radius: 70px;
+  max-width: 40em; /* Ancho del 50% del viewport width (mitad de la pantalla) */
+  max-height: 400px; /* Altura del 50% del viewport height (mitad de la pantalla) */
+  border: 3px solid #333; /* Borde sólido con color azul */
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5); /* Sombra */
 }
 
 /* Estilos para el contenido a la derecha */
 .destino-info {
-    overflow: hidden; /* Evitar que el contenido flote alrededor de la imagen */
-    margin-top: 50px;
+  overflow: hidden; /* Evitar que el contenido flote alrededor de la imagen */
+  margin-top: 15px;
+  height: 360px; /* Altura del 50% del viewport height (mitad de la pantalla) */
+  
 }
 
-  /* Estilo para la descripción */
-  .desc {
-    font-size: 18px;
-    text-align: justify;
-  }
-  
-  /* Estilo para el precio */
-  .price {
-    font-size: 24px;
-    margin: 20px 0;
-  }
-  
-  /* Estilo para el botón de reserva */
-  .reservar-btn {
-    background-color: #007bff;
-    color: #fff;
-    font-size: 18px;
-    padding: 10px 20px;
-    border: 10px;
-    cursor: pointer;
-    border-radius: 10px;
-  }
-
-/* Estilo para el borde de la columna */
-.border-end {
-  border-right: 2px solid #333; /* Ancho, estilo y color del borde derecho */
+/* Estilo para la descripción */
+.desc {
+  font-size: 18px;
+  text-align: justify;
 }
 
-.border-bottom {
-  border-bottom: 2px solid #333; /* Ancho, estilo y color del borde derecho */
+/* Estilo para el precio */
+.price {
+  font-size: 24px;
+  margin: 20px 0;
+}
+
+/* Estilo para el botón de reserva */
+.reservar-btn {
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
 }

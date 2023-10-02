@@ -37,14 +37,14 @@
             <h2 class="titulo-dest"><strong><%= result.nombre %></strong></h2>
         </div>
         <div class="destino-container">
-            <div class="row">
-                <div class="col-md-7 d-flex justify-content-center align-items-center">
-                    <div class="border-end">
+            <div class="row mx-n2">
+                <div class="col-md-6 d-flex justify-content-center align-items-center mt-3">
+                    <div class="border border-end">
                         <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 <% results.forEach((imagen, index) => { %>
-                                    <div class="img-mediana carousel-item <%= index === 0 ? 'active' : '' %>">
-                                        <img src="<%= imagen.url %>" class="d-block w-100" alt="<%= result.nombre %>">
+                                    <div class="img-mediana rounded carousel-item <%= index === 0 ? 'active' : '' %>">
+                                        <img src="<%= imagen.url %>" class="img-fluid" alt="<%= result.nombre %>">
                                     </div>
                                 <% }); %>
                             </div>
@@ -59,12 +59,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-5">
-                    <div class="destino-info">
+                <div class="col-md-6">
+                    <div class="destino-info bg-secondary p-4 bg-opacity-25 mx-auto rounded d-flex flex-column">
                         <p class="desc"><%= result.descripcion %></p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h4 class="price"><%= result.precio %>€</h4>
-                            <a href="/reserva"><button class="reservar-btn">Reservar</button></a>
+                        <div class="mt-auto d-flex justify-content-between align-items-center">
+                            <h4 class="price end-0 mb-0">Por solamente: <%= result.precio %>€</h4>
+                            <button href="/reserva" type="button" class="reservar-btn mt-auto btn btn-danger px-3 py-3">Reservar</button>
                         </div>
                     </div>
                 </div>
