@@ -43,3 +43,87 @@
   cursor: pointer;
   border-radius: 10px;
 }
+
+.popup-container {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 40px; /* Aumenta el espacio interno */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  width: 60%; /* Ajusta el ancho según tus necesidades */
+  max-width: 500px; /* Ancho máximo para evitar que sea demasiado ancho en pantallas grandes */
+}
+
+.popup-content {
+  text-align: center;
+}
+
+.general {
+  display: flex;
+  flex-direction: column;
+}
+
+.general label {
+  margin-bottom: 10px;
+}
+
+.general input {
+  padding: 10px;
+  margin-bottom: 15px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px; /* Aumenta el espacio superior */
+}
+
+.botonconfirmar {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.cerrar-btn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+@media screen and (max-width: 600px) {
+  .popup-container {
+      padding: 15px;
+      width: 80%;
+  }
+
+  .general label,
+  .general input {
+      font-size: 14px;
+  }
+
+  .botonconfirmar,
+  .cerrar-btn {
+      padding: 10px 20px;
+      font-size: 14px;
+  }
+}
