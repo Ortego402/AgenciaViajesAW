@@ -24,8 +24,27 @@ app.get('/', (req, res) => {
   });
 });
 
-app.get('/reserva', (req, res) => {
-      res.render('reserva');
+app.post('/reserva', (req, res) => {
+  console.log(req.body);
+  const Nombre = req.body.nombre;
+  const Email = req.body.email;
+  const fechareserva = req.body.fecha_reserva;
+
+  console.log(Nombre);
+  console.log(Email);
+  console.log(fechareserva);
+
+  // Realizar la inserción en la base de datos
+  dbConnection.query('INSERT INTO reservas (nombre_cliente, correo_cliente, fecha_reserva) VALUES (?, ?, ?)',
+      [Nombre, Email, fechareserva], (err, results) => {
+          if (err) {
+              console.error('Error al ejecutar la consulta:', err);
+              res.status(500).json({ error: 'Error de la base de datos' });
+              return;
+          }
+          // Renderiza la vista "index.ejs" con los resultados como datos
+          res.render('index', { results: results });
+      });
 });
 
 app.get('/destino/:id', (req, res) => {
