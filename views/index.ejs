@@ -12,16 +12,22 @@
 </head>
 <body>
     <header class="container-fluid">
-        <a href="/" class="botoninicio">
+      <div class="col col-4">
+        <a href="/" class="btn btn-primary btn-block" style="background-color:rgb(249, 54, 44); color: #333; border: none;">
           <h2><strong>EpicScape</strong></h2>
         </a>
+      </div>
+      <div class="col col-4">
         <form action="/buscar" method="get">
           <div class="buscador">
             <input id="busquedaGlobal" type="search" class="caja" placeholder="Próximo destino..." name="nombreBuscar" required>
             <button class="boton" type="submit"><i class="bi bi-search"></i></button>
           </div>
         </form>
+      </div>
+      <div class="col col-4">
         <img src="../images/logo.png" class="img" alt="Imagen sustitutiva de login">
+      </div>
     </header>
 
       <nav class="navbar">
