@@ -16,6 +16,26 @@
   object-fit: cover;
 }
 
+.destino-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-md-6 {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+.img-mediana {
+  width: 100%;
+  height: auto;
+}
+
+.destino-info {
+  height: auto;
+}
+
+
 /* Estilos para el contenido a la derecha */
 .destino-info {
   overflow: hidden; 
@@ -138,50 +158,35 @@
   
 }
 
-@media screen and (max-width: 850px) {
+@media (max-width: 600px) {
   .popup-container {
-      width: 90%;
-      max-width: 90%;
-      overflow-y: auto;
-      max-height: 80vh;
+      width: 95%;
   }
 
   .popup-content {
-      padding: 20px;
+      padding: 10px;
   }
 
   .general label,
   .general input {
-      font-size: 14px;
+      font-size: 12px;
   }
 
   .botonconfirmar,
   .cerrar-btn {
-      padding: 10px 20px;
-      font-size: 14px;
+      padding: 8px 16px;
+      font-size: 12px;
   }
 }
 
-@media screen and (max-height: 670px) {
+@media (max-width: 768px) {
   .popup-container {
       width: 90%;
-      max-width: 90%;
-      overflow-y: auto;
-      max-height: 80vh;
   }
+}
 
-  .popup-content {
-      padding: 20px;
-  }
-
-  .general label,
-  .general input {
-      font-size: 14px;
-  }
-
-  .botonconfirmar,
-  .cerrar-btn {
-      padding: 10px 20px;
-      font-size: 14px;
+@media (max-width: 850px) {
+  .popup-container {
+      width: 95%;
   }
 }
