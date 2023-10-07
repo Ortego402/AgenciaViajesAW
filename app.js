@@ -4,6 +4,8 @@ const dbConnection = require('./js/dbConfig'); // Importa la conexión a la base
 const app = express();
 const port = 3000;
 
+app.use(express.urlencoded({ extended: true }));
+
 // Configura Express para usar EJS como motor de plantillas
 app.set('view engine', 'ejs');
 
@@ -30,6 +32,8 @@ app.get('/reserva', (req, res) => {
 
 app.get('/destino/:id', (req, res) => {
   const id = req.params.id;
+  const reservaConfirmada = req.query.reserva === `confirmada`;
+
   dbConnection.query('SELECT * FROM destinos WHERE id = ?', [id], (err, result) => {
     if (err) {
       console.error('Error al ejecutar la consulta:', err);
@@ -49,7 +53,7 @@ app.get('/destino/:id', (req, res) => {
         return res.status(500).json({ error: 'Error de la base de datos' });
       }
 
-    res.render('destino', { result: result[0], results: results});
+      res.render('destino', { result: result[0], results: results, reservaConfirmada: reservaConfirmada });
     });
   });
 }); 
@@ -67,6 +71,23 @@ app.get('/buscar', (req, res) => {
     }
     // Renderiza la vista "index.ejs" con los resultados como datos
     res.render('index', { results: results });
+  });
+});
+
+// Ruta para manejar la reserva
+app.post('/destino/:id/reservar', (req, res) => {
+  const { nombre, email, fecha_reserva } = req.body;
+  const id = req.params.id;
+
+  // Inserta los datos en la base de datos
+  dbConnection.query('INSERT INTO reservas (destino_id, nombre_cliente, correo_cliente, fecha_reserva) VALUES (?, ?, ?, ?)', [id, nombre, email, fecha_reserva], (err, result) => {
+    if (err) {
+          res.redirect(`/destino/${id}?reserva=confirmada`);
+    }
+
+    // La reserva se insertó correctamente
+    res.redirect(`/destino/${id}?reserva=null`);
+    // return res.status(200).send('Reserva realizada con éxito');
   });
 });
 

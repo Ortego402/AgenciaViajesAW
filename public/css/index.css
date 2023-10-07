@@ -1,11 +1,11 @@
 h2 {
     font-style: oblique;
-    color: #333; /* Cambia el color del texto a tu elección */
+    color: #333;
 }
 
 .card-body a {
-    margin: 0; /* Elimina el margen en el elemento <a> dentro de .card-body */
-    padding: 0; /* Elimina el relleno en el elemento <a> dentro de .card-body */
+    margin: 0;
+    padding: 0;
 }
 
 .decoration{
@@ -42,9 +42,9 @@ nav {
     background-color: #f77f7f;
     text-align: center;
     padding: 10px 0;
-    display: flex; /* Usa flexbox para alinear los elementos <a> */
-    justify-content: space-around; /* Distribuye el espacio entre los elementos <a> */
-    width: 100%; /* Ocupa todo el ancho disponible */
+    display: flex; 
+    justify-content: space-around;
+    width: 100%;
 }
 
 /* Estilos para los elementos <a> en el nav */
@@ -52,12 +52,11 @@ nav a {
     color: #fff;
     text-decoration: none;
     margin: 0;
-    padding: 10px 0; /* Ajusta el espaciado vertical para centrar el texto */
-    width: calc(100% / 3); /* Divide el ancho del nav en tres partes iguales */
-    box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
-    display: block; /* Convierte los elementos <a> en bloques para ocupar todo el ancho disponible */
+    padding: 10px 0;
+    width: calc(100% / 3); 
+    box-sizing: border-box;
+    display: block;
 }
-
 
 main {
     padding: 20px;
@@ -65,19 +64,19 @@ main {
 
 .card {
     width: 100%;
-    cursor: pointer; /* Cambia el cursor al pasar por encima de la tarjeta */
-    transition: transform 0.2s; /* Agrega una transición suave */
+    cursor: pointer;
+    transition: transform 0.2s;
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-decoration: none;
     color: #333;
-    margin: 0; /* Elimina el margen */
-    padding: 0; /* Elimina el relleno */
+    margin: 0; 
+    padding: 0;
 }
 
 .card:hover {
-    transform: scale(1.05); /* Escala la tarjeta ligeramente al pasar el cursor */
+    transform: scale(1.05); 
 }
 
 .card-body{
@@ -91,9 +90,9 @@ main {
 }
 
 .card-text {
-    overflow: hidden; /* Oculta el contenido que desborda */
-    text-overflow: ellipsis; /* Agrega puntos suspensivos al texto truncado */
-    white-space: nowrap; /* Evita que el texto se divida en múltiples líneas */
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    white-space: nowrap;
 }
 
 .card-top{
@@ -159,8 +158,8 @@ main {
     }
 
     .card {
-        width: 100%; /* Tarjetas ocupan todo el ancho disponible */
-        margin-bottom: 30px; /* Espacio entre las tarjetas */
+        width: 100%; 
+        margin-bottom: 30px;
     }
 
     .boton {
@@ -169,34 +168,38 @@ main {
 
     .img {
         width: 4em;
+        margin-left: 20%;
+    }
+
+    .titulo-dest {
+        font-size: 1.5em;
+    }
+
+    .img-mediana {
+        max-width: 100%; 
+        height: auto; /
+    }
+
+    .destino-info {
+        height: auto; 
+        margin-top: 10px;
     }
 
     /* Elimina el margen inferior y superior de los elementos dentro de las tarjetas */
     .card-body a{
         padding: 0;
     }
+
+    .container-fluid {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
 }
+
 .destinos-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Ajusta automáticamente el número de columnas */
     gap: 20px; /* Espacio entre las tarjetas */
     text-decoration: none;
-}
-
-.moving-text {
-    position: absolute;
-    animation: moveText 5s linear forwards; /* Aplica la animación */
-    text-align: center;
-    align-items: center;
-    margin-bottom: 100px;
-}
-
-/* Define la animación llamada "moveText" */
-@keyframes moveText {
-    0% {
-        left: -100%; /* Inicio: posición izquierda fuera de la pantalla */
-    }
-    100% {
-        left: 0; /* Fin: posición derecha fuera de la pantalla */
-    }
 }
