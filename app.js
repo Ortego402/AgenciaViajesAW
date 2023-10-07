@@ -82,12 +82,10 @@ app.post('/destino/:id/reservar', (req, res) => {
   // Inserta los datos en la base de datos
   dbConnection.query('INSERT INTO reservas (destino_id, nombre_cliente, correo_cliente, fecha_reserva) VALUES (?, ?, ?, ?)', [id, nombre, email, fecha_reserva], (err, result) => {
     if (err) {
-          res.redirect(`/destino/${id}?reserva=confirmada`);
+          res.redirect(`/destino/${id}?reserva=null`);
     }
 
-    // La reserva se insertó correctamente
-    res.redirect(`/destino/${id}?reserva=null`);
-    // return res.status(200).send('Reserva realizada con éxito');
+    res.redirect(`/destino/${id}?reserva=confirmada`);
   });
 });
 

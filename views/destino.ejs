@@ -39,10 +39,10 @@
 
     <main>
         <% if (reservaConfirmada) { %>
-            <div class="alert alert-success" role="alert" style="background-color: rgb(232, 248, 92); color: black;">
+            <div class="alert alert-success" role="alert" style="background-color: rgb(113, 251, 141); color: black;">
                 ¡Reserva confirmada! Gracias por tu reserva.
             </div>
-        <% } else { %>
+        <% } else if(reservaConfirmada != "") { %>
             <div class="alert alert-danger" role="alert" style="background-color: rgb(255, 92, 92); color: white;">
                 ¡Ups! No se pudo realizar la reserva debido a un fallo. Por favor, inténtalo de nuevo más tarde.
             </div>
@@ -85,21 +85,22 @@
                     <!-- Contenido de la ventana emergente -->
                     <div class="popup-container" id="popup">
                         <div class="popup-content">
-                            <form action="/destino/<%= result.id %>/reservar" method="post" class="general">
+                            <form action="/destino/<%= result.id %>/reservar" method="post" class="general" onsubmit="return validarFormulario()">
                                 <label for="nombre">Nombre:</label>
                                 <input type="text" id="nombre" name="nombre" required><br><br>
-                    
+                            
                                 <label for="email">Email:</label>
                                 <input type="email" id="email" name="email" required><br><br>
-                    
+                            
                                 <label for="fecha_llegada">Fecha de reserva:</label>
                                 <input type="date" id="fecha_reserva" name="fecha_reserva" required><br><br>
-
+                            
                                 <div class="button-container">
                                     <button type="submit" class="botonconfirmar">Confirmar</button>
                                     <button type="button" onclick="cerrarPopup()" class="cerrar-btn">Cerrar</button>
                                 </div>
                             </form>
+                            
                         </div>
                     </div>
                 </div>
