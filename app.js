@@ -33,6 +33,7 @@ app.get('/reserva', (req, res) => {
 app.get('/destino/:id', (req, res) => {
   const id = req.params.id;
   const reservaConfirmada = req.query.reserva === `confirmada`;
+  const comentarioConfirmado = req.query.reserva === `confirmada`;
 
   dbConnection.query('SELECT * FROM destinos WHERE id = ?', [id], (err, result) => {
     if (err) {
@@ -53,7 +54,13 @@ app.get('/destino/:id', (req, res) => {
         return res.status(500).json({ error: 'Error de la base de datos' });
       }
 
-      res.render('destino', { result: result[0], results: results, reservaConfirmada: reservaConfirmada });
+      dbConnection.query('SELECT * FROM comentarios WHERE destino_id = ?', [id], (err, comentarios) => {
+        if (err) {
+            console.error('Error al ejecutar la consulta de comentarios:', err);
+            return res.status(500).json({ error: 'Error de la base de datos' });
+        }
+        res.render('destino', { result: result[0], results: results, comentarios: comentarios, reservaConfirmada: reservaConfirmada, comentarioConfirmado: comentarioConfirmado });
+      });
     });
   });
 }); 
@@ -82,12 +89,32 @@ app.post('/destino/:id/reservar', (req, res) => {
   // Inserta los datos en la base de datos
   dbConnection.query('INSERT INTO reservas (destino_id, nombre_cliente, correo_cliente, fecha_reserva) VALUES (?, ?, ?, ?)', [id, nombre, email, fecha_reserva], (err, result) => {
     if (err) {
-          res.redirect(`/destino/${id}?reserva=null`);
+      console.error('Error al insertar reserva:', err);
+      return res.redirect(`/destino/${id}?reserva=null`);
     }
 
+    console.log('Reserva insertada correctamente en la base de datos.');
     res.redirect(`/destino/${id}?reserva=confirmada`);
   });
 });
+
+// Ruta para manejar el comentario
+app.post('/destino/:id/comentarios', (req, res) => {
+  const { nombre_usuario, comentario} = req.body;
+  const id = req.params.id;
+  
+  // Inserta los datos en la base de datos
+  dbConnection.query('INSERT INTO comentarios (destino_id, nombre_usuario, comentario) VALUES (?, ?, ?)', [id, nombre_usuario, comentario], (err, result) => {
+    if (err) {
+      console.error('Error al insertar comentario:', err);
+      return res.redirect(`/destino/${id}?comentario=null`);
+    }
+
+    console.log('Comentario insertado correctamente en la base de datos.');
+    res.redirect(`/destino/${id}?comentario=confirmada`);
+  });
+});
+
 
 app.listen(port, () => {
   console.log(`Servidor Express escuchando en el puerto ${port}`);
