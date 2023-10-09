@@ -33,7 +33,7 @@ app.get('/reserva', (req, res) => {
 app.get('/destino/:id', (req, res) => {
   const id = req.params.id;
   const reservaConfirmada = req.query.reserva === `confirmada`;
-  const comentarioConfirmado = req.query.reserva === `confirmada`;
+  const comentarioConfirmado = req.query.comentario === `confirmada`;
 
   dbConnection.query('SELECT * FROM destinos WHERE id = ?', [id], (err, result) => {
     if (err) {

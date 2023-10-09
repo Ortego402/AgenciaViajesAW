@@ -38,13 +38,17 @@
     </nav>
 
     <main>
-        <% if (reservaConfirmada || comentarioConfirmado) { %>
+        <% if (reservaConfirmada) { %>
             <div class="alert alert-success" role="alert" style="background-color: rgb(113, 251, 141); color: black;">
                 ¡Reserva confirmada! Gracias por tu reserva.
             </div>
+        <% } else if (comentarioConfirmado) { %>
+            <div class="alert alert-success" role="alert" style="background-color: rgb(113, 251, 141); color: black;">
+                ¡Comentario publicado!
+            </div>
         <% } else if(reservaConfirmada != "" && comentarioConfirmado != "") { %>
             <div class="alert alert-danger" role="alert" style="background-color: rgb(255, 92, 92); color: white;">
-                ¡Ups! No se pudo realizar la reserva debido a un fallo. Por favor, inténtalo de nuevo más tarde.
+                ¡Ups! No se pudo realizar la acción debido a un fallo. Por favor, inténtalo de nuevo más tarde.
             </div>
         <% } %>        
         <div class="border-bottom">
