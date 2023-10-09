@@ -119,3 +119,52 @@ app.post('/destino/:id/comentarios', (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor Express escuchando en el puerto ${port}`);
 });
+
+app.get('/registro', (req, res) => {
+  res.render('registro');
+});
+
+app.post('/registro', (req, res) => {
+  const { nombre, apellidos, correo, username, password } = req.body;
+
+  const checkUsernameQuery = 'SELECT * FROM usuarios WHERE username = ?';
+  db.query(checkUsernameQuery, [username], (checkUsernameErr, checkUsernameResult) => {
+    if (checkUsernameErr) {
+      console.error('Error al comprobar el nombre de usuario:', checkUsernameErr);
+      return res.status(500).json({ error: 'Error interno del servidor' });
+    }
+
+    if (checkUsernameResult.length > 0) {
+      console.error('Error al insertar comentario:', err);
+      return res.status(400).json({ error: 'El nombre de usuario ya está en uso, elije' });
+    }
+  });
+
+  if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)){
+    return res.status(400).json({ error: 'El correo no es valido' });
+  }
+
+  // Comprobar la contraseña según tus requisitos
+  if (/[A-Z]/.test(password)) {
+    return res.status(400).json({ error: 'La contraseña no es valida' });
+  }
+  if (/\d/.test(password)) {
+    return res.status(400).json({ error: 'La contraseña debete tener almenos un numero' });
+  }
+  if (password.length >= 10) {
+    return res.status(400).json({ error: 'La contraseña debe tener almenos 10 caracteres' });
+  }
+
+  // Insertar datos en la base de datos
+  const query = 'INSERT INTO usuarios (nombre, apellidos, correo, username, password) VALUES (?, ?, ?, ?, ?)';
+  db.query(query, [username, bcrypt.hash(password, 10)], (err, result) => {
+    if (err) {
+      console.error('Error al insertar en la base de datos:', err);
+      return res.status(500).json({ error: 'Error interno del servidor' });
+    }
+
+    console.log('Usuario registrado correctamente en la base de datos');
+    return res.status(200).json({ message: 'Registro exitoso.' });
+  });
+  
+});
