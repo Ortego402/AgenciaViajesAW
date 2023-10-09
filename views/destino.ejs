@@ -110,8 +110,8 @@
                 </div>
             </div>
         </div>   
-        <div class="comentario-form">
-            <h4>Deja un comentario:</h4>
+        <div class="comentario-form m-3">
+            <h5>Deja un comentario:</h5>
             <form action="/destino/<%= result.id %>/comentarios" method="post" th:object="${comentario}">
                 <input type="hidden" th:field="*{destinoId}" th:value="${result.id}" />
                 <div class="mb-3">
@@ -120,13 +120,13 @@
                 </div>                
                 <div class="mb-3">
                     <label for="comentario" class="form-label">Comentario:</label>
-                    <textarea class="form-control" id="comentario" name="comentario" rows="3" required></textarea>
+                    <textarea class="form-control" id="comentario" name="comentario" rows="1" required></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Enviar comentario</button>
             </form>
         </div>
-        <div class="comentarios-lista">
-            <h3>Comentarios:</h3>
+        <div class="comentarios-lista m-3">
+            <h5>Comentarios:</h5>
             <% comentarios.forEach(function(comentario) { %>
                 <div class="comentario">
                     <p class="comentario-text">
