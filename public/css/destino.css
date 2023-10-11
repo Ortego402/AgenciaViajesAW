@@ -21,6 +21,8 @@
 .destino-container {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center; /* Centrar los elementos en el contenedor */
+  gap: 20px; /* Espacio entre las imágenes */
 }
 
 .col-md-6 {
@@ -28,9 +30,19 @@
   max-width: 100%;
 }
 
+.destino-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Centrar los elementos en el contenedor */
+  gap: 20px; /* Espacio entre las imágenes */
+}
+
 .img-mediana {
-  width: 600px;
+  width: 100%;
   height: 400px;
+  border: 3px solid #333;
+  border-radius: 5px;
+  object-fit: cover;
 }
 
 .destino-info {
@@ -44,6 +56,12 @@
   margin-top: 15px;
   height: 400px; 
   
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 400px; /* Establece la altura fija para todas las imágenes en el visor */
+  object-fit: cover;
 }
 
 /* Estilo para la descripción */
