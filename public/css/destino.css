@@ -191,15 +191,8 @@
   }
 }
 
-.comentarios-lista {
-  margin-top: 20px;
-}
-
 .comentario {
-  background-color: #e9e8e8;
   padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 10px;
 }
 
 .comentario-text {
@@ -207,5 +200,5 @@
 }
 
 .fecha-comentario {
-  color: #616161;
+  color: #3a3a3a;
 }

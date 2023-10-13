@@ -14,8 +14,8 @@
 <body>
     <header class="container-fluid">
         <div class="col col-4 d-flex justify-content-center align-items-center">
-          <a href="/" class="btn btn-primary btn-block" style="background-color:rgb(249, 54, 44); color: #333; border: none;">
-            <h2><strong>EpicScape</strong></h2>
+            <a href="/" class="btn btn-block text-dark">
+                <h2><strong>EpicScape</strong></h2>
           </a>
         </div>
         <div class="col col-4">
@@ -39,15 +39,15 @@
 
     <main>
         <% if (reservaConfirmada) { %>
-            <div class="alert alert-success" role="alert" style="background-color: rgb(113, 251, 141); color: black;">
+            <div class="alert alert-success bg-gradient text-dark" role="alert">
                 ¡Reserva confirmada! Gracias por tu reserva.
             </div>
         <% } else if (comentarioConfirmado) { %>
-            <div class="alert alert-success" role="alert" style="background-color: rgb(113, 251, 141); color: black;">
+            <div class="alert alert-success bg-gradient text-dark" role="alert">
                 ¡Comentario publicado!
             </div>
-        <% } else if(reservaConfirmada != "" && comentarioConfirmado != "") { %>
-            <div class="alert alert-danger" role="alert" style="background-color: rgb(255, 92, 92); color: white;">
+        <% } else if(reservaConfirmada !== "" && comentarioConfirmado !== "") { %>
+            <div class="alert alert-danger bg-danger bg-gradient text-black" role="alert">
                 ¡Ups! No se pudo realizar la acción debido a un fallo. Por favor, inténtalo de nuevo más tarde.
             </div>
         <% } %>        
@@ -128,7 +128,7 @@
         <div class="comentarios-lista m-3">
             <h5>Comentarios:</h5>
             <% comentarios.forEach(function(comentario) { %>
-                <div class="comentario border border-dark">
+                <div class="comentario border border-dark bg-secondary bg-opacity-25 mb-2 rounded-2">
                     <p class="comentario-text">
                         <strong><%= comentario.nombre_usuario %>:</strong> <%= comentario.comentario %>
                         <br>

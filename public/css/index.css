@@ -20,7 +20,7 @@ p{
     display:flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(249, 54, 44);
+    background-color: rgb(121, 164, 255);
     padding: 20px;
 }
 
@@ -39,7 +39,7 @@ body {
 
 /* Estilos para el nav */
 nav {
-    background-color: #f77f7f;
+    background-color: #b6ffff;
     text-align: center;
     padding: 10px 0;
     display: flex; 
@@ -102,7 +102,7 @@ main {
 }
 
 .botonnav{
-    background-color:#5e3636;
+    background-color:#bbc2ff;
     color: #fff;
     transition: background-color 0.3s;
     border: none;
@@ -110,7 +110,7 @@ main {
 }
 
 .navbar{
-    background-color:#5e3636;
+    background-color:#bbc2ff;
 }
 
 .botonnav:hover{
