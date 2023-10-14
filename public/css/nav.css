@@ -1,0 +1,35 @@
+.nosotros-section {
+    padding: 10px 0;
+}
+
+.container-fluid-nosotros{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.nosotros-content {
+    text-align: center;
+}
+
+.nosotros-heading {
+    font-size: 36px;
+    margin-bottom: 30px;
+}
+
+.nosotros-text {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.social-links {
+    margin-top: 5px;
+}
+
+.social-links a {
+    color: white;
+    text-decoration: none;
+    margin: 5px 15px;
+}

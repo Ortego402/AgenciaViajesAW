@@ -1,27 +1,30 @@
 # AgenciaViajesAW
 
 # ENTREGA 2:
-• Configurar una conexión a la base de datos MariaDB en el servidor utilizando
-Node.js y el paquete mysql.
+
+# • Configurar una conexión a la base de datos MariaDB en el servidor utilizando
+# Node.js y el paquete mysql.  
 
 • Implementar un visor de imágenes en cada destino que permita a los usuarios
 explorar las fotos de manera interactiva, con controles de anterior/siguiente.
 
-• Agregar un formulario de reserva en cada página de destino, con campos para el
-nombre del cliente, correo electrónico y fecha de reserva.
+# • Agregar un formulario de reserva en cada página de destino, con campos para el
+# nombre del cliente, correo electrónico y fecha de reserva.
+
 • Validar los campos del formulario para asegurarse de que estén completos antes
 de enviarlos.
 
-• Modificar la estructura de la base de datos para incluir una tabla de reservas que
-almacene los datos de las reservas realizadas por los usuarios.
+# • Modificar la estructura de la base de datos para incluir una tabla de reservas que
+# almacene los datos de las reservas realizadas por los usuarios.
 
-• Configurar rutas en Express para manejar la solicitud de reservas, insertar los datos
-en la base de datos y enviar confirmaciones a los usuarios.
+# • Configurar rutas en Express para manejar la solicitud de reservas, insertar los datos
+# en la base de datos y enviar confirmaciones a los usuarios.
 
-• Utilizar JavaScript para habilitar la interacción con el visor de imágenes y mostrar la
-confirmación de reserva después de enviar el formulario.
+• Utilizar JavaScript para habilitar la interacción con el visor de imágenes 
 
-• Hacer un Footer.
+# • Mostrar la confirmación de reserva después de enviar el formulario.
+
+# • Hacer un Footer.
 
 • Mejoras errores de vistas.
 
@@ -35,7 +38,7 @@ confirmación de reserva después de enviar el formulario.
 
 • Añadir modales.
 
-• Validación de datos en la reserva.
+# • Validación de datos en la reserva.
 
 • Mejora visual de destinos individuales.
 
@@ -43,9 +46,11 @@ confirmación de reserva después de enviar el formulario.
 
 • Borrar console.log().
 
-• Probar a poner imagen de fondo.
+# • Probar a poner color de fondo/imagen. (La imagen queda mal porque la páginase agranda y la imagen también)
 
 • Mejorar buscador cuando la ventana es más pequeña.
+
+# • Añadir mensaje cuando no hay comentarios.
 
 # ENTREGA 3:
 • Sistema de comentarios:

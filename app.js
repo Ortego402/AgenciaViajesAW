@@ -11,6 +11,7 @@ app.set('view engine', 'ejs');
 
 app.use(express.static('public'));
 
+
 // Mostrar todos los destinos
 app.get('/', (req, res) => {
   // Realiza la consulta a la base de datos
@@ -22,8 +23,20 @@ app.get('/', (req, res) => {
     }
 
     // Renderiza la vista "index.ejs" con los resultados como datos
-    res.render('index', { results: results });
+    res.render('home', { results: results });
   });
+});
+
+app.get('/servicios', (req, res) => {
+  res.render('servicios');
+});
+
+app.get('/nosotros', (req, res) => {
+  res.render('nosotros');
+});
+
+app.get('/contacto', (req, res) => {
+  res.render('contacto');
 });
 
 app.get('/reserva', (req, res) => {
@@ -35,6 +48,18 @@ app.get('/destino/:id', (req, res) => {
   const reservaConfirmada = req.query.reserva === `confirmada`;
   const comentarioConfirmado = req.query.comentario === `confirmada`;
 
+  let mensaje = "";
+  if(reservaConfirmada){
+    mensaje = "¡Reserva completada! Gracias por realizar la reserva."
+  }
+  else if(comentarioConfirmado){
+    mensaje = "Comentario realizado correctamente.";
+  }
+  else if(req.query.reserva == "null" || req.query.comentario == "null"){
+    mensaje = "¡Ups! Ha ocurrido un error al realizar la acción.";
+  }
+
+  console.log(mensaje);
   dbConnection.query('SELECT * FROM destinos WHERE id = ?', [id], (err, result) => {
     if (err) {
       console.error('Error al ejecutar la consulta:', err);
@@ -59,7 +84,7 @@ app.get('/destino/:id', (req, res) => {
             console.error('Error al ejecutar la consulta de comentarios:', err);
             return res.status(500).json({ error: 'Error de la base de datos' });
         }
-        res.render('destino', { result: result[0], results: results, comentarios: comentarios, reservaConfirmada: reservaConfirmada, comentarioConfirmado: comentarioConfirmado });
+        res.render('destino', { result: result[0], results: results, comentarios: comentarios, mensaje: mensaje });
       });
     });
   });
@@ -77,7 +102,7 @@ app.get('/buscar', (req, res) => {
       return;
     }
     // Renderiza la vista "index.ejs" con los resultados como datos
-    res.render('index', { results: results });
+    res.render('home', { results: results });
   });
 });
 
@@ -89,11 +114,9 @@ app.post('/destino/:id/reservar', (req, res) => {
   // Inserta los datos en la base de datos
   dbConnection.query('INSERT INTO reservas (destino_id, nombre_cliente, correo_cliente, fecha_reserva) VALUES (?, ?, ?, ?)', [id, nombre, email, fecha_reserva], (err, result) => {
     if (err) {
-      console.error('Error al insertar reserva:', err);
       return res.redirect(`/destino/${id}?reserva=null`);
     }
 
-    console.log('Reserva insertada correctamente en la base de datos.');
     res.redirect(`/destino/${id}?reserva=confirmada`);
   });
 });
@@ -106,11 +129,8 @@ app.post('/destino/:id/comentarios', (req, res) => {
   // Inserta los datos en la base de datos
   dbConnection.query('INSERT INTO comentarios (destino_id, nombre_usuario, comentario) VALUES (?, ?, ?)', [id, nombre_usuario, comentario], (err, result) => {
     if (err) {
-      console.error('Error al insertar comentario:', err);
       return res.redirect(`/destino/${id}?comentario=null`);
     }
-
-    console.log('Comentario insertado correctamente en la base de datos.');
     res.redirect(`/destino/${id}?comentario=confirmada`);
   });
 });

@@ -16,11 +16,11 @@ p{
     font-size: medium;
 }
 
-.container-fluid {
+.container-header {
     display:flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(121, 164, 255);
+    background-color: #84db86;
     padding: 20px;
 }
 
@@ -39,7 +39,7 @@ body {
 
 /* Estilos para el nav */
 nav {
-    background-color: #b6ffff;
+    background-color: #00BCD4;
     text-align: center;
     padding: 10px 0;
     display: flex; 
@@ -60,6 +60,7 @@ nav a {
 
 main {
     padding: 20px;
+    background-color: #e2f5ff;
 }
 
 .card {
@@ -102,7 +103,7 @@ main {
 }
 
 .botonnav{
-    background-color:#bbc2ff;
+    background-color:#5fb7c3;
     color: #fff;
     transition: background-color 0.3s;
     border: none;
@@ -110,7 +111,7 @@ main {
 }
 
 .navbar{
-    background-color:#bbc2ff;
+    background-color:#5fb7c3;
 }
 
 .botonnav:hover{
@@ -202,4 +203,11 @@ main {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Ajusta automáticamente el número de columnas */
     gap: 20px; /* Espacio entre las tarjetas */
     text-decoration: none;
+}
+
+footer {
+    background-color: #6fb371;
+    color: white;
+    text-align: center;
+    padding: 20px;
 }
