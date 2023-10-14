@@ -38,7 +38,7 @@ de enviarlos.
 
 # • Funcionalidad del nav "Servicios".
 
-• Funcionalidad del nav "Populares".
+# • Funcionalidad del nav "Populares".
 
 • Añadir modales.
 
