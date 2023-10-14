@@ -35,8 +35,8 @@ app.get('/nosotros', (req, res) => {
   res.render('nosotros');
 });
 
-app.get('/contacto', (req, res) => {
-  res.render('contacto');
+app.get('/populares', (req, res) => {
+  res.render('populares');
 });
 
 app.get('/reserva', (req, res) => {

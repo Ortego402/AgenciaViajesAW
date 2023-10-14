@@ -34,7 +34,11 @@ de enviarlos.
 
 • Base de datos.
 
-• Funcionalidad del nav.
+# • Funcionalidad del nav "Nosotros".
+
+# • Funcionalidad del nav "Servicios".
+
+• Funcionalidad del nav "Populares".
 
 • Añadir modales.
 
