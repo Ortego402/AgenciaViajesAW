@@ -38,7 +38,7 @@
 
 # • Funcionalidad del nav "Populares".
 
-• Añadir modales.
+• Añadir miga de pan.
 
 # • Validación de datos en la reserva.
 
