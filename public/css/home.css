@@ -18,7 +18,6 @@ p{
 
 .container-header {
     display:flex;
-    justify-content: space-between;
     align-items: center;
     background-color: #84db86;
     padding: 20px;
@@ -132,14 +131,15 @@ main {
 /* Estilos para la barra de búsqueda */
 .buscador {
     display: flex;
-    align-items: center;
+    width: 100%; /* Ocupa todo el ancho disponible */
+    margin: 0 auto; /* Centra la barra de búsqueda */
 }
 
 .caja {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    width: 100%;
+    width: 600px;
 }
 
 .boton{

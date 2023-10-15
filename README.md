@@ -52,7 +52,7 @@ de enviarlos.
 
 # • Probar a poner color de fondo/imagen. (La imagen queda mal porque la páginase agranda y la imagen también)
 
-• Mejorar buscador cuando la ventana es más pequeña.
+# • Mejorar buscador cuando la ventana es más pequeña.
 
 # • Añadir mensaje cuando no hay comentarios.
 
