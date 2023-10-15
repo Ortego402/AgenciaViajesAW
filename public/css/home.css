@@ -132,7 +132,7 @@ main {
 .buscador {
     display: flex;
     width: 100%; /* Ocupa todo el ancho disponible */
-    margin: 0 auto; /* Centra la barra de búsqueda */
+    margin-right: 50px;
 }
 
 .caja {
@@ -206,21 +206,30 @@ main {
 }
 
 footer {
-    background-color: #6fb371;
+    background-color: #7bae7d;
     color: white;
     text-align: center;
     padding: 20px;
 }
 
 .breadcrumb-item {
-    color: #6c757d; /* Color gris azulado clarito */
+    color: #3a3c3e; /* Color gris azulado clarito */
+    padding: 5px;
 }
 
 .breadcrumb-item a {
-    color: #6c757d; /* Color gris azulado clarito para los enlaces */
+    color: #000000; /* Color gris azulado clarito para los enlaces */
     text-decoration: none; /* Eliminar subrayado de los enlaces */
 }
 
 .breadcrumb-item.active {
-    color: #495057; /* Cambiar color del elemento activo */
+    color: #000000; /* Cambiar color del elemento activo */
+}
+
+.breadcrumb-nav{
+    background-color:#95c9c9;
+}
+
+.breadcrumb{
+    margin-left: 20px;
 }
