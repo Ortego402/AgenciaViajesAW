@@ -5,7 +5,7 @@
 # • Configurar una conexión a la base de datos MariaDB en el servidor utilizando
 # Node.js y el paquete mysql.  
 
-• Implementar un visor de imágenes en cada destino que permita a los usuarios explorar las fotos de manera interactiva, con anterior siguiente.
+# • Implementar un visor de imágenes en cada destino que permita a los usuarios explorar las fotos de manera interactiva, con anterior siguiente.
 
 # • Agregar un formulario de reserva en cada página de destino, con campos para el
 # nombre del cliente, correo electrónico y fecha de reserva.
@@ -18,7 +18,7 @@
 # • Configurar rutas en Express para manejar la solicitud de reservas, insertar los datos
 # en la base de datos y enviar confirmaciones a los usuarios.
 
-• Utilizar JavaScript para habilitar la interacción con el visor de imágenes 
+# • Utilizar JavaScript para habilitar la interacción con el visor de imágenes 
 
 # • Mostrar la confirmación de reserva después de enviar el formulario.
 
