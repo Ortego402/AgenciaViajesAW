@@ -15,6 +15,13 @@
 
   <%- include('nav.ejs') %>
 
+  <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="bg-light p-3">
+    <ol class="breadcrumb align-items-center me-auto my-auto">
+        <li class="breadcrumb-item" aria-current="page">Home</li>
+    </ol>
+  </nav>
+
+
     <main>
       <div class="destinos-grid">
         <% results.forEach(function(destino, index) { %>

@@ -17,7 +17,6 @@ app.get('/', (req, res) => {
   // Realiza la consulta a la base de datos
   dbConnection.query('SELECT * FROM destinos', (err, results) => {
     if (err) {
-      console.error('Error al ejecutar la consulta:', err);
       res.status(500).json({ error: 'Error de la base de datos' });
       return;
     }
@@ -59,15 +58,12 @@ app.get('/destino/:id', (req, res) => {
     mensaje = "¡Ups! Ha ocurrido un error al realizar la acción.";
   }
 
-  console.log(mensaje);
   dbConnection.query('SELECT * FROM destinos WHERE id = ?', [id], (err, result) => {
     if (err) {
-      console.error('Error al ejecutar la consulta:', err);
       return res.status(500).json({ error: 'Error de la base de datos' });
     }
 
     if (result.length === 0) {
-      console.log('No se encontraron resultados para el ID:', id);
       return res.status(404).send('Destino no encontrado');
     }
 
@@ -75,13 +71,11 @@ app.get('/destino/:id', (req, res) => {
     // Consulta para obtener las imágenes del destino
     dbConnection.query('SELECT * FROM imagenes_destino WHERE destino_id = ?', [id], (err, results) => {
       if (err) {
-        console.error('Error al ejecutar la consulta de imágenes:', err);
         return res.status(500).json({ error: 'Error de la base de datos' });
       }
 
       dbConnection.query('SELECT * FROM comentarios WHERE destino_id = ?', [id], (err, comentarios) => {
         if (err) {
-            console.error('Error al ejecutar la consulta de comentarios:', err);
             return res.status(500).json({ error: 'Error de la base de datos' });
         }
         res.render('destino', { result: result[0], results: results, comentarios: comentarios, mensaje: mensaje });
@@ -97,7 +91,6 @@ app.get('/buscar', (req, res) => {
   // Realiza la consulta a la base de datos para buscar destinos por nombre o descripción
   dbConnection.query('SELECT * FROM destinos WHERE nombre LIKE ? OR descripcion LIKE ?', [`%${searchTerm}%`, `%${searchTerm}%`], (err, results) => {
     if (err) {
-      console.error('Error al ejecutar la consulta:', err);
       res.status(500).json({ error: 'Error de la base de datos' });
       return;
     }
@@ -135,11 +128,6 @@ app.post('/destino/:id/comentarios', (req, res) => {
   });
 });
 
-
-app.listen(port, () => {
-  console.log(`Servidor Express escuchando en el puerto ${port}`);
-});
-
 app.get('/registro', (req, res) => {
   res.render('registro');
 });
@@ -150,12 +138,10 @@ app.post('/registro', (req, res) => {
   const checkUsernameQuery = 'SELECT * FROM usuarios WHERE username = ?';
   db.query(checkUsernameQuery, [username], (checkUsernameErr, checkUsernameResult) => {
     if (checkUsernameErr) {
-      console.error('Error al comprobar el nombre de usuario:', checkUsernameErr);
       return res.status(500).json({ error: 'Error interno del servidor' });
     }
 
     if (checkUsernameResult.length > 0) {
-      console.error('Error al insertar comentario:', err);
       return res.status(400).json({ error: 'El nombre de usuario ya está en uso, elije' });
     }
   });
@@ -179,11 +165,9 @@ app.post('/registro', (req, res) => {
   const query = 'INSERT INTO usuarios (nombre, apellidos, correo, username, password) VALUES (?, ?, ?, ?, ?)';
   db.query(query, [username, bcrypt.hash(password, 10)], (err, result) => {
     if (err) {
-      console.error('Error al insertar en la base de datos:', err);
       return res.status(500).json({ error: 'Error interno del servidor' });
     }
 
-    console.log('Usuario registrado correctamente en la base de datos');
     return res.status(200).json({ message: 'Registro exitoso.' });
   });
   

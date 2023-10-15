@@ -5,14 +5,12 @@
 # • Configurar una conexión a la base de datos MariaDB en el servidor utilizando
 # Node.js y el paquete mysql.  
 
-• Implementar un visor de imágenes en cada destino que permita a los usuarios
-explorar las fotos de manera interactiva, con controles de anterior/siguiente.
+• Implementar un visor de imágenes en cada destino que permita a los usuarios explorar las fotos de manera interactiva, con anterior siguiente.
 
 # • Agregar un formulario de reserva en cada página de destino, con campos para el
 # nombre del cliente, correo electrónico y fecha de reserva.
 
-• Validar los campos del formulario para asegurarse de que estén completos antes
-de enviarlos.
+# • Validar los campos del formulario para asegurarse de que estén completos antes de enviarlos.
 
 # • Modificar la estructura de la base de datos para incluir una tabla de reservas que
 # almacene los datos de las reservas realizadas por los usuarios.
@@ -48,7 +46,7 @@ de enviarlos.
 
 • Añadir comentarios en todos los archivos.
 
-• Borrar console.log().
+# • Borrar console.log().
 
 # • Probar a poner color de fondo/imagen. (La imagen queda mal porque la páginase agranda y la imagen también)
 

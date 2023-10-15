@@ -211,3 +211,16 @@ footer {
     text-align: center;
     padding: 20px;
 }
+
+.breadcrumb-item {
+    color: #6c757d; /* Color gris azulado clarito */
+}
+
+.breadcrumb-item a {
+    color: #6c757d; /* Color gris azulado clarito para los enlaces */
+    text-decoration: none; /* Eliminar subrayado de los enlaces */
+}
+
+.breadcrumb-item.active {
+    color: #495057; /* Cambiar color del elemento activo */
+}
