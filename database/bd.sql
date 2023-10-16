@@ -62,13 +62,21 @@ INSERT INTO `destinos` (`id`, `nombre`, `descripcion`, `imagen`, `precio`) VALUE
 -- Volcado de datos para la tabla `imagenes_destino`
 --
 INSERT INTO `imagenes_destino` (`id`, `destino_id`, `url`) VALUES
-(1, 1, 'https://www.barcelo.com/guia-turismo/wp-content/uploads/2021/03/riviera-maya-cancun-pal.jpg'),
-(2, 2, 'https://upload.wikimedia.org/wikipedia/commons/6/6e/Paris_-_Eiffelturm_und_Marsfeld2.jpg'),
-(3, 3, 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Machu_Picchu%2C_Peru_%282018%29.jpg/400px-Machu_Picchu%2C_Peru_%282018%29.jpg'),
-(4, 4, 'https://grandcanyonwest.com/wp-content/uploads/SkwalkHero_B.jpg'),
-(5, 5, 'https://cdn-3.expansion.mx/92/921b3e3b832955a23cc7baf7dfc74aae/Santorini-Grecia.jpg'),
-(6, 6, 'https://static.nationalgeographicla.com/files/styles/image_3200/public/nationalgeographic2710344.jpg?w=1900&h=1272'),
-(7, 7, 'https://imagenes.elpais.com/resizer/AL_nzRr8ImurbojoC6T2q4QYoPU=/1960x1470/filters:focal(734x629:744x639)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/KAJZQ2KMBZH35BKMXIOIMD23X4.jpg'),
+(1, 1, 'https://media.viajando.travel/p/a7bbd1d51b0d0276eede80299ee73fbc/adjuntos/236/imagenes/000/541/0000541300/1200x675/smart/cancun-shutterstock_1956007453-jdross75jpg.jpg'),
+(2, 2, 'https://vibes.okdiario.com/wp-content/uploads/2023/08/torre-eiffel-curiosidades-1.jpg'),
+(3, 3, 'https://www.infobae.com/new-resizer/uVrD2DihnpgrVASGQCZ0ko-V6Fs=/arc-anglerfish-arc2-prod-infobae/public/3ULIHIRHP5BOLFFFU6L6FLTA2E.jpg'),
+(29, 4, 'https://www.elagoradiario.com/wp-content/uploads/2020/01/Gran-Ca%C3%B1%C3%B3n.jpg'),
+(30, 4, 'https://lasvegasentuidioma.com/wp-content/uploads/2018/08/convivir-naturaleza-gran-canon.jpg'),
+(31, 4, 'https://www.toursalgrancanon.com/wp-content/uploads/2018/11/fotos-espectaculares-gran-canon.jpg'),
+(5, 5, 'https://lp-cms-production.imgix.net/2021-05/shutterstockRF_1563449509.jpg?auto=format&w=1440&h=810&fit=crop&q=75'),
+(32, 5, 'https://img2.rtve.es/imagenes/calles-del-pueblo-pyrgos-santorini/1629211921523.jpg'),
+(33, 5, 'https://www.blogdechollos.com/wp-content/uploads/2023/05/Viaje-a-Santorini-barato-hoteles-baratos-ofertas-en-viajes-chollo.jpg'),
+(6, 6, 'https://www.eluniversal.com.mx/resizer/xCL7roGhhtcJhHQhbFxE7e3xEzs=/1200x740/cloudfront-us-east-1.images.arcpublishing.com/eluniversal/AKQROG6PVVCLXM2NZPLZOKUA5Y.jpg'),
+(34, 6, 'https://img.asmedia.epimg.net/resizer/xUawdQLVlAt3qrSuVLEs9ol60sM=/1472x828/cloudfront-eu-central-1.images.arcpublishing.com/diarioas/P466JKSZ7VDSPESFDMU472KKTY.jpeg'),
+(35, 6, 'https://fotografias.lasexta.com/clipping/cmsimages01/2023/01/12/6F810954-0A15-4D78-A13D-A0E31AD7BD67/gran-muralla-china_69.jpg?crop=2304,1296,x7,y0&width=1280&height=720&optimize=low&format=jpg'),
+(7, 7, 'https://images.contentstack.io/v3/assets/blt00454ccee8f8fe6b/blt7d6d1039edc8fad1/60ab286f909370737ae497ee/UK_Bora-Bora_French_Polynesia_Header.jpg'),
+(36, 7, 'https://www.hotelscombined.es/rimg/dimg/8b/e5/e0dd60a9-freereg-2000160-16644d965bc.jpg?width=1366&height=768&xhint=1534&yhint=897&crop=true'),
+(37, 7, 'https://www.tahitilegends.com/images1/gallery/BOBPBR-aerial7-1200x720_24693.jpg'),
 (8, 8, 'https://images.musement.com/cover/0153/55/marrakech-jpg_header-15254531.jpg?w=1200&h=630&q=95&fit=crop'),
 (9, 9, 'https://upload.wikimedia.org/wikipedia/commons/6/6c/Egypt.Giza.Sphinx.02.jpg'),
 (10, 10, 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu_%28cropped%29.jpg/1200px-View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu_%28cropped%29.jpg'),
@@ -86,9 +94,9 @@ INSERT INTO `imagenes_destino` (`id`, `destino_id`, `url`) VALUES
 (22, 18, 'https://fotografias.larazon.es/clipping/cmsimages01/2019/08/09/245E4071-4F4A486FA012D0BC41F99413/98.jpgcrop=2000,1125,x0,y104&width=1900&height=1069&optimize=low&format=webply'),
 (23, 17, 'https://passporterapp.com/es/blog/wp-content/uploads/2023/05/que-ver-en-el-cairo-scaled.jpg'),
 (24, 17, 'https://static.nationalgeographic.es/files/styles/image_3200/public/resized-gettyimages-1411179963.jpg?w=1600&h=900'),
-(25, 2, 'https://www.toureiffel.paris/sites/default/files/styles/mobile_x1_560/public/actualite/image_principale/vue_depuisjardins_webbanner_3.jpg?itok=YjGzrcsL'),
-(26, 2, 'https://cdn.culturagenial.com/es/imagenes/torre-eiffel-cke.jpg'),
-(27, 3, 'https://static.nationalgeographicla.com/files/styles/image_3200/public/92491.jpg?w=1600&h=900'),
-(28, 3, 'https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2022/04/19/16503736092836.jpg');
+(25, 2, 'https://viajes.nationalgeographic.com.es/medio/2022/07/13/paris_37bc088a_1280x720.jpg'),
+(26, 2, 'https://www.toureiffel.paris/themes/custom/tour_eiffel/video/tour-eiffel-timelapse-jour-nuit-recadre.jpg'),
+(27, 3, 'https://media.admagazine.com/photos/618a633172049e253173e864/master/w_1600%2Cc_limit/78760.jpg'),
+(28, 3, 'https://cdn.mos.cms.futurecdn.net/WFJBpzs4J5x3uvbeKdnm3i-1200-80.jpg');
 
 
