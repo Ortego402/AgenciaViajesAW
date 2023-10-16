@@ -61,7 +61,7 @@ INSERT INTO `destinos` (`id`, `nombre`, `descripcion`, `imagen`, `precio`) VALUE
 -- Volcado de datos para la tabla `imagenes_destino`
 --
 INSERT INTO `imagenes_destino` (`id`, `destino_id`, `url`) VALUES
-(1, 1, 'https://www.barcelo.com/guia-turismo/wp-content/uploads/2021/03/riviera-maya-cancun-pal.jpg'),
+(1, 1, 'https://media.istockphoto.com/id/1141542217/es/foto/complejo-tropical-de-lujo-con-arena-blanca-vista-a%C3%A9rea.jpg?s=612x612&w=0&k=20&c=zRIUkjEZuZAxtk7Oohqh8q7qBYWOBkIXRSQ4wdfMN8k='),
 (2, 2, 'https://upload.wikimedia.org/wikipedia/commons/6/6e/Paris_-_Eiffelturm_und_Marsfeld2.jpg'),
 (3, 3, 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Machu_Picchu%2C_Peru_%282018%29.jpg/400px-Machu_Picchu%2C_Peru_%282018%29.jpg'),
 (4, 4, 'https://grandcanyonwest.com/wp-content/uploads/SkwalkHero_B.jpg'),
@@ -79,35 +79,7 @@ INSERT INTO `imagenes_destino` (`id`, `destino_id`, `url`) VALUES
 (16, 16, 'https://media.traveler.es/photos/63838947050e0f92cd80c982/16:9/w_2560%2Cc_limit/GettyImages-1392907424.jpg'),
 (17, 17, 'https://www.egipto.net/f/egipto/egipto/guia/el-cairo.jpg'),
 (18, 18, 'https://images.hola.com/imagenes/viajes/20210915196086/praga-experiencias-ciudad-alrededores/0-994-736/panoramica-praga-m.jpg?tx=w_680'),
-(19, 1, 'https://blog.vivaaerobus.com/wp-content/uploads/2019/12/Mejores-Playas-de-Canc%C3%BAn.jpg'),
-(20, 1, 'https://res.cloudinary.com/simpleview/image/upload/v1660238572/clients/quintanaroo/DJI_0184_e430b49c-47d3-4bfc-8403-9fc2df2ac133.jpg'),
-(1, 1, 'https://www.barcelo.com/guia-turismo/wp-content/uploads/2021/03/riviera-maya-cancun-pal.jpg'),
-(2, 2, 'https://upload.wikimedia.org/wikipedia/commons/6/6e/Paris_-_Eiffelturm_und_Marsfeld2.jpg'),
-(3, 3, 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Machu_Picchu%2C_Peru_%282018%29.jpg/400px-Machu_Picchu%2C_Peru_%282018%29.jpg'),
-(4, 4, 'https://grandcanyonwest.com/wp-content/uploads/SkwalkHero_B.jpg'),
-(5, 5, 'https://cdn-3.expansion.mx/92/921b3e3b832955a23cc7baf7dfc74aae/Santorini-Grecia.jpg'),
-(6, 6, 'https://static.nationalgeographicla.com/files/styles/image_3200/public/nationalgeographic2710344.jpg?w=1900&h=1272'),
-(7, 7, 'https://imagenes.elpais.com/resizer/AL_nzRr8ImurbojoC6T2q4QYoPU=/1960x1470/filters:focal(734x629:744x639)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/KAJZQ2KMBZH35BKMXIOIMD23X4.jpg'),
-(8, 8, 'https://images.musement.com/cover/0153/55/marrakech-jpg_header-15254531.jpg?w=1200&h=630&q=95&fit=crop'),
-(9, 9, 'https://upload.wikimedia.org/wikipedia/commons/6/6c/Egypt.Giza.Sphinx.02.jpg'),
-(10, 10, 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu_%28cropped%29.jpg/1200px-View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu_%28cropped%29.jpg'),
-(11, 11, 'https://img2.rtve.es/i/?w=1600&i=1674749554354.jpg'),
-(12, 12, 'https://content.r9cdn.net/rimg/dimg/26/5b/01e97574-city-26166-1592813274a.jpg?width=1366&height=768&xhint=1038&yhint=725&crop=true'),
-(13, 13, 'https://gostudyaus.es/wp-content/uploads/2018/09/SYD_header.jpg'),
-(14, 14, 'https://enkanaservices.es/wp-content/uploads/2023/01/destacada-vivir-trabajar-dubai.jpg.webp'),
-(15, 15, 'https://cdn.getyourguide.com/img/location/5d079d304c0d5.jpeg/99.jpg'),
-(16, 16, 'https://media.traveler.es/photos/63838947050e0f92cd80c982/16:9/w_2560%2Cc_limit/GettyImages-1392907424.jpg'),
-(17, 17, 'https://www.egipto.net/f/egipto/egipto/guia/el-cairo.jpg'),
-(18, 18, 'https://images.hola.com/imagenes/viajes/20210915196086/praga-experiencias-ciudad-alrededores/0-994-736/panoramica-praga-m.jpg?tx=w_680'),
-(19, 1, 'https://blog.vivaaerobus.com/wp-content/uploads/2019/12/Mejores-Playas-de-Canc%C3%BAn.jpg'),
-(20, 1, 'https://res.cloudinary.com/simpleview/image/upload/v1660238572/clients/quintanaroo/DJI_0184_e430b49c-47d3-4bfc-8403-9fc2df2ac133.jpg'),
-(21, 18, 'https://www.disfrutapraga.com/f/republica-checa/praga/guia/praga-m.jpg'),
-(22, 18, 'https://fotografias.larazon.es/clipping/cmsimages01/2019/08/09/245E4071-4F4A486FA012D0BC41F99413/98.jpgcrop=2000,1125,x0,y104&width=1900&height=1069&optimize=low&format=webply'),
-(23, 17, 'https://passporterapp.com/es/blog/wp-content/uploads/2023/05/que-ver-en-el-cairo-scaled.jpg'),
-(24, 17, 'https://static.nationalgeographic.es/files/styles/image_3200/public/resized-gettyimages-1411179963.jpg?w=1600&h=900'),
-(25, 2, 'https://www.toureiffel.paris/sites/default/files/styles/mobile_x1_560/public/actualite/image_principale/vue_depuisjardins_webbanner_3.jpg?itok=YjGzrcsL'),
-(26, 2, 'https://cdn.culturagenial.com/es/imagenes/torre-eiffel-cke.jpg'),
-(27, 3, 'https://static.nationalgeographicla.com/files/styles/image_3200/public/92491.jpg?w=1600&h=900'),
-(28, 3, 'https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2022/04/19/16503736092836.jpg');
+(19, 1, 'https://media.istockphoto.com/id/1478037121/es/foto/vista-a%C3%A9rea-de-los-cristianos-y-playa-de-las-am%C3%A9ricas.jpg?s=612x612&w=0&k=20&c=-8AgHtc1FB_KVAopmDfzvbAq6KmsQu6kYsrmod2FDwk='),
+(20, 1, 'https://media.istockphoto.com/id/956105474/es/foto/playa-de-cancun-con-barco.jpg?s=612x612&w=0&k=20&c=3xfJbfZoMIuhvpmJ44ugeM7V12idoWEVR_8lOfERUTU=');
 
 

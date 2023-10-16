@@ -11,6 +11,9 @@ app.set('view engine', 'ejs');
 
 app.use(express.static('public'));
 
+app.listen(port, () => {
+  console.log(`Servidor esuchando en el puerto ${port}`);
+});
 
 // Mostrar todos los destinos
 app.get('/', (req, res) => {
