@@ -1,12 +1,3 @@
-/* Estilo para el título */
-.titulo-dest {
-  font-size: 2em;
-  font-weight: bold;
-  text-align: center;
-  color: #333; 
-  text-transform: uppercase;
-}
-
 /* Estilos para la imagen mediana */
 .img-mediana {
   width: 100%;

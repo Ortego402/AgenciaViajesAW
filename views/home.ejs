@@ -15,14 +15,16 @@
 
   <%- include('nav.ejs') %>
 
-  <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="border border-1 breadcrumb-nav p-3">
-    <ol class="breadcrumb align-items-center me-auto my-auto">
+  <nav style="--bs-breadcrumb-divider: '/';" aria-label="breadcrumb" class="border border-1 border-top-0 border-dark breadcrumb-nav ps-3 pt-3 pb-3">
+    <ol class="breadcrumb me-auto my-auto">
         <li class="breadcrumb-item" aria-current="page">Home</li>
+        <li class="breadcrumb-item active" aria-current="page"></li>
     </ol>
   </nav>
 
 
     <main>
+      <h2 class="text-center p-2 titulo-dest mb-3">DESTINOS DISPONIBLES</h2>
       <div class="destinos-grid">
         <% results.forEach(function(destino, index) { %>
           <a href="/destino/<%= destino.id %>" class="decoration">
