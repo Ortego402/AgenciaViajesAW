@@ -55,13 +55,35 @@ INSERT INTO `destinos` (`id`, `nombre`, `descripcion`, `imagen`, `precio`) VALUE
 (15, 'Kioto, Japón', 'Sumérgete en la rica cultura y tradición japonesa en Kioto, Japón. Explora antiguos templos, jardines zen y santuarios sagrados. Disfruta de la ceremonia del té, maravíllate con las geishas y admira los cerezos en flor en primavera. Kioto te invita a un viaje en el tiempo, donde la esencia de Japón cobra vida.', 'https://cdn.getyourguide.com/img/location/5d079d304c0d5.jpeg/99.jpg', '350.00'),
 (16, 'Barcelona, España', 'Descubre el arte y la arquitectura en cada esquina de Barcelona, España. Visita la famosa Sagrada Familia de Gaudí, pasea por Las Ramblas y explora los encantadores barrios como El Gótico y El Born. Disfruta de la deliciosa comida catalana, maravíllate con las obras maestras de Picasso y Gaudí, y sumérgete en la vida nocturna vibrante de esta ciudad costera.', 'https://media.traveler.es/photos/63838947050e0f92cd80c982/16:9/w_2560%2Cc_limit/GettyImages-1392907424.jpg', '280.00'),
 (17, 'Cairo, Egipto', 'Explora la historia antigua y el misterio en Cairo, Egipto. Visita las pirámides de Giza, la Esfinge y el Museo Egipcio. Sumérgete en el encanto caótico de los zocos y disfruta de la auténtica cocina egipcia. Cairo te transportará a la época de los faraones mientras te sumerges en la rica cultura e historia de este fascinante país.', 'https://www.egipto.net/f/egipto/egipto/guia/el-cairo.jpg', '320.00'),
-(18, 'Praga, República Checa', 'Descubre la ciudad de las cien torres en Praga, República Checa. Explora el encanto medieval del casco antiguo, maravíllate con el Puente de Carlos y visita el imponente Castillo de Praga. Disfruta de la cerveza checa en acogedores bares y descubre la rica herencia cultural de esta ciudad europea única.', 'https://hips.hearstapps.com/hmg-prod/images/praga-portada-1540732106.jpg')
+(18, 'Praga, República Checa', 'Descubre la ciudad de las cien torres en Praga, República Checa. Explora el encanto medieval del casco antiguo, maravíllate con el Puente de Carlos y visita el imponente Castillo de Praga. Disfruta de la cerveza checa en acogedores bares y descubre la rica herencia cultural de esta ciudad europea única.', 'https://hips.hearstapps.com/hmg-prod/images/praga-portada-1540732106.jpg', '123.7')
 
 
 --
 -- Volcado de datos para la tabla `imagenes_destino`
 --
 INSERT INTO `imagenes_destino` (`id`, `destino_id`, `url`) VALUES
+(1, 1, 'https://www.barcelo.com/guia-turismo/wp-content/uploads/2021/03/riviera-maya-cancun-pal.jpg'),
+(2, 2, 'https://upload.wikimedia.org/wikipedia/commons/6/6e/Paris_-_Eiffelturm_und_Marsfeld2.jpg'),
+(3, 3, 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Machu_Picchu%2C_Peru_%282018%29.jpg/400px-Machu_Picchu%2C_Peru_%282018%29.jpg'),
+(4, 4, 'https://grandcanyonwest.com/wp-content/uploads/SkwalkHero_B.jpg'),
+(5, 5, 'https://cdn-3.expansion.mx/92/921b3e3b832955a23cc7baf7dfc74aae/Santorini-Grecia.jpg'),
+(6, 6, 'https://static.nationalgeographicla.com/files/styles/image_3200/public/nationalgeographic2710344.jpg?w=1900&h=1272'),
+(7, 7, 'https://imagenes.elpais.com/resizer/AL_nzRr8ImurbojoC6T2q4QYoPU=/1960x1470/filters:focal(734x629:744x639)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/KAJZQ2KMBZH35BKMXIOIMD23X4.jpg'),
+(8, 8, 'https://images.musement.com/cover/0153/55/marrakech-jpg_header-15254531.jpg?w=1200&h=630&q=95&fit=crop'),
+(9, 9, 'https://upload.wikimedia.org/wikipedia/commons/6/6c/Egypt.Giza.Sphinx.02.jpg'),
+(10, 10, 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu_%28cropped%29.jpg/1200px-View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu_%28cropped%29.jpg'),
+(11, 11, 'https://img2.rtve.es/i/?w=1600&i=1674749554354.jpg'),
+(12, 12, 'https://content.r9cdn.net/rimg/dimg/26/5b/01e97574-city-26166-1592813274a.jpg?width=1366&height=768&xhint=1038&yhint=725&crop=true'),
+(13, 13, 'https://gostudyaus.es/wp-content/uploads/2018/09/SYD_header.jpg'),
+(14, 14, 'https://enkanaservices.es/wp-content/uploads/2023/01/destacada-vivir-trabajar-dubai.jpg.webp'),
+(15, 15, 'https://cdn.getyourguide.com/img/location/5d079d304c0d5.jpeg/99.jpg'),
+(16, 16, 'https://media.traveler.es/photos/63838947050e0f92cd80c982/16:9/w_2560%2Cc_limit/GettyImages-1392907424.jpg'),
+(17, 17, 'https://www.egipto.net/f/egipto/egipto/guia/el-cairo.jpg'),
+(18, 18, 'https://images.hola.com/imagenes/viajes/20210915196086/praga-experiencias-ciudad-alrededores/0-994-736/panoramica-praga-m.jpg?tx=w_680'),
+(19, 1, 'https://blog.vivaaerobus.com/wp-content/uploads/2019/12/Mejores-Playas-de-Canc%C3%BAn.jpg'),
+(20, 1, 'https://res.cloudinary.com/simpleview/image/upload/v1660238572/clients/quintanaroo/DJI_0184_e430b49c-47d3-4bfc-8403-9fc2df2ac133.jpg'),
+(1, 1, 'https://www.barcelo.com/guia-turismo/wp-content/uploads/2021/03/riviera-maya-cancun-pal.jpg'),
+(2, 2, 'https://upload.wikimedia.org/wikipedia/commons/6/6e/Paris_-_Eiffelturm_und_Marsfeld2.jpg'),
 (3, 3, 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Machu_Picchu%2C_Peru_%282018%29.jpg/400px-Machu_Picchu%2C_Peru_%282018%29.jpg'),
 (4, 4, 'https://grandcanyonwest.com/wp-content/uploads/SkwalkHero_B.jpg'),
 (5, 5, 'https://cdn-3.expansion.mx/92/921b3e3b832955a23cc7baf7dfc74aae/Santorini-Grecia.jpg'),
@@ -88,3 +110,5 @@ INSERT INTO `imagenes_destino` (`id`, `destino_id`, `url`) VALUES
 (26, 2, 'https://cdn.culturagenial.com/es/imagenes/torre-eiffel-cke.jpg'),
 (27, 3, 'https://static.nationalgeographicla.com/files/styles/image_3200/public/92491.jpg?w=1600&h=900'),
 (28, 3, 'https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2022/04/19/16503736092836.jpg');
+
+
