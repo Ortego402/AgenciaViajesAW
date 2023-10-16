@@ -28,6 +28,7 @@ CREATE TABLE comentarios (
  FOREIGN KEY (destino_id) REFERENCES destinos(id)
 );
 
+-- Tabla de Imagenes_destino
 CREATE TABLE imagenes_destino (
     id INT AUTO_INCREMENT PRIMARY KEY,
     destino_id INT,
@@ -36,7 +37,7 @@ CREATE TABLE imagenes_destino (
 );
 
 
--- Insertar datos en la Tabla de Destinos Turísticos
+-- Insertar datos en la Tabla de Destinos
 INSERT INTO `destinos` (`id`, `nombre`, `descripcion`, `imagen`, `precio`) VALUES
 (1, 'Playa de Cancún, México', 'Descubre la sublime belleza de la Playa de Cancún, donde las suaves arenas blancas acarician tus pies mientras las aguas turquesas del Caribe besan la costa. Este viaje de ensueño te invita a sumergirte en el lujo y la relajación. Durante tus días en Cancún, podrás explorar las antiguas ruinas mayas cercanas, maravillarte con cenotes ocultos y vivir la vibrante vida nocturna de la ciudad. Relájate bajo el sol tropical y explora la rica cultura maya en las cercanías, visitando antiguas ruinas y cenotes ocultos.', 'https://www.barcelo.com/guia-turismo/wp-content/uploads/2021/03/riviera-maya-cancun-pal.jpg', 500.00),
 (2, 'Torre Eiffel, París', 'La majestuosa Torre Eiffel, un ícono de París, te ofrece vistas panorámicas de la ciudad de la luz. Sumérgete en la historia del arte y la cultura parisina mientras paseas por los encantadores bulevares, disfrutas de la deliciosa cocina francesa y exploras museos de renombre mundial como el Louvre. Vive la magia de París mientras te maravillas con la elegancia de la Torre Eiffel.', 'https://upload.wikimedia.org/wikipedia/commons/6/6e/Paris_-_Eiffelturm_und_Marsfeld2.jpg', 75.50),
@@ -58,9 +59,7 @@ INSERT INTO `destinos` (`id`, `nombre`, `descripcion`, `imagen`, `precio`) VALUE
 (18, 'Praga, República Checa', 'Descubre la ciudad de las cien torres en Praga, República Checa. Explora el encanto medieval del casco antiguo, maravíllate con el Puente de Carlos y visita el imponente Castillo de Praga. Disfruta de la cerveza checa en acogedores bares y descubre la rica herencia cultural de esta ciudad europea única.', 'https://hips.hearstapps.com/hmg-prod/images/praga-portada-1540732106.jpg', '123.7')
 
 
---
--- Volcado de datos para la tabla `imagenes_destino`
---
+-- Insertar datos en la Tabla de Imagenes_destino
 INSERT INTO `imagenes_destino` (`id`, `destino_id`, `url`) VALUES
 (1, 1, 'https://media.viajando.travel/p/a7bbd1d51b0d0276eede80299ee73fbc/adjuntos/236/imagenes/000/541/0000541300/1200x675/smart/cancun-shutterstock_1956007453-jdross75jpg.jpg'),
 (2, 2, 'https://vibes.okdiario.com/wp-content/uploads/2023/08/torre-eiffel-curiosidades-1.jpg'),
