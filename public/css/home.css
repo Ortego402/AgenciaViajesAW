@@ -35,6 +35,9 @@ p{
 
 /* Estilos para el cuerpo de la página */
 body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     margin: 0;
     padding: 0;
 }
@@ -212,7 +215,8 @@ footer {
     background-color: #7bae7d;
     color: white;
     text-align: center;
-    padding: 10px;
+    padding: 20px;
+    margin-top: auto;
 }
 
 .breadcrumb-item {
