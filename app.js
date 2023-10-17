@@ -42,6 +42,14 @@ app.get('/reserva', (req, res) => {
       res.render('reserva');
 });
 
+app.get('/login', (req, res) => {
+    res.render('login');
+});
+
+app.get('/registro', (req, res) => {
+    res.render('registro');
+});
+
 app.get('/destino/:id', (req, res) => {
   const id = req.params.id;
   const reservaConfirmada = req.query.reserva === `confirmada`;
@@ -131,10 +139,6 @@ app.post('/destino/:id/comentarios', (req, res) => {
     }
     res.redirect(`/destino/${id}?comentario=confirmada`);
   });
-});
-
-app.get('/registro', (req, res) => {
-  res.render('registro');
 });
 
 app.post('/registro', (req, res) => {
