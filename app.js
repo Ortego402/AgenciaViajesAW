@@ -104,6 +104,11 @@ app.post('/destino/:id/reservar', (req, res) => {
   const { nombre, email, fecha_reserva } = req.body;
   const id = req.params.id;
 
+  //comprueba que el correo tenga el formato adecuado de correo
+  if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(req.email)){
+    return res.status(400).json({ error: 'El correo no es valido' });
+  }
+
   // Inserta los datos en la base de datos
   dbConnection.query('INSERT INTO reservas (destino_id, nombre_cliente, correo_cliente, fecha_reserva) VALUES (?, ?, ?, ?)', [id, nombre, email, fecha_reserva], (err, result) => {
     if (err) {
