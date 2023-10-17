@@ -11,7 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <!-- Título de la página y favicon -->
-    <title>EpicScape | Populares</title>
+    <title>EpicScape | Servicios</title>
     <link rel="icon" href="../images/logo.png" type="image/x-icon">
 </head>
 <body>
@@ -20,70 +20,70 @@
     <%- include('nav.ejs') %>
 
     <!-- Barra de navegación de migas de pan -->
-    <nav style="--bs-breadcrumb-divider: '/';" aria-label="breadcrumb" class="border border-1 border-top-0 border-dark breadcrumb-nav">
+    <nav style="--bs-breadcrumb-divider: '/';" aria-label="breadcrumb" class="breadcrumb-nav border border-1 border-top-0 border-dark">
         <ol class="breadcrumb align-items-center me-auto my-auto">
             <!-- Elementos de las migas de pan -->
             <li class="breadcrumb-item d-flex align-items-center">
                 <a href="/" class="text-decoration-none">Home</a>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">Populares</li>
+            <li class="breadcrumb-item active" aria-current="page">Servicios</li>
         </ol>
     </nav>
 
     <!-- Contenido principal -->
-    <main class="container-fluid">
-        <div class="container">
+    <main>
+        <div class="container mt-3">
             <!-- Título de la sección -->
-            <h1 class="text-center mb-4"><strong>Viajes Populares</strong></h1>
+            <h1 class="text-center mb-5"><strong>Nuestros Servicios</strong></h1>
             
-            <!-- Primer destino popular -->
-            <div class="row mb-5">
-                <div class="col-md-6 my-auto">
-                    <h2>Exploración en la Selva Amazónica</h2>
-                    <p>Únete a nuestra emocionante expedición a la selva amazónica, donde explorarás la flora y fauna exótica. Descubre la riqueza de la biodiversidad mientras caminas por densos bosques y participa en actividades como senderismo, avistamiento de aves y encuentros con comunidades locales. Una experiencia inolvidable para los amantes de la naturaleza y la aventura.</p>
-                </div>
-                <div class="col-md-6 mt-3 d-flex align-items-center justify-content-center">
-                    <img src="https://www.raisg.org/wp-content/uploads/2022/01/1-raisg-11.jpg" alt="Selva Amazónica" class="img-fluid rounded border border-1 border-dark w-75">
-                </div>
-            </div>
-
-            <!-- Línea divisoria -->
-            <hr class="mx-6">
-
-            <!-- Segundo destino popular -->
-            <div class="row mb-5">
-                <div class="col-md-6 my-auto">
-                    <h2>Aventura en los Andes</h2>
-                    <p>Embárcate en una emocionante aventura en los majestuosos Andes. Escala altas montañas, desciende rápidos ríos en balsa y camina por senderos antiguos. Experimenta la rica cultura local mientras te sumerges en la historia fascinante de la región. Esta es una oportunidad única para los buscadores de emociones y los curiosos exploradores.</p>
-                </div>
-                <div class="col-md-6 mt-4 d-flex align-items-center justify-content-center">
-                    <img src="https://www.muchbetteradventures.com/magazine/content/images/2022/06/GettyImages-1225346915--1--2.jpg" alt="Andes" class="img-fluid rounded border border-1 border-dark w-75">
-                </div>
-            </div>
-
-            <!-- Línea divisoria -->
-            <hr class="mx-6">
-
-            <!-- Tercer destino popular -->
+            <!-- Primer servicio -->
             <div class="row">
-                <div class="col-md-6 my-auto">
-                    <h2>Exploración de Ruinas Mayas</h2>
-                    <p>Sumérgete en la historia antigua mientras exploras las ruinas mayas en esta increíble expedición arqueológica. Visita sitios arqueológicos impresionantes, aprende sobre la civilización maya y maravíllate con las estructuras ancestrales. Esta experiencia te transportará en el tiempo y te permitirá descubrir los misterios de una de las civilizaciones más fascinantes de la historia.</p>
+                <div class="col-md-6">
+                    <h2 class="text-center">Viajes Personalizados</h2>
+                    <p class="mt-md-5 text-center">Nuestros expertos en viajes crearán experiencias personalizadas para satisfacer tus deseos y necesidades. Ya sea que estés buscando unas vacaciones familiares relajantes, una aventura emocionante o una escapada romántica, nosotros nos encargamos de todos los detalles para que puedas disfrutar al máximo.</p>
                 </div>
-                <div class="col-md-6 mt-3 d-flex align-items-center justify-content-center">
-                    <img src="https://media.iatiseguros.com/wp-content/uploads/2017/09/04004808/ruinas-mayas-riviera-yucatan-chichen-itza.jpg" alt="Ruinas Mayas" class="img-fluid rounded border border-1 border-dark w-75">
+                <div class="col-md-6 d-flex align-items-center justify-content-center mt-2">
+                    <img src="https://www.viajesancora.com/images/viajes-ancora/viajes-personalizados-unicos-a-medida-agencia-viajes-online-coruna-ancora.jpg" alt="Viaje Personalizado" class="img-fluid w-75 rounded border border-1 border-dark">
+                </div>
+            </div>
+
+            <!-- Línea divisoria -->
+            <hr class="my-5">
+
+            <!-- Segundo servicio -->
+            <div class="row">
+                <div class="col-md-6 order-md-2">
+                    <h2 class="text-center">Tours Guiados</h2>
+                    <p class="mt-md-5 text-center">Descubre los destinos más increíbles del mundo con nuestros tours guiados. Nuestros guías expertos te llevarán a lugares emblemáticos, te contarán historias fascinantes y te mostrarán la verdadera esencia de cada destino. Disfruta de una experiencia enriquecedora y sin preocupaciones.</p>
+                </div>
+                <div class="col-md-6 order-md-1 d-flex align-items-center justify-content-center mt-2">
+                    <img src="https://viajesnakara.com/wp-content/uploads/2019/11/japon.jpg" alt="Tours Guiados" class="img-fluid w-75 rounded border border-1 border-dark">
+                </div>
+            </div>
+
+            <!-- Línea divisoria -->
+            <hr class="my-5">
+
+            <!-- Tercer servicio -->
+            <div class="row">
+                <div class="col-md-6 mb-1">
+                    <h2 class="mt-md-4 text-center">Paquetes Todo Incluido</h2>
+                    <p class="mt-md-5 text-center">Relájate y déjalo todo en nuestras manos con nuestros paquetes todo incluido. Desde vuelos y alojamiento hasta actividades emocionantes y deliciosa comida local, nos aseguramos de que tengas una experiencia sin preocupaciones. Solo tienes que disfrutar y crear recuerdos inolvidables.</p>
+                </div>
+                <div class="col-md-6 d-flex align-items-center justify-content-center">
+                    <img src="https://content.r9cdn.net/rimg/dimg/c5/58/d56628fa-city-23052-162e4aeda47.jpg?width=1750&height=1000&xhint=1688&yhint=1513&crop=true" alt="Paquetes Todo Incluido" class="img-fluid w-75 rounded border border-1 border-dark">
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- Scripts externos -->
+    <!-- Inclusión de los scripts de JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-lightbox@0.7.0/dist/bootstrap-lightbox.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
+    
     <!-- Inclusión del pie de página -->
     <%- include('footer.ejs') %>
 </body>

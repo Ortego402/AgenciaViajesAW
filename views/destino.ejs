@@ -120,7 +120,7 @@
         </div>
 
         <!-- Formulario de comentarios -->
-        <div class="comentario-form m-3">
+        <div class="comentario-form m-5">
             <h5>Deja un comentario:</h5>
             <form action="/destino/<%= result.id %>/comentarios" method="post" th:object="${comentario}">
                 <!-- Campo oculto para el ID del destino -->
@@ -141,7 +141,7 @@
         </div>
 
         <!-- Lista de comentarios -->
-        <div class="comentarios-lista m-3">
+        <div class="comentarios-lista m-5">
             <h5>Comentarios:</h5>
             <!-- Comprobación de si hay comentarios -->
             <% if (comentarios.length === 0) { %>
