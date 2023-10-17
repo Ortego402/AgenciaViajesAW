@@ -24,13 +24,13 @@
 
 # • Hacer un Footer.
 
-• Mejoras errores de vistas.
+# • Mejoras errores de vistas.
 
 # • Responsive.
 
-• Imágenes.
+# • Imágenes.
 
-• Base de datos.
+# • Base de datos.
 
 # • Funcionalidad del nav "Nosotros".
 

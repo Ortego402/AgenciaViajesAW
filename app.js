@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 
 // Rutas para otras páginas
 app.get('/servicios', (req, res) => {
-  res.render('prueba');
+  res.render('servicios');
 });
 
 app.get('/nosotros', (req, res) => {
