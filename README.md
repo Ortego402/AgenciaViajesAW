@@ -42,9 +42,9 @@
 
 # • Validación de datos en la reserva.
 
-• Mejora visual de destinos individuales.
+# • Mejora visual de destinos individuales.
 
-• Añadir comentarios en todos los archivos.
+# • Añadir comentarios en todos los archivos.
 
 # • Borrar console.log().
 
