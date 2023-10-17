@@ -26,7 +26,7 @@
 
 • Mejoras errores de vistas.
 
-• Responsive.
+# • Responsive.
 
 • Imágenes.
 

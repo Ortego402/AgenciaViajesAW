@@ -48,6 +48,15 @@ body {
     padding: 0;
 }
 
+.navbar{
+    background-color:#5fb7c3;
+}
+
+/* Estilos para los botones del nav */
+.botonnav:hover{
+        background-color: #333;
+}
+
 /* Estilos para la barra de navegación */
 nav {
     background-color: #00BCD4;
