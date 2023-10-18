@@ -30,10 +30,17 @@
     </div>
     <div class="col col-1">
         <div class="mb-1">
-            <!-- Imagen del login -->
-            <a href="/login" class="btn text-dark border-0">
-                <button class="boton" type="login"><i class="bi bi-person-circle"></i></button>
-            </a>
+            <% if (!session || !session.username) { %>
+                <!-- Usuario no autenticado: muestra el botón de login -->
+                <a href="/login" class="btn text-dark border-0">
+                    <button class="boton" type="login"><i class="bi bi-person-circle"></i></button>
+                </a>
+            <% } else { %>
+                <!-- Usuario autenticado: muestra otro icono o lo que desees -->
+                <a href="/perfil" class="btn">
+                    <img src="https://cdn-icons-png.flaticon.com/512/5987/5987424.png" alt="Iniciado" style="width: 50px; height: 50px;">
+                </a>
+            <% } %>
         </div>
     </div>
 </header>

@@ -23,6 +23,7 @@ app.use(express.static('public'));
 
 // Ruta para mostrar todos los destinos
 app.get('/', (req, res) => {
+  console.log('Username almacenado en la sesión:', req.session.username);
   // Realiza una consulta a la base de datos para obtener todos los destinos
   dbConnection.query('SELECT * FROM destinos', (err, results) => {
     if (err) {
@@ -30,33 +31,33 @@ app.get('/', (req, res) => {
       return;
     }
     // Renderiza la vista "home.ejs" con los resultados obtenidos de la base de datos
-    res.render('home', { results: results });
+    res.render('home', { results: results, session: req.session });
   });
 });
 
 // Rutas para otras páginas
 app.get('/servicios', (req, res) => {
-  res.render('servicios');
+  res.render('servicios', { session: req.session });
 });
 
 app.get('/nosotros', (req, res) => {
-  res.render('nosotros');
+  res.render('nosotros', { session: req.session });
 });
 
 app.get('/populares', (req, res) => {
-  res.render('populares');
+  res.render('populares', { session: req.session });
 });
 
 app.get('/reserva', (req, res) => {
-  res.render('reserva');
+  res.render('reserva', { session: req.session });
 });
 
 app.get('/login', (req, res) => {
-  res.render('login');
+  res.render('login', { session: req.session });
 });
 
 app.get('/registro', (req, res) => {
-  res.render('registro');
+  res.render('registro', { session: req.session });
 });
 
 // Ruta para mostrar detalles de un destino específico
@@ -96,7 +97,7 @@ app.get('/destino/:id', (req, res) => {
           return res.status(500).json({ error: 'Error de la base de datos' });
         }
         // Renderiza la vista "destino.ejs" con los detalles del destino, imágenes y comentarios
-        res.render('destino', { result: result[0], results: results, comentarios: comentarios, mensaje: mensaje });
+        res.render('destino', { result: result[0], results: results, comentarios: comentarios, mensaje: mensaje, session: req.session});
       });
     });
   });
@@ -112,7 +113,7 @@ app.get('/buscar', (req, res) => {
       return;
     }
     // Renderiza la vista "home.ejs" con los resultados de la búsqueda
-    res.render('home', { results: results });
+    res.render('home', { results: results, session: req.session});
   });
 });
 
