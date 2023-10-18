@@ -5,6 +5,8 @@ const dbConnection = require('./js/dbConfig'); // Importa la configuración de l
 
 // Crea una instancia de Express
 const app = express();
+const bcrypt = require('bcrypt'); //guarda la contraseña en forma de hash instalar => npm install bcrypt
+const session = require('express-session'); //para manejar los incios de seseion es necesario instalarse =>npm install express express-session
 const port = 3000; // Puerto en el que se ejecutará el servidor
 
 // Configura Express para usar bodyParser y EJS como motor de plantillas
@@ -146,7 +148,10 @@ app.post('/destino/:id/comentarios', (req, res) => {
 
 
 app.post('/registro', (req, res) => {
-  const { nombre, apellidos, correo, username, password } = req.body;
+  const { nombre, apellido, correo, username, password } = req.body;
+
+  console.log("llega a registrar")
+  console.log(req.body);
 
   const checkUsernameQuery = 'SELECT * FROM usuarios WHERE username = ?';
   db.query(checkUsernameQuery, [username], (checkUsernameErr, checkUsernameResult) => {
@@ -180,10 +185,48 @@ app.post('/registro', (req, res) => {
     if (err) {
       return res.status(500).json({ error: 'Error interno del servidor' });
     }
+    // Las credenciales son válidas, almacenar información del usuario en la sesión
+    req.session.username = username;
+    // Puedes almacenar más información en la sesión según tus necesidades
 
+    res.redirect('home');
     return res.status(200).json({ message: 'Registro exitoso.' });
   });
   
+});
+
+app.post('/InicioSesion', (req, res) => {
+  const { username, password } = req.body;
+
+  const checkUsernameQuery = 'SELECT * FROM usuarios WHERE username = ?';
+  db.query(checkUsernameQuery, [username], (checkUsernameErr, checkUsernameResult) => {
+    if (checkUsernameErr) {
+      return res.status(500).json({ error: 'Error interno del servidor' });
+    }
+
+    if (checkUsernameResult.length === 0) {
+      return res.status(400).json({ error: 'El nombre de usuario no existe' });
+    }
+
+    // Verificar la contraseña utilizando bcrypt
+    const storedPasswordHash = checkUsernameResult[0].password; // asumiendo que el campo en la base de datos se llama "password"
+    bcrypt.compare(password, storedPasswordHash, (compareErr, compareResult) => {
+      if (compareErr) {
+        return res.status(500).json({ error: 'Error interno del servidor' });
+      }
+
+      if (!compareResult) {
+        return res.status(401).json({ error: 'Contraseña ioncorrecta' });
+      }
+
+      // Las credenciales son válidas, almacenar información del usuario en la sesión
+      req.session.username = username;
+      // Puedes almacenar más información en la sesión según tus necesidades
+
+      res.redirect('home');
+      return res.status(200).json({ message: 'Inicio de sesión exitoso' });
+    });
+  });
 });
 
 // Inicia el servidor y escucha en el puerto especificado

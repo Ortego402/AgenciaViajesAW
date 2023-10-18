@@ -53,31 +53,25 @@
                         Registro de Usuario
                     </div>
                     <div class="card-body">
-                        <form id="registrationForm" method="post">
-                            <div class="form-group">
-                                <label for="nombre">Nombre:</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="apellido">Apellidos:</label>
-                                <input type="text" class="form-control" id="apellido" name="apellido" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="e-mail">Correo:</label>
-                                <input type="text" class="form-control" id="e-mail" name="e-mail" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="username">Nombre usuario:</label>
-                                <input type="text" class="form-control" id="username" name="username" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Contraseña:</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="confirmPassword">Confirmar Contraseña:</label>
-                                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
-                            </div>
+                        <form action="/registro" method="post" class="general">
+
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" id="nombre" name="nombre" required>
+
+                            <label for="apellido">Apellidos:</label>
+                            <input type="text" id="apellido" name="apellido" required>
+
+                            <label for="correo">Correo:</label>
+                            <input type="text" id="correo" name="correo" required>
+
+                            <label for="username">Nombre usuario:</label>
+                            <input type="text" id="username" name="username" required>
+
+                            <label for="password">Contraseña:</label>
+                            <input type="password" id="password" name="password" required>
+
+                            <label for="confirmPassword">Confirmar Contraseña:</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" required>
                             <br>
                             <% if (typeof errorMessage != 'undefined') { %>
                                 <div style="color: crimson;" class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -85,7 +79,7 @@
                                 </div>
                             <% } %>
                             <br>
-                            <button type="button" class="btn btn-primary" onclick="validateRegistration()">Registrar</button>
+                            <button type="button" class="btn btn-primary">Registrar</button>
                         </form>
                     </div>
                 </div>
