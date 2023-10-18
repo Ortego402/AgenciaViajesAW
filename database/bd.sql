@@ -112,4 +112,11 @@ INSERT INTO `imagenes_destino` (`id`, `destino_id`, `url`) VALUES
 (27, 3, 'https://media.admagazine.com/photos/618a633172049e253173e864/master/w_1600%2Cc_limit/78760.jpg'),
 (28, 3, 'https://cdn.mos.cms.futurecdn.net/WFJBpzs4J5x3uvbeKdnm3i-1200-80.jpg');
 
-
+  CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(50) DEFAULT NULL,
+  `apellidos` varchar(50) DEFAULT NULL,
+  `correo` varchar(255) DEFAULT NULL,
+  `username` varchar(50) DEFAULT NULL,
+  `password` varchar(250) NOT NULL
+    );

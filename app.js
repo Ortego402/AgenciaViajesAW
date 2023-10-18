@@ -7,6 +7,11 @@ const dbConnection = require('./js/dbConfig'); // Importa la configuración de l
 const app = express();
 const bcrypt = require('bcrypt'); //guarda la contraseña en forma de hash instalar => npm install bcrypt
 const session = require('express-session'); //para manejar los incios de seseion es necesario instalarse =>npm install express express-session
+app.use(session({
+  secret: 'Epicscape',
+  resave: false,
+  saveUninitialized: true
+}));
 const port = 3000; // Puerto en el que se ejecutará el servidor
 
 // Configura Express para usar bodyParser y EJS como motor de plantillas
@@ -181,19 +186,24 @@ app.post('/registrar', (req, res) => {
   }
 
   // Insertar datos en la base de datos
-  const query = 'INSERT INTO usuarios (nombre, apellidos, correo, username, password) VALUES (?, ?, ?, ?, ?)';
-  dbConnection.query(query, [nombre, apellido, correo, username, bcrypt.hash(password, 10)], (err, result) => {
+  bcrypt.hash(password, 10, (err, hash) => {
     if (err) {
-      return res.status(500).json({ error: 'Error interno del servidor' });
+      console.error('Error al generar el hash de la contraseña:', err);
+      return res.status(500).json({ error: 'Error al hasear la contraseña' });
     }
-    // Las credenciales son válidas, almacenar información del usuario en la sesión
-    req.session.username = username;
-    // Puedes almacenar más información en la sesión según tus necesidades
 
-    res.redirect('home');
-    return res.status(200).json({ message: 'Registro exitoso.' });
-  });
-  
+    dbConnection.query('INSERT INTO usuarios (nombre, apellidos, correo, username, password) VALUES (?, ?, ?, ?, ?)', [nombre, apellido, correo, username, hash], (err, result) => {
+      console.log(err);
+      if (err) {
+        return res.status(500).json({ error: 'Error interno del servidor' });
+      }
+      // Las credenciales son válidas, almacenar información del usuario en la sesión
+      req.session.username = username;
+      // Puedes almacenar más información en la sesión según tus necesidades
+
+      return res.redirect('/');
+    });
+  }); 
 });
 
 app.post('/InicioSesion', (req, res) => {
