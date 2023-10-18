@@ -155,9 +155,6 @@ app.post('/destino/:id/comentarios', (req, res) => {
 app.post('/registrar', (req, res) => {
   const { nombre, apellido, correo, username, password } = req.body;
 
-  console.log("llega a registrar")
-  console.log(req.body);
-
   const checkUsernameQuery = 'SELECT * FROM usuarios WHERE username = ?';
   dbConnection.query(checkUsernameQuery, [username], (checkUsernameErr, checkUsernameResult) => {
     if (checkUsernameErr) {
@@ -180,7 +177,6 @@ app.post('/registrar', (req, res) => {
   if (!/\d/.test(password)) {
     return res.status(400).json({ error: 'La contraseña debete tener almenos un numero' });
   }
-  console.log(password.length);
   if (password.length < 10) {
     return res.status(400).json({ error: 'La contraseña debe tener almenos 10 caracteres' });
   }
@@ -193,7 +189,6 @@ app.post('/registrar', (req, res) => {
     }
 
     dbConnection.query('INSERT INTO usuarios (nombre, apellidos, correo, username, password) VALUES (?, ?, ?, ?, ?)', [nombre, apellido, correo, username, hash], (err, result) => {
-      console.log(err);
       if (err) {
         return res.status(500).json({ error: 'Error interno del servidor' });
       }
@@ -234,8 +229,7 @@ app.post('/InicioSesion', (req, res) => {
       req.session.username = username;
       // Puedes almacenar más información en la sesión según tus necesidades
 
-      res.redirect('home');
-      return res.status(200).json({ message: 'Inicio de sesión exitoso' });
+      return res.redirect('/');;
     });
   });
 });
