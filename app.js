@@ -147,14 +147,14 @@ app.post('/destino/:id/comentarios', (req, res) => {
 });
 
 
-app.post('/registro', (req, res) => {
+app.post('/registrar', (req, res) => {
   const { nombre, apellido, correo, username, password } = req.body;
 
   console.log("llega a registrar")
   console.log(req.body);
 
   const checkUsernameQuery = 'SELECT * FROM usuarios WHERE username = ?';
-  db.query(checkUsernameQuery, [username], (checkUsernameErr, checkUsernameResult) => {
+  dbConnection.query(checkUsernameQuery, [username], (checkUsernameErr, checkUsernameResult) => {
     if (checkUsernameErr) {
       return res.status(500).json({ error: 'Error interno del servidor' });
     }
@@ -164,7 +164,7 @@ app.post('/registro', (req, res) => {
     }
   });
 
-  if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)){
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)){
     return res.status(400).json({ error: 'El correo no es valido' });
   }
 
@@ -172,16 +172,17 @@ app.post('/registro', (req, res) => {
   if (/[A-Z]/.test(password)) {
     return res.status(400).json({ error: 'La contraseña no es valida' });
   }
-  if (/\d/.test(password)) {
+  if (!/\d/.test(password)) {
     return res.status(400).json({ error: 'La contraseña debete tener almenos un numero' });
   }
-  if (password.length >= 10) {
+  console.log(password.length);
+  if (password.length < 10) {
     return res.status(400).json({ error: 'La contraseña debe tener almenos 10 caracteres' });
   }
 
   // Insertar datos en la base de datos
   const query = 'INSERT INTO usuarios (nombre, apellidos, correo, username, password) VALUES (?, ?, ?, ?, ?)';
-  db.query(query, [username, bcrypt.hash(password, 10)], (err, result) => {
+  dbConnection.query(query, [nombre, apellido, correo, username, bcrypt.hash(password, 10)], (err, result) => {
     if (err) {
       return res.status(500).json({ error: 'Error interno del servidor' });
     }
@@ -199,7 +200,7 @@ app.post('/InicioSesion', (req, res) => {
   const { username, password } = req.body;
 
   const checkUsernameQuery = 'SELECT * FROM usuarios WHERE username = ?';
-  db.query(checkUsernameQuery, [username], (checkUsernameErr, checkUsernameResult) => {
+  dbConnection.query(checkUsernameQuery, [username], (checkUsernameErr, checkUsernameResult) => {
     if (checkUsernameErr) {
       return res.status(500).json({ error: 'Error interno del servidor' });
     }
