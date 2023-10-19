@@ -113,10 +113,10 @@ INSERT INTO `imagenes_destino` (`id`, `destino_id`, `url`) VALUES
 (28, 3, 'https://cdn.mos.cms.futurecdn.net/WFJBpzs4J5x3uvbeKdnm3i-1200-80.jpg');
 
   CREATE TABLE `usuarios` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(50) DEFAULT NULL,
-  `apellidos` varchar(50) DEFAULT NULL,
-  `correo` varchar(255) DEFAULT NULL,
-  `username` varchar(50) DEFAULT NULL,
-  `password` varchar(250) NOT NULL
-    );
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nombre varchar(50) DEFAULT NULL,
+  apellidos varchar(50) DEFAULT NULL,
+  correo varchar(255) DEFAULT NULL,
+  username varchar(50) DEFAULT NULL,
+  password varchar(250) NOT NULL
+);

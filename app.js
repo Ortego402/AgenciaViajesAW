@@ -58,7 +58,8 @@ app.get('/login', (req, res) => {
 });
 
 app.get('/registro', (req, res) => {
-  res.render('registro', { session: req.session });
+  let mensaje = "";
+  res.render('registro', { session: req.session, mensaje: mensaje });
 });
 
 // Ruta para mostrar detalles de un destino específico
@@ -120,16 +121,11 @@ app.get('/buscar', (req, res) => {
 
 // Ruta para manejar la reserva de un destino específico
 app.post('/destino/:id/reservar', (req, res) => {
-  const { nombre, email, fecha_reserva } = req.body;
+  const { email, fecha_reserva } = req.body;
   const id = req.params.id;
 
-  // Valida el formato del correo electrónico utilizando una expresión regular
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return res.status(400).json({ error: 'El correo no es válido' });
-  }
-
   // Inserta los datos de la reserva en la base de datos
-  dbConnection.query('INSERT INTO reservas (destino_id, nombre_cliente, correo_cliente, fecha_reserva) VALUES (?, ?, ?, ?)', [id, nombre, email, fecha_reserva], (err, result) => {
+  dbConnection.query('INSERT INTO reservas (destino_id, nombre_cliente, correo_cliente, fecha_reserva) VALUES (?, ?, ?, ?)', [id, req.session.username, email, fecha_reserva], (err, result) => {
     if (err) {
       return res.redirect(`/destino/${id}?reserva=null`);
     }
@@ -140,7 +136,7 @@ app.post('/destino/:id/reservar', (req, res) => {
 
 // Ruta para manejar la publicación de comentarios en un destino específico
 app.post('/destino/:id/comentarios', (req, res) => {
-  const { nombre_usuario, comentario } = req.body;
+  const { comentario } = req.body;
   const id = req.params.id;
 
   // Inserta los datos del comentario en la base de datos
@@ -155,33 +151,36 @@ app.post('/destino/:id/comentarios', (req, res) => {
 
 
 app.post('/registrar', (req, res) => {
-  const { nombre, apellido, correo, username, password } = req.body;
-  const errors = [];
+  const { nombre, apellido, correo, username, password, confirmPassword } = req.body;
+  let mensaje = null;
 
   const checkUsernameQuery = 'SELECT * FROM usuarios WHERE username = ?';
   dbConnection.query(checkUsernameQuery, [username], (checkUsernameErr, checkUsernameResult) => {
     if (checkUsernameErr) {
       return res.status(500).json({ error: 'Error interno del servidor' });
     }
-
-    if (checkUsernameResult.length > 0) {
-      errors.push('El nombre de usuario ya está en uso, elije');
-    }
   });
-
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)){
-    errors.push('El correo no es valido');
-  }
-
+  if (checkUsernameResult.length > 0) {
+    mensaje = 'El nombre de usuario ya existe.';
+    return res.render('registro', { mensaje: mensaje });}
   // Comprobar la contraseña según tus requisitos
-  if (/[A-Z]/.test(password)) {
-    errors.push('La contraseña no es valida');
+  if (password.length < 8) {
+    mensaje = 'La contraseña debe tener al menos 8 caracteres.';
   }
-  if (!/\d/.test(password)) {
-    errors.push('La contraseña debete tener almenos un numero');;
+  else if (/[A-Z]/.test(password)) {
+    mensaje = 'La contraseña debe tener una letra mayúscula.';
   }
-  if (password.length < 10) {
-    errors.push('La contraseña debe tener almenos 10 caracteres');
+  else if (!/\d/.test(password)) {
+    mensaje = 'La contraseña debete tener al menos un número.';
+  }
+  else if (!/\W/.test(password)) {
+    mensaje = 'La contraseña debe contener al menos un carácter especial.';
+  }
+  else if (password != confirmPassword) {
+    mensaje = 'La contraseña deben coincidir.';
+  }
+  if(mensaje != null){
+    return res.render('registro', { mensaje: mensaje });
   }
 
   // Insertar datos en la base de datos
@@ -216,7 +215,6 @@ app.post('/InicioSesion', (req, res) => {
     if (checkUsernameResult.length === 0) {
       // Nombre de usuario no existe, asignar un mensaje de error
       mensaje = 'El nombre de usuario no existe';
-      console.log(mensaje)
       return res.render('login', { mensaje: mensaje });
     } else {
       // Verificar la contraseña utilizando bcrypt

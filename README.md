@@ -2,13 +2,11 @@
 
 # ENTREGA 2:
 
--Manejar errores de registrar.
-
--Cambiar la reserva nombre por nombre de usuario.
-
 -Hacer pagina de perfil
 
 -Hacer logout.
+
+-Responsive.
 
 # ENTREGA 3:
 • Sistema de comentarios:

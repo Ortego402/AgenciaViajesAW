@@ -85,7 +85,7 @@ main {
 }
 
 /* Estilos para las tarjetas */
-.card {
+.card-destino {
     width: 100%;
     cursor: pointer;
     transition: transform 0.2s;
@@ -99,7 +99,7 @@ main {
 }
 
 /* Efecto de escala al pasar el mouse sobre las tarjetas */
-.card:hover {
+.card-destino:hover {
     transform: scale(1.05);
 }
 
