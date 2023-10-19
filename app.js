@@ -23,7 +23,7 @@ app.use(express.static('public'));
 
 // Ruta para mostrar todos los destinos
 app.get('/', (req, res) => {
-  console.log('Username almacenado en la sesión:', req.session.username);
+  //console.log('Username almacenado en la sesión:', req.session.username);
   // Realiza una consulta a la base de datos para obtener todos los destinos
   dbConnection.query('SELECT * FROM destinos', (err, results) => {
     if (err) {
@@ -143,7 +143,7 @@ app.post('/destino/:id/comentarios', (req, res) => {
   const id = req.params.id;
 
   // Inserta los datos del comentario en la base de datos
-  dbConnection.query('INSERT INTO comentarios (destino_id, nombre_usuario, comentario) VALUES (?, ?, ?)', [id, nombre_usuario, comentario], (err, result) => {
+  dbConnection.query('INSERT INTO comentarios (destino_id, nombre_usuario, comentario) VALUES (?, ?, ?)', [id, req.session.username, comentario], (err, result) => {
     if (err) {
       return res.redirect(`/destino/${id}?comentario=null`);
     }
