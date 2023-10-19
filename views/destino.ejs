@@ -38,7 +38,9 @@
                 ¡Ups! No se pudo realizar la acción debido a un fallo. Por favor, inténtalo de nuevo más tarde.
             </div>
         <% } else if(mensaje) { %>
-            mensaje
+            <div class="alert alert-success bg-gradient text-dark" role="alert">
+                <%= mensaje %>
+            </div>
         <% } %>
 
         <!-- Sección de información del destino -->

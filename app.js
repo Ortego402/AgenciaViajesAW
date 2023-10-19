@@ -53,7 +53,8 @@ app.get('/reserva', (req, res) => {
 });
 
 app.get('/login', (req, res) => {
-  res.render('login', { session: req.session, message: "" });
+  let mensaje = "";
+  res.render('login', { session: req.session, mensaje: mensaje });
 });
 
 app.get('/registro', (req, res) => {
@@ -211,10 +212,11 @@ app.post('/InicioSesion', (req, res) => {
     if (checkUsernameErr) {
       return res.status(500).json({ error: 'Error interno del servidor' });
     }
-    let mensaje = '';
+    let mensaje = null;
     if (checkUsernameResult.length === 0) {
       // Nombre de usuario no existe, asignar un mensaje de error
       mensaje = 'El nombre de usuario no existe';
+      console.log(mensaje)
       return res.render('login', { mensaje: mensaje });
     } else {
       // Verificar la contraseña utilizando bcrypt
@@ -232,7 +234,6 @@ app.post('/InicioSesion', (req, res) => {
 
         // Las credenciales son válidas, almacenar información del usuario en la sesión
         req.session.username = username;
-
         return res.redirect('/');
       });
     }

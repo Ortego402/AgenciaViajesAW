@@ -2,57 +2,13 @@
 
 # ENTREGA 2:
 
-# • Configurar una conexión a la base de datos MariaDB en el servidor utilizando
-# Node.js y el paquete mysql.  
+-Manejar errores de registrar.
 
-# • Implementar un visor de imágenes en cada destino que permita a los usuarios explorar las fotos de manera interactiva, con anterior siguiente.
+-Cambiar la reserva nombre por nombre de usuario.
 
-# • Agregar un formulario de reserva en cada página de destino, con campos para el
-# nombre del cliente, correo electrónico y fecha de reserva.
+-Hacer pagina de perfil
 
-# • Validar los campos del formulario para asegurarse de que estén completos antes de enviarlos.
-
-# • Modificar la estructura de la base de datos para incluir una tabla de reservas que
-# almacene los datos de las reservas realizadas por los usuarios.
-
-# • Configurar rutas en Express para manejar la solicitud de reservas, insertar los datos
-# en la base de datos y enviar confirmaciones a los usuarios.
-
-# • Utilizar JavaScript para habilitar la interacción con el visor de imágenes 
-
-# • Mostrar la confirmación de reserva después de enviar el formulario.
-
-# • Hacer un Footer.
-
-# • Mejoras errores de vistas.
-
-# • Responsive.
-
-# • Imágenes.
-
-# • Base de datos.
-
-# • Funcionalidad del nav "Nosotros".
-
-# • Funcionalidad del nav "Servicios".
-
-# • Funcionalidad del nav "Populares".
-
-# • Añadir miga de pan.
-
-# • Validación de datos en la reserva.
-
-# • Mejora visual de destinos individuales.
-
-# • Añadir comentarios en todos los archivos.
-
-# • Borrar console.log().
-
-# • Probar a poner color de fondo/imagen. (La imagen queda mal porque la páginase agranda y la imagen también)
-
-# • Mejorar buscador cuando la ventana es más pequeña.
-
-# • Añadir mensaje cuando no hay comentarios.
+-Hacer logout.
 
 # ENTREGA 3:
 • Sistema de comentarios:

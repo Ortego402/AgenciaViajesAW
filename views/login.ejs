@@ -49,9 +49,10 @@
                 <div class="card-body">
                     <h2 class="card-title text-center">Inicia Sesion</h2>
                     <form action="/InicioSesion" method="POST">
-                        <% if (typeof mensaje == '') { %>
-                            <div class="alert alert-danger bg-danger bg-gradient text-black" style="text-align: center;" role="alert">
-                                mensaje
+                        <% if (mensaje == null) { %>
+                        <% } else if(mensaje) { %>
+                            <div class="alert alert-danger bg-gradient text-dark" role="alert">
+                                <%= mensaje %>
                             </div>
                         <% } %>
                         
