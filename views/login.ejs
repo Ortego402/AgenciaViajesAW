@@ -38,7 +38,7 @@
             <li class="breadcrumb-item d-flex align-items-center">
                 <a href="/" class="text-decoration-none">Home</a>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">Inicio Sesion</li>
+            <li class="breadcrumb-item active" aria-current="page">Inicia Sesion</li>
         </ol>
     </nav>
 
@@ -47,8 +47,13 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title text-center">Inicia Sesion</h5>
+                    <h2 class="card-title text-center">Inicia Sesion</h2>
                     <form action="/InicioSesion" method="POST">
+                        <% if (message != 'undefined' || message !== '') { %>
+                            <br>
+                            <p class="error-message"><%= message %></p>
+                        <% } %>
+
                         <div class="mb-3">
                             <label for="username" class="form-label">Nombre Usuario</label>
                             <input type="text" class="form-control" id="username" name="username" required>

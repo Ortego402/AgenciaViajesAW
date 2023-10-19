@@ -53,7 +53,7 @@ app.get('/reserva', (req, res) => {
 });
 
 app.get('/login', (req, res) => {
-  res.render('login', { session: req.session });
+  res.render('login', { session: req.session, message: "" });
 });
 
 app.get('/registro', (req, res) => {
@@ -155,6 +155,7 @@ app.post('/destino/:id/comentarios', (req, res) => {
 
 app.post('/registrar', (req, res) => {
   const { nombre, apellido, correo, username, password } = req.body;
+  const errors = [];
 
   const checkUsernameQuery = 'SELECT * FROM usuarios WHERE username = ?';
   dbConnection.query(checkUsernameQuery, [username], (checkUsernameErr, checkUsernameResult) => {
@@ -163,23 +164,23 @@ app.post('/registrar', (req, res) => {
     }
 
     if (checkUsernameResult.length > 0) {
-      return res.status(400).json({ error: 'El nombre de usuario ya está en uso, elije' });
+      errors.push('El nombre de usuario ya está en uso, elije');
     }
   });
 
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)){
-    return res.status(400).json({ error: 'El correo no es valido' });
+    errors.push('El correo no es valido');
   }
 
   // Comprobar la contraseña según tus requisitos
   if (/[A-Z]/.test(password)) {
-    return res.status(400).json({ error: 'La contraseña no es valida' });
+    errors.push('La contraseña no es valida');
   }
   if (!/\d/.test(password)) {
-    return res.status(400).json({ error: 'La contraseña debete tener almenos un numero' });
+    errors.push('La contraseña debete tener almenos un numero');;
   }
   if (password.length < 10) {
-    return res.status(400).json({ error: 'La contraseña debe tener almenos 10 caracteres' });
+    errors.push('La contraseña debe tener almenos 10 caracteres');
   }
 
   // Insertar datos en la base de datos
@@ -212,28 +213,32 @@ app.post('/InicioSesion', (req, res) => {
     }
 
     if (checkUsernameResult.length === 0) {
-      return res.status(400).json({ error: 'El nombre de usuario no existe' });
+      // Nombre de usuario no existe, asignar un mensaje de error
+      const message = 'El nombre de usuario no existe';
+      return res.render('login', { message });
+    } else {
+      // Verificar la contraseña utilizando bcrypt
+      const storedPasswordHash = checkUsernameResult[0].password; // asumiendo que el campo en la base de datos se llama "password"
+      bcrypt.compare(password, storedPasswordHash, (compareErr, compareResult) => {
+        if (compareErr) {
+          return res.status(500).json({ error: 'Error interno del servidor' });
+        }
+
+        if (!compareResult) {
+          // Contraseña incorrecta, asignar un mensaje de error
+          const message = 'Contraseña incorrecta';
+          return res.render('login', { message });
+        }
+
+        // Las credenciales son válidas, almacenar información del usuario en la sesión
+        req.session.username = username;
+
+        return res.redirect('/');
+      });
     }
-
-    // Verificar la contraseña utilizando bcrypt
-    const storedPasswordHash = checkUsernameResult[0].password; // asumiendo que el campo en la base de datos se llama "password"
-    bcrypt.compare(password, storedPasswordHash, (compareErr, compareResult) => {
-      if (compareErr) {
-        return res.status(500).json({ error: 'Error interno del servidor' });
-      }
-
-      if (!compareResult) {
-        return res.status(401).json({ error: 'Contraseña ioncorrecta' });
-      }
-
-      // Las credenciales son válidas, almacenar información del usuario en la sesión
-      req.session.username = username;
-      // Puedes almacenar más información en la sesión según tus necesidades
-
-      return res.redirect('/');;
-    });
   });
 });
+
 
 // Inicia el servidor y escucha en el puerto especificado
 app.listen(port, () => {

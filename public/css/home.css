@@ -223,3 +223,13 @@ footer {
 .breadcrumb {
     margin-left: 20px;
 }
+
+.error-message {
+    background-color: red;
+    color: black;
+    text-align: center;
+    padding: 10px; /* Ajusta el valor según sea necesario */
+    border-radius: 8px; /* Ajusta el valor según sea necesario */
+    max-width: 50%;
+    margin: 0 auto; /* Centrar horizontalmente */
+}
