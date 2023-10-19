@@ -49,10 +49,12 @@
                 <div class="card-body">
                     <h2 class="card-title text-center">Inicia Sesion</h2>
                     <form action="/InicioSesion" method="POST">
-                        <% if (message != 'undefined' || message !== '') { %>
-                            <br>
-                            <p class="error-message"><%= message %></p>
+                        <% if (typeof mensaje == '') { %>
+                            <div class="alert alert-danger bg-danger bg-gradient text-black" style="text-align: center;" role="alert">
+                                mensaje
+                            </div>
                         <% } %>
+                        
 
                         <div class="mb-3">
                             <label for="username" class="form-label">Nombre Usuario</label>

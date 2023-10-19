@@ -205,17 +205,17 @@ app.post('/registrar', (req, res) => {
 
 app.post('/InicioSesion', (req, res) => {
   const { username, password } = req.body;
-
+  
   const checkUsernameQuery = 'SELECT * FROM usuarios WHERE username = ?';
   dbConnection.query(checkUsernameQuery, [username], (checkUsernameErr, checkUsernameResult) => {
     if (checkUsernameErr) {
       return res.status(500).json({ error: 'Error interno del servidor' });
     }
-
+    let mensaje = '';
     if (checkUsernameResult.length === 0) {
       // Nombre de usuario no existe, asignar un mensaje de error
-      const message = 'El nombre de usuario no existe';
-      return res.render('login', { message });
+      mensaje = 'El nombre de usuario no existe';
+      return res.render('login', { mensaje: mensaje });
     } else {
       // Verificar la contraseña utilizando bcrypt
       const storedPasswordHash = checkUsernameResult[0].password; // asumiendo que el campo en la base de datos se llama "password"
@@ -226,8 +226,8 @@ app.post('/InicioSesion', (req, res) => {
 
         if (!compareResult) {
           // Contraseña incorrecta, asignar un mensaje de error
-          const message = 'Contraseña incorrecta';
-          return res.render('login', { message });
+          mensaje = 'Contraseña incorrecta';
+          return res.render('login', { mensaje: mensaje });
         }
 
         // Las credenciales son válidas, almacenar información del usuario en la sesión
