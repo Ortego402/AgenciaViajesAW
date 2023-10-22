@@ -2,10 +2,6 @@
 
 # ENTREGA 2:
 
--Hacer pagina de perfil
-
--Hacer logout.
-
 -Responsive.
 
 # ENTREGA 3:
