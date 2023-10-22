@@ -5,6 +5,7 @@ const dbConnection = require('./js/dbConfig'); // Importa la configuración de l
 
 // Crea una instancia de Express
 const app = express();
+const router = express.Router();
 const bcrypt = require('bcrypt'); //guarda la contraseña en forma de hash instalar => npm install bcrypt
 const session = require('express-session'); //para manejar los incios de seseion es necesario instalarse =>npm install express express-session
 app.use(session({
@@ -60,6 +61,18 @@ app.get('/login', (req, res) => {
 app.get('/registro', (req, res) => {
   let mensaje = "";
   res.render('registro', { session: req.session, mensaje: mensaje });
+});
+
+app.get('/perfil', (req, res) => {
+  let mensaje = "";
+  dbConnection.query('SELECT * FROM usuarios WHERE username like ?', [req.session.username], (err, results) => {
+    if (err) {
+      res.status(500).json({ error: 'Error de la base de datos' });
+      return;
+    }
+    // Renderiza la vista "home.ejs" con los resultados obtenidos de la base de datos
+    res.render('perfil', { results: results[0], session: req.session });
+  });
 });
 
 // Ruta para mostrar detalles de un destino específico
@@ -240,6 +253,20 @@ app.post('/InicioSesion', (req, res) => {
         return res.redirect('/');
       });
     }
+  });
+});
+
+
+app.get('/logout', (req, res) => {
+  // Destruir la sesión
+  req.session.destroy((err) => {
+    if (err) {
+      console.error('Error al cerrar sesión:', err);
+      return res.status(500).send('Error interno del servidor');
+    }
+
+    // Redirigir a la página de inicio de sesión o a donde desees
+    res.redirect('/');
   });
 });
 
