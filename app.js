@@ -155,53 +155,58 @@ app.post('/registrar', (req, res) => {
   let mensaje = null;
 
   const checkUsernameQuery = 'SELECT * FROM usuarios WHERE username = ?';
+  
   dbConnection.query(checkUsernameQuery, [username], (checkUsernameErr, checkUsernameResult) => {
     if (checkUsernameErr) {
+      console.error(checkUsernameErr);
       return res.status(500).json({ error: 'Error interno del servidor' });
     }
-  });
-  if (checkUsernameResult.length > 0) {
-    mensaje = 'El nombre de usuario ya existe.';
-    return res.render('registro', { mensaje: mensaje });}
-  // Comprobar la contraseña según tus requisitos
-  if (password.length < 8) {
-    mensaje = 'La contraseña debe tener al menos 8 caracteres.';
-  }
-  else if (/[A-Z]/.test(password)) {
-    mensaje = 'La contraseña debe tener una letra mayúscula.';
-  }
-  else if (!/\d/.test(password)) {
-    mensaje = 'La contraseña debete tener al menos un número.';
-  }
-  else if (!/\W/.test(password)) {
-    mensaje = 'La contraseña debe contener al menos un carácter especial.';
-  }
-  else if (password != confirmPassword) {
-    mensaje = 'La contraseña deben coincidir.';
-  }
-  if(mensaje != null){
-    return res.render('registro', { mensaje: mensaje });
-  }
-
-  // Insertar datos en la base de datos
-  bcrypt.hash(password, 10, (err, hash) => {
-    if (err) {
-      console.error('Error al generar el hash de la contraseña:', err);
-      return res.status(500).json({ error: 'Error al hasear la contraseña' });
+    // Comprobar el user name según sus requisitos
+    if (checkUsernameResult.length > 0) {
+      mensaje = 'El nombre de usuario ya existe.';
+    }
+    // Comprobar la contraseña según sus requisitos
+    else if (!mensaje && password.length < 8) {
+      mensaje = 'La contraseña debe tener al menos 8 caracteres.';
+    } else if (!mensaje && !/[A-Z]/.test(password)) {
+      mensaje = 'La contraseña debe tener una letra mayúscula.';
+    } else if (!mensaje && !/\d/.test(password)) {
+      mensaje = 'La contraseña debe tener al menos un número.';
+    } else if (!mensaje && !/\W/.test(password)) {
+      mensaje = 'La contraseña debe contener al menos un carácter especial.';
+    } else if (!mensaje && password !== confirmPassword) {
+      mensaje = 'Las contraseñas deben coincidir.';
     }
 
-    dbConnection.query('INSERT INTO usuarios (nombre, apellidos, correo, username, password) VALUES (?, ?, ?, ?, ?)', [nombre, apellido, correo, username, hash], (err, result) => {
+    // Devuelve si hay algun error
+    if (mensaje) {
+      return res.render('registro', { mensaje: mensaje , username: username, nombre: nombre, apellido: apellido, correo: correo, password: password});
+    }
+    else{
+       // Insertar datos en la base de datos
+    bcrypt.hash(password, 10, (err, hash) => {
       if (err) {
-        return res.status(500).json({ error: 'Error interno del servidor' });
+        console.error('Error al generar el hash de la contraseña:', err);
+        return res.status(500).json({ error: 'Error al hashear la contraseña' });
       }
-      // Las credenciales son válidas, almacenar información del usuario en la sesión
-      req.session.username = username;
-      // Puedes almacenar más información en la sesión según tus necesidades
 
-      return res.redirect('/');
+      dbConnection.query('INSERT INTO usuarios (nombre, apellidos, correo, username, password) VALUES (?, ?, ?, ?, ?)', [nombre, apellido, correo, username, hash], (err, result) => {
+        if (err) {
+          console.error(err);
+          return res.status(500).json({ error: 'Error interno del servidor' });
+        }
+
+        // Las credenciales son válidas, almacenar información del usuario en la sesión
+        req.session.username = username;
+        // Puedes almacenar más información en la sesión según tus necesidades
+
+        return res.redirect('/');
+      });
     });
-  }); 
+    }
+  });
 });
+
 
 app.post('/InicioSesion', (req, res) => {
   const { username, password } = req.body;
