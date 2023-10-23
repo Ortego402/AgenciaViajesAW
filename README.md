@@ -4,6 +4,8 @@ CAMBIA EL NOMBRE DE LA BBDD POR VIAJES
 
 # ENTREGA 2:
 
+-Poder modificar datos del perfil.
+
 -Responsive.
 -email quitar de reserva
 
