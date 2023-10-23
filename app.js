@@ -71,7 +71,43 @@ app.get('/perfil', (req, res) => {
       return;
     }
     // Renderiza la vista "home.ejs" con los resultados obtenidos de la base de datos
-    res.render('perfil', { results: results[0], session: req.session });
+    res.render('perfil', { results: results[0], session: req.session, mensaje: mensaje});
+  });
+});
+
+app.post('/actualizar_perfil', (req, res) => {
+  const { nombre, apellidos, correo, username} = req.body;
+  let mensaje = null;
+
+  const checkUsernameQuery = 'SELECT * FROM usuarios WHERE username = ?';
+  dbConnection.query(checkUsernameQuery, [username], (checkUsernameErr, checkUsernameResult) => {
+    if (checkUsernameErr) {
+      console.error(checkUsernameErr);
+      return res.status(500).json({ error: 'Error interno del servidor' });
+    }
+    // Comprobar el user name según sus requisitos
+    if (checkUsernameResult.length > 0 && username != req.session.username) {
+      mensaje = 'El nombre de usuario ya existe.';
+    }
+    // Devuelve si hay algun error
+    if (mensaje) {
+      return res.render('perfil', { mensaje: mensaje , results: req.body,  session: req.session});
+    }
+    else{
+       // Insertar datos en la base de datos
+       dbConnection.query('UPDATE usuarios SET nombre = ?, apellidos = ?, correo = ?, username = ? WHERE username = ?', [nombre, apellidos, correo, username, req.session.username], (err, result) => {
+          if (err) {
+          console.error(err);
+          return res.status(500).json({ error: 'Error interno del servidor' });
+        }
+
+        // Las credenciales son válidas, almacenar información del usuario en la sesión
+        req.session.username = username;
+        // Puedes almacenar más información en la sesión según tus necesidades
+        mensaje = 'Cambios realizados.'
+        return res.redirect('perfil', {mensaje:mensaje});
+      });
+    }
   });
 });
 
