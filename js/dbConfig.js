@@ -4,7 +4,7 @@ const mysql = require('mysql');
 // Configuración de la conexión a la base de datos
 const dbConnection = mysql.createConnection({
   host: 'localhost',       // Dirección del servidor de la base de datos
-  user: 'admin_aw',            // Nombre de usuario de la base de datos
+  user: 'root',            // Nombre de usuario de la base de datos
   password: '',            // Contraseña de la base de datos
   database: 'viajes' // Nombre de la base de datos a la que conectarse
 });
