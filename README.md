@@ -3,6 +3,7 @@
 # ENTREGA 2:
 
 -Responsive.
+-email quitar de reserva
 
 # ENTREGA 3:
 • Sistema de comentarios:
