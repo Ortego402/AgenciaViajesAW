@@ -28,61 +28,62 @@
         </ol>
     </nav>
 
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="mb-0">Perfil de Usuario</h3>
-                    </div>
-                    <div class="card-body">
-                        <!-- Formulario para mostrar y editar los datos del usuario -->
-                        <form action="/actualizar_perfil" method="post">
-                            <% if (mensaje == "El nombre de usuario ya existe.") { %>
-                                <div class="alert alert-danger bg-danger bg-gradient text-black" role="alert">
-                                    El nombre de usuario ya existe.
-                                </div>
-                            <% } else if(mensaje) { %>
-                                <div class="alert alert-success bg-gradient text-dark" role="alert">
-                                    <%= mensaje %>
-                                </div>
-                            <% } %>
-                            <dl class="row">
-                                <dt class="col-sm-3">Nombre:</dt>
-                                <dd class="col-sm-9">
-                                    <input type="text" class="form-control" name="nombre" value="<%= results.nombre %>">
-                                </dd>
-    
-                                <dt class="col-sm-3">Apellidos:</dt>
-                                <dd class="col-sm-9">
-                                    <input type="text" class="form-control" name="apellidos" value="<%= results.apellidos %>">
-                                </dd>
-    
-                                <dt class="col-sm-3">Correo:</dt>
-                                <dd class="col-sm-9">
-                                    <input type="email" class="form-control" name="correo" value="<%= results.correo %>">
-                                </dd>
-    
-                                <dt class="col-sm-3">Nombre de usuario:</dt>
-                                <dd class="col-sm-9">
-                                    <input type="text" class="form-control" name="username" value="<%= results.username %>">
-                                </dd>
-                            </dl>
-    
-                            <!-- Botón de enviar cambios -->
-                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                            <!-- Botón de Cerrar Sesión -->
-                            <a href="/logout" class="btn btn-danger btn-lg" style="color: black; padding: 0.2em 0.5em;"><i class="bi bi-box-arrow-right"></i></a>
-                        </form>
+    <main class="main-color">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="mb-0">Perfil de Usuario</h3>
+                        </div>
+                        <div class="card-body">
+                            <!-- Formulario para mostrar y editar los datos del usuario -->
+                            <form action="/actualizar_perfil" method="post">
+                                <% if (mensaje == "El usuario ya existe, prueba con otro.") { %>
+                                    <div class="alert alert-danger bg-danger bg-gradient text-black" role="alert">
+                                        El nombre de usuario ya existe.
+                                    </div>
+                                <% } else if(mensaje) { %>
+                                    <div class="alert alert-success bg-gradient text-dark" role="alert">
+                                        <%= mensaje %>
+                                    </div>
+                                <% } %>
+                                <dl class="row">
+                                    <dt class="col-sm-3">Nombre:</dt>
+                                    <dd class="col-sm-9">
+                                        <input type="text" class="form-control" name="nombre" value="<%= results.nombre %>">
+                                    </dd>
+        
+                                    <dt class="col-sm-3">Apellidos:</dt>
+                                    <dd class="col-sm-9">
+                                        <input type="text" class="form-control" name="apellidos" value="<%= results.apellidos %>">
+                                    </dd>
+        
+                                    <dt class="col-sm-3">Correo:</dt>
+                                    <dd class="col-sm-9">
+                                        <input type="email" class="form-control" name="correo" value="<%= results.correo %>">
+                                    </dd>
+        
+                                    <dt class="col-sm-3">Nombre de usuario:</dt>
+                                    <dd class="col-sm-9">
+                                        <input type="text" class="form-control" name="username" value="<%= results.username %>">
+                                    </dd>
+                                </dl>
+        
+                                <!-- Botón de enviar cambios -->
+                                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                <!-- Botón de Cerrar Sesión -->
+                                <a href="/logout" class="btn btn-danger btn-lg" style="color: black; padding: 0.2em 0.5em;"><i class="bi bi-box-arrow-right"></i></a>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+        <br>
+        <br>
+    </main>
     
-    
-    <br>
-    <br>
     <!-- Inclusión del pie de página -->
     <%- include('footer.ejs') %>
 

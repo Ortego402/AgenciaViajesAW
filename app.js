@@ -64,7 +64,14 @@ app.get('/registro', (req, res) => {
 });
 
 app.get('/perfil', (req, res) => {
+  const cambiosConfirmada = req.query.cambios === 'confirmado';
   let mensaje = "";
+  if(cambiosConfirmada){
+    mensaje = "Cambios realizados.";
+  }
+  else if(req.query.cambios === 'null'){
+    mensaje = "El usuario ya existe, prueba con otro.";
+  }
   dbConnection.query('SELECT * FROM usuarios WHERE username like ?', [req.session.username], (err, results) => {
     if (err) {
       res.status(500).json({ error: 'Error de la base de datos' });
@@ -77,37 +84,27 @@ app.get('/perfil', (req, res) => {
 
 app.post('/actualizar_perfil', (req, res) => {
   const { nombre, apellidos, correo, username} = req.body;
-  let mensaje = null;
 
   const checkUsernameQuery = 'SELECT * FROM usuarios WHERE username = ?';
   dbConnection.query(checkUsernameQuery, [username], (checkUsernameErr, checkUsernameResult) => {
     if (checkUsernameErr) {
-      console.error(checkUsernameErr);
       return res.status(500).json({ error: 'Error interno del servidor' });
     }
     // Comprobar el user name según sus requisitos
     if (checkUsernameResult.length > 0 && username != req.session.username) {
-      mensaje = 'El nombre de usuario ya existe.';
+      return res.redirect('perfil?cambios=null');
     }
-    // Devuelve si hay algun error
-    if (mensaje) {
-      return res.render('perfil', { mensaje: mensaje , results: req.body,  session: req.session});
+    // Insertar datos en la base de datos
+    dbConnection.query('UPDATE usuarios SET nombre = ?, apellidos = ?, correo = ?, username = ? WHERE username = ?', [nombre, apellidos, correo, username, req.session.username], (err, result) => {
+      if (err) {
+      return res.status(500).json({ error: 'Error interno del servidor' });
     }
-    else{
-       // Insertar datos en la base de datos
-       dbConnection.query('UPDATE usuarios SET nombre = ?, apellidos = ?, correo = ?, username = ? WHERE username = ?', [nombre, apellidos, correo, username, req.session.username], (err, result) => {
-          if (err) {
-          console.error(err);
-          return res.status(500).json({ error: 'Error interno del servidor' });
-        }
 
-        // Las credenciales son válidas, almacenar información del usuario en la sesión
-        req.session.username = username;
-        // Puedes almacenar más información en la sesión según tus necesidades
-        mensaje = 'Cambios realizados.'
-        return res.redirect('perfil', {mensaje:mensaje});
-      });
-    }
+    // Las credenciales son válidas, almacenar información del usuario en la sesión
+    req.session.username = username;
+    // Puedes almacenar más información en la sesión según tus necesidades
+    return res.redirect('/perfil?cambios=confirmado');
+  });
   });
 });
 

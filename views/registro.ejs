@@ -42,58 +42,56 @@
         </ol>
     </nav>
 
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        Registro de Usuario
-                    </div>
-                    <div class="card-body">
-                        <form action="/registrar" method="post" class="general">
-                            <% if (mensaje == null) { %>
-                            <% } else if(mensaje) { %>
-                                <div class="alert alert-danger bg-gradient text-dark" role="alert">
-                                    <%= mensaje %>
+    <main class="main-fondo">
+        <div class="container mt-3">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card border border-1 border-dark rounded">
+                        <div class="card-body">
+                            <h2 class="card-title text-center">Registro de Usuario</h2>
+                            <form action="/registrar" method="post" class="general">
+                                <% if (mensaje == null) { %>
+                                <% } else if(mensaje) { %>
+                                    <div class="alert alert-danger bg-gradient text-dark" role="alert">
+                                        <%= mensaje %>
+                                    </div>
+                                <% } %>
+                                <div class="form-group">
+                                    <label for="nombre">Nombre:</label>
+                                    <input type="text" class="form-control" id="nombre" name="nombre" value="<%= typeof nombre !== 'undefined' ? nombre : '' %>" required>
                                 </div>
-                            <% } %>
-                            <div class="form-group">
-                                <label for="nombre">Nombre:</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" value="<%= typeof nombre !== 'undefined' ? nombre : '' %>" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="apellido">Apellidos:</label>
-                                <input type="text" class="form-control" id="apellido" name="apellido" value="<%= typeof apellido !== 'undefined' ? apellido : '' %>" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="correo">Correo:</label>
-                                <input type="email" class="form-control" id="correo" name="correo" value="<%= typeof correo !== 'undefined' ? correo : '' %>" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="username">Nombre usuario:</label>
-                                <input type="text" class="form-control" id="username" name="username" value="<%= typeof username !== 'undefined' ? username : '' %>" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Contraseña:</label>
-                                <input type="password" class="form-control" id="password" name="password" value="<%= typeof password !== 'undefined' ? password : '' %>" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="confirmPassword">Confirmar Contraseña:</label>
-                                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" value="<%= typeof password !== 'undefined' ? password : '' %>" required>
-                            </div>
-                            <br>
-                            <button type="submit" class="btn btn-primary">Registrar</button>
-                        </form>
+                                <div class="form-group">
+                                    <label for="apellido">Apellidos:</label>
+                                    <input type="text" class="form-control" id="apellido" name="apellido" value="<%= typeof apellido !== 'undefined' ? apellido : '' %>" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="correo">Correo:</label>
+                                    <input type="email" class="form-control" id="correo" name="correo" value="<%= typeof correo !== 'undefined' ? correo : '' %>" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="username">Nombre usuario:</label>
+                                    <input type="text" class="form-control" id="username" name="username" value="<%= typeof username !== 'undefined' ? username : '' %>" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Contraseña:</label>
+                                    <input type="password" class="form-control" id="password" name="password" value="<%= typeof password !== 'undefined' ? password : '' %>" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirmPassword">Confirmar Contraseña:</label>
+                                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" value="<%= typeof password !== 'undefined' ? password : '' %>" required>
+                                </div>
+                                <br>
+                                <button type="submit" class="btn btn-primary">Registrar</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 </body>
 </html>
