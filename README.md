@@ -2,9 +2,7 @@
 
 # ENTREGA 2:
 
--Hacer pagina de perfil
-
--Hacer logout.
+-Poder modificar datos del perfil.
 
 -Responsive.
 
