@@ -2,6 +2,8 @@
 
 # ENTREGA 2:
 
+-Poder modificar datos del perfil.
+
 -Responsive.
 
 # ENTREGA 3:
