@@ -24,9 +24,8 @@ p {
 
 /* Estilos para las imágenes */
 .img {
-    width: 5em;
+    width: 4em;
     height: auto;
-    padding: 10px 10px;
     float: right;
 }
 
@@ -190,11 +189,6 @@ nav a {
     border-radius: 5px;
     cursor: pointer;
     margin-left: 10px;
-}
-
-/* Estilos para pantallas pequeñas (menos de 768px de ancho) */
-@media (max-width: 768px) {
-    /* Estilos específicos para pantallas pequeñas */
 }
 
 /* Estilos para las tarjetas en la vista de rejilla */
