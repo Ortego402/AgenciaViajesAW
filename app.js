@@ -167,11 +167,11 @@ app.get('/buscar', (req, res) => {
 
 // Ruta para manejar la reserva de un destino específico
 app.post('/destino/:id/reservar', (req, res) => {
-  const { email, fecha_reserva } = req.body;
+  const { fecha_reserva } = req.body;
   const id = req.params.id;
 
   // Inserta los datos de la reserva en la base de datos
-  dbConnection.query('INSERT INTO reservas (destino_id, nombre_cliente, correo_cliente, fecha_reserva) VALUES (?, ?, ?, ?)', [id, req.session.username, email, fecha_reserva], (err, result) => {
+  dbConnection.query('INSERT INTO reservas (destino_id, nombre_cliente, correo_cliente, fecha_reserva) VALUES (?, ?, ?, ?)', [id, req.session.username, req.session.email, fecha_reserva], (err, result) => {
     if (err) {
       return res.redirect(`/destino/${id}?reserva=null`);
     }
@@ -244,6 +244,7 @@ app.post('/registrar', (req, res) => {
 
         // Las credenciales son válidas, almacenar información del usuario en la sesión
         req.session.username = username;
+        req.session.email = correo;
         // Puedes almacenar más información en la sesión según tus necesidades
 
         return res.redirect('/');
@@ -258,18 +259,18 @@ app.post('/InicioSesion', (req, res) => {
   const { username, password } = req.body;
   
   const checkUsernameQuery = 'SELECT * FROM usuarios WHERE username = ?';
-  dbConnection.query(checkUsernameQuery, [username], (checkUsernameErr, checkUsernameResult) => {
+  dbConnection.query(checkUsernameQuery, [username], (checkUsernameErr, result) => {
     if (checkUsernameErr) {
       return res.status(500).json({ error: 'Error interno del servidor' });
     }
     let mensaje = null;
-    if (checkUsernameResult.length === 0) {
+    if (result.length === 0) {
       // Nombre de usuario no existe, asignar un mensaje de error
       mensaje = 'El nombre de usuario no existe';
       return res.render('login', { mensaje: mensaje });
     } else {
       // Verificar la contraseña utilizando bcrypt
-      const storedPasswordHash = checkUsernameResult[0].password; // asumiendo que el campo en la base de datos se llama "password"
+      const storedPasswordHash = result[0].password; // asumiendo que el campo en la base de datos se llama "password"
       bcrypt.compare(password, storedPasswordHash, (compareErr, compareResult) => {
         if (compareErr) {
           return res.status(500).json({ error: 'Error interno del servidor' });
@@ -283,6 +284,7 @@ app.post('/InicioSesion', (req, res) => {
 
         // Las credenciales son válidas, almacenar información del usuario en la sesión
         req.session.username = username;
+        req.session.email = result[0].correo;
         return res.redirect('/');
       });
     }
