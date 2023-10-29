@@ -52,7 +52,7 @@ router.get('/registro', (req, res) => {
 });
 
 router.get('/perfil', (req, res) => {
-    let mensaje = "";
+    const mensaje = req.query.mensaje || ""; // Recupera el mensaje de la consulta, si está presente
     userSA.mostrarPerfil(req, res, (err, result) => {
         if (err) {
             return res.status(500).json({ error: 'Error de la base de datos' });
@@ -62,8 +62,8 @@ router.get('/perfil', (req, res) => {
 });
 
 router.post('/actualizar_perfil', (req, res) => {
-    userSA.actualizarPerfil(req, res, (err, result) => {
-        return res.render('perfil', { result: result[0], mensaje: err, session: req.session }); // Muestra el mensaje de error
+    userSA.actualizarPerfil(req, res, (err) => {
+        res.redirect('/perfil?mensaje=' + encodeURIComponent(err));
     });
 });
 
@@ -116,21 +116,20 @@ router.get('/logout', (req, res) => {
 // Ruta para manejar la publicación de comentarios en un destino específico
 router.post('/:id/comentarios', (req, res) => {
     destinoSA.comentarDestino(req, res, (err) => {
-        if (err) {
-            return res.render('destino', { result: result, results: results, comentarios: comentarios, session: req.session, mensaje: err });
-        }
-        return res.render('destino', { result: result, results: results, comentarios: comentarios, session: req.session, mensaje: err });
+        return res.redirect(`/${req.params.id}?mensaje=${encodeURIComponent(err)}`);
     });
 });
 
 router.get('/:id', (req, res) => {
-    destinoSA.mostrarDestino(req, res, (err, result, results, comentarios, mensaje) => {
+    const mensaje = req.query.mensaje || ''; // Recupera el mensaje de la consulta, si está presente
+    destinoSA.mostrarDestino(req, res, (err, result, results, comentarios, mensajeDestino) => {
         if (err) {
             return res.status(500).json({ error: 'Error de la base de datos' });
         }
         return res.render('destino', { result: result, results: results, comentarios: comentarios, session: req.session, mensaje: mensaje });
     });
 });
+
 
 
 

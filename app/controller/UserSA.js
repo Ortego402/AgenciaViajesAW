@@ -11,25 +11,27 @@ class UserSA {
     mostrarPerfil(req, res, callback) {
         const username = req.session.username;
         this.DAOUser.checkUsername(username, (err, result) => {
-            callback(err, result);
+            return callback(err, result);
         });
     }
 
     actualizarPerfil(req, res, callback) {
         const { nombre, apellidos, correo, username } = req.body;
 
-        this.DAOUser.updateUser(req, username, nombre, apellidos, correo, (err, result) => {
+        this.DAOUser.updateUser(req, username, nombre, apellidos, correo, (err) => {
             if (err) {
-                callback(err, null);
+                return callback(err);
             }
-            req.session.username = username;
-            callback("Perfil actualizado.", result);
+            else{
+                req.session.username = username;
+                return callback("Perfil actualizado.");
+            }
         });
     }
 
     checkUsername(username, callback) {
         this.DAOUser.checkUsername(username, (err, result) => {
-            callback(err, result);
+            return callback(err, result);
         });
     }
 
@@ -50,17 +52,17 @@ class UserSA {
 
         this.DAOUser.getUserByUsername(username, (err, user) => {
             if (err) {
-                callback(err);
+                return callback(err);
             } else {
                 bcrypt.compare(password, user.password, (bcryptErr, result) => {
                     if (bcryptErr) {
-                        callback('Error al comparar contraseñas.');
+                        return callback('Error al comparar contraseñas.');
                     } else if (result) {
                         req.session.username = username;
                         req.session.email = user.correo;
-                        callback(null); // Pasa null si no hay errores
+                        return callback(null); // Pasa null si no hay errores
                     } else {
-                        callback('Contraseña incorrecta.');
+                        return callback('Contraseña incorrecta.');
                     }
                 });
             }
