@@ -67,11 +67,11 @@ class DestinoSA {
         const { fecha_reserva } = req.body;
         const id = req.params.id;
 
-        this.DAODestino.createReserva(id, req.session.username, req.session.email, fecha_reserva, (err, result) => {
+        this.DAODestino.insertarReserva(id, req.session.username, req.session.email, fecha_reserva, (err) => {
             if (err) {
-                return res.redirect(`/destino/${id}?reserva=null`);
+                return callback("¡Ups! Algo salió mal, vuelve a intentarlo más tarde.")
             }
-            res.redirect(`/${id}?reserva=confirmada`);
+            return callback("Reserva realizada con éxito.")
         });
     }
 

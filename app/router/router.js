@@ -120,6 +120,13 @@ router.post('/:id/comentarios', (req, res) => {
     });
 });
 
+// Ruta para manejar la reserva de un destino específico
+router.post('/:id/reservar', (req, res) => {
+    destinoSA.reservarDestino(req, res, (err) => {
+        return res.redirect(`/${req.params.id}?mensaje=${encodeURIComponent(err)}`);
+    });
+  });
+
 router.get('/:id', (req, res) => {
     const mensaje = req.query.mensaje || ''; // Recupera el mensaje de la consulta, si está presente
     destinoSA.mostrarDestino(req, res, (err, result, results, comentarios, mensajeDestino) => {
