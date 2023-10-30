@@ -17,8 +17,11 @@
 <body>
     <!-- Inclusión del encabezado y la barra de navegación -->
     <%- include('header.ejs') %>
-    <%- include('nav.ejs') %>
-
+    <nav class="navbar">
+        <a href="/nosotros" class="botonnav border-end border-1">Nosotros</a>
+        <a href="/servicios" class="botonnav border-end border-1 activo">Servicios</a>
+        <a href="/populares" class="botonnav">Populares</a>
+    </nav> 
     <!-- Barra de navegación de migas de pan -->
     <nav style="--bs-breadcrumb-divider: '/';" aria-label="breadcrumb" class="breadcrumb-nav border border-1 border-top-0 border-dark">
         <ol class="breadcrumb align-items-center me-auto my-auto">

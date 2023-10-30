@@ -40,3 +40,8 @@
     text-decoration: none;
     margin: 5px 15px;
 }
+
+.activo {
+    background-color: #050505; /* Color de fondo del enlace activo (puedes cambiarlo) */
+    color: #fff; /* Color del texto en el enlace activo para asegurar la legibilidad */
+}
