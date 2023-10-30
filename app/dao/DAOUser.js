@@ -26,25 +26,21 @@ class DAOUsuarios {
     }
 
     insertUser(nombre, apellidos, correo, username, password, callback) {
-        bcrypt.hash(password, 10, (err, hash) => {
+
+        this.pool.getConnection(function (err, connection) {
             if (err) {
-                return callback('Error al generar el hash de la contraseña', null);
+                return callback('Error de acceso a la base de datos', null);
             }
 
-            this.pool.getConnection(function (err, connection) {
+            connection.query('INSERT INTO usuarios (nombre, apellidos, correo, username, password) VALUES (?, ?, ?, ?, ?)', [nombre, apellidos, correo, username, hash], (err, result) => {
+                connection.release();
                 if (err) {
-                    return callback('Error de acceso a la base de datos', null);
+                    return callback('Error al insertar usuario en la base de datos', null);
                 }
-
-                connection.query('INSERT INTO usuarios (nombre, apellidos, correo, username, password) VALUES (?, ?, ?, ?, ?)', [nombre, apellidos, correo, username, hash], (err, result) => {
-                    connection.release();
-                    if (err) {
-                        return callback('Error al insertar usuario en la base de datos', null);
-                    }
-                    return callback(null, result);
-                });
+                return callback(null, result);
             });
         });
+        
     }
 
     updateUser(req, username, nombre, apellidos, correo, callback) {
