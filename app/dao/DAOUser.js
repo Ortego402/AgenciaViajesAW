@@ -25,7 +25,7 @@ class DAOUsuarios {
         });
     }
 
-    insertUser(nombre, apellidos, correo, username, password, callback) {
+    insertUser(nombre, apellidos, correo, username, hash, callback) {
 
         this.pool.getConnection(function (err, connection) {
             if (err) {
