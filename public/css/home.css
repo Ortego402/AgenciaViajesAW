@@ -236,3 +236,26 @@ footer {
 .breadcrumb {
     margin-left: 20px;
 }
+
+/* Estilos para quitar el color de fondo y el borde del menú desplegable */
+#perfilDropdown .dropdown-menu {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+/* Estilos para cambiar el color del texto en el menú desplegable */
+#perfilDropdown .dropdown-menu .dropdown-item {
+    color: #000;
+}
+
+/* Estilos para cambiar el color del texto cuando se pasa el cursor sobre las opciones del menú desplegable */
+#perfilDropdown .dropdown-menu .dropdown-item:hover {
+    color: #333;
+}
+
+/* Estilos para quitar el borde del botón de perfil */
+#perfilDropdown {
+    border: none;
+    background-color: transparent;
+}

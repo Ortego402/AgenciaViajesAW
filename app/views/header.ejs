@@ -36,9 +36,15 @@
                 </a>
             <% } else { %>
                 <!-- Usuario autenticado: muestra otro ícono o lo que desees -->
-                <a href="/perfil" class="btn text-dark border-0">
+                <button class="btn btn-dark dropdown-toggle p-2" type="button" id="perfilDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="../images/persona.png" alt="Iniciado"  class="profile">
-                </a>
+                </button>
+                <!-- Menú desplegable del perfil -->
+                <ul class="dropdown-menu" aria-labelledby="perfilDropdown">
+                    <li><a class="dropdown-item" href="/perfil">Perfil</a></li>
+                    <li><a class="dropdown-item" href="/reservas_usuario">Reservas</a></li>
+                    <li><a class="dropdown-item" href="/logout">Cerrar Sesión</a></li>
+                </ul>
             <% } %>
         </div>
     </div>    
