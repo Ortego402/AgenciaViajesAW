@@ -66,14 +66,15 @@ class DestinoSA {
     reservarDestino(req, res, callback) {
         const { fecha_reserva } = req.body;
         const id = req.params.id;
-
+    
         this.DAODestino.insertarReserva(id, req.session.username, req.session.email, fecha_reserva, (err) => {
             if (err) {
-                return callback("¡Ups! Algo salió mal, vuelve a intentarlo más tarde.")
+                return callback("¡Ups! Algo salió mal, vuelve a intentarlo más tarde.");
             }
-            return callback("Reserva realizada con éxito.")
+            return callback("Reserva realizada con éxito.");
         });
     }
+    
 
     comentarDestino(req, res, callback) {
         const { comentario } = req.body;

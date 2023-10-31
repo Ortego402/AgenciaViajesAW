@@ -71,6 +71,50 @@ class DAOUsuarios {
             });
         });
     }
+
+    reservasUser(username, callback) {
+        this.pool.getConnection(function (err, connection) {
+            if (err) {
+                return callback("Error de acceso a la base de datos", null);
+            } else {
+                connection.query("SELECT * FROM reservas WHERE nombre_cliente = ?", [username], function (err, results) {
+                    connection.release();
+                    if (err) {
+                        return callback("Error de acceso a la base de datos", null);
+                    } else {
+                        return callback(null, results);
+                    }
+                });
+            }
+        });
+    }
+
+    getNombresDestinos(id_destino, callback) {
+        this.pool.getConnection(function (err, connection) {
+            if (err) {
+                return callback("Error de acceso a la base de datos", null);
+            } else {
+                connection.query("SELECT id, nombre FROM destinos WHERE id IN (?)", [id_destino], function (err, results) {
+                    connection.release();
+                    if (err) {
+                        return callback("Error de acceso a la base de datos", null);
+                    } else {
+                        return callback(null, results);
+                    }
+                });
+            }
+        });
+    }
+
+    eliminarReserva(idReserva, callback) {
+        const query = 'DELETE FROM reservas WHERE id = ?';
+        this.pool.query(query, [idReserva], (err, result) => {
+            if (err) {
+                return callback('Error al eliminar la reserva', null);
+            }
+            return callback(null, 'Reserva eliminada correctamente');
+        });
+    }
 }
 
 module.exports = DAOUsuarios;

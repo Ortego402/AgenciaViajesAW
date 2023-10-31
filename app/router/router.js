@@ -51,6 +51,21 @@ router.get('/registro', (req, res) => {
     return res.render("registro", { session: req.session, mensaje: mensaje });
 });
 
+router.post('/reservas_usuario', (req, res) => {
+    userSA.eliminarReserva(req, res, (err, mensaje) => {
+        if (err) {
+            return res.status(500).send('Error al eliminar la reserva');
+        }
+        return res.redirect('/reservas_usuario');
+    });
+});
+
+router.get('/reservas_usuario', (req, res) => {
+    userSA.obtenerReservasUser(req, res, (err, results) => {
+        return res.render('reservas', { session: req.session, results: results });
+    });
+});
+
 router.get('/perfil', (req, res) => {
     const mensaje = req.query.mensaje || ""; // Recupera el mensaje de la consulta, si está presente
     userSA.mostrarPerfil(req, res, (err, result) => {

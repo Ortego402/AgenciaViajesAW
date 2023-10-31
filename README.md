@@ -2,10 +2,6 @@
 
 # ENTREGA 2:
 
--Hacer pestaña reservas de un usuario.
-
--Poder eliminar reservas.
-
 # ENTREGA 3:
 • Sistema de comentarios:
 o Agregar una sección de comentarios en cada página de destino, que muestre los

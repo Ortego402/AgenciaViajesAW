@@ -259,3 +259,28 @@ footer {
     border: none;
     background-color: transparent;
 }
+
+/* Estilos para la tabla */
+.table {
+    border-radius: 10px; /* Bordes redondeados para la tabla */
+}
+
+/* Estilos para las celdas de la tabla */
+.table th,
+.table td {
+    text-align: center; /* Centrar el texto en las celdas */
+}
+
+/* Estilos para los botones de eliminar */
+.btn-eliminar {
+    color: #fff; /* Texto blanco */
+    background-color: #dc3545; /* Color de fondo rojo */
+    border: none; /* Sin borde */
+    padding: 0.375rem 0.75rem; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s; /* Transición suave del color de fondo */
+}
+
+.btn-eliminar:hover {
+    background-color: #bb2d3b; /* Cambia el color de fondo al pasar el ratón por encima */
+}
