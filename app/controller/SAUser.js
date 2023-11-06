@@ -8,6 +8,7 @@ class UserSA {
         this.DAOUser = new DAOUser(pool);
     }
 
+    // Método para mostrar el perfil del usuario
     mostrarPerfil(req, res, callback) {
         const username = req.session.username;
         this.DAOUser.checkUsername(username, (err, result) => {
@@ -15,10 +16,11 @@ class UserSA {
         });
     }
 
+    // Método para actualizar el perfil del usuario
     actualizarPerfil(req, res, callback) {
-        const { nombre, apellidos, correo, username } = req.body;
+        const { nombre, apellidos, username } = req.body;
 
-        this.DAOUser.updateUser(req, username, nombre, apellidos, correo, (err) => {
+        this.DAOUser.updateUser(req, username, nombre, apellidos, (err) => {
             if (err) {
                 return callback(err);
             }
@@ -29,6 +31,7 @@ class UserSA {
         });
     }
 
+    // Método para obtener las reservas del usuario
     obtenerReservasUser(req, res, callback) {
         const username = req.session.username;
 
@@ -64,8 +67,9 @@ class UserSA {
         });
     }
 
-    eliminarReserva(req, res, callback) {
-        const idReserva = req.body.reservaId;
+    // Método para eliminar una reserva del usuario
+    eliminarReserva(idReserva, callback) {
+        console.log(idReserva)
         this.DAOUser.eliminarReserva(idReserva, (err, mensaje) => {
             if (err) {
                 return callback(err);
@@ -74,24 +78,27 @@ class UserSA {
         });
     }
 
+    // Método para verificar la disponibilidad de un nombre de usuario
     checkUsername(username, callback) {
         this.DAOUser.checkUsername(username, (err, result) => {
             return callback(err, result);
         });
     }
 
-    registerUser(nombre, apellido, correo, username, password, callback) {
+    // Método para registrar un nuevo usuario en la base de datos
+    registerUser(nombre, apellido, username, password, callback) {
         bcrypt.hash(password, 10, (err, hash) => {
             if (err) {
                 return callback('Error al hashear la contraseña', null);
             }
 
-            this.DAOUser.insertUser(nombre, apellido, correo, username, hash, (err, result) => {
+            this.DAOUser.insertUser(nombre, apellido, username, hash, (err, result) => {
                 return callback(err, result);
             });
         });
     }
 
+    // Método para iniciar sesión del usuario
     iniciarSesion(req, res, callback) {
         const { username, password } = req.body;
 
@@ -104,7 +111,6 @@ class UserSA {
                         return callback('Error al comparar contraseñas.');
                     } else if (result) {
                         req.session.username = username;
-                        req.session.email = user.correo;
                         return callback(null); // Pasa null si no hay errores
                     } else {
                         return callback('Contraseña incorrecta.');
@@ -113,9 +119,6 @@ class UserSA {
             }
         });
     }
-
 }
-
-
 
 module.exports = UserSA;

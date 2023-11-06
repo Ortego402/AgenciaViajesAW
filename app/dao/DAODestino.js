@@ -1,10 +1,12 @@
 "use strict";
 
+// Clase DAODestinos para interactuar con la base de datos de destinos
 class DAODestinos {
     constructor(pool) {
         this.pool = pool;
     }
 
+    // Método para obtener todos los destinos desde la base de datos
     getAllDestinos(callback) {
         this.pool.getConnection(function (err, connection) {
             if (err) {
@@ -22,8 +24,8 @@ class DAODestinos {
         });
     }
 
+    // Método para buscar destinos por nombre o descripción desde la base de datos
     searchDestinos(busqueda, callback) {
-        console.log("hola")
         this.pool.getConnection(function (err, connection) {
             if (err) {
                 callback("Error de acceso a la base de datos", null);
@@ -33,7 +35,6 @@ class DAODestinos {
                     if (err) {
                         callback("Error de acceso a la base de datos", null);
                     } else {
-                        console.log(destinos)
                         callback(null, destinos);
                     }
                 });
@@ -41,6 +42,7 @@ class DAODestinos {
         });
     }
 
+    // Método para obtener un destino por su ID desde la base de datos
     getDestinoById(id, callback) {
         this.pool.getConnection(function (err, connection) {
             if (err) {
@@ -58,13 +60,14 @@ class DAODestinos {
         });
     }
 
-    insertarReserva(idDestino, nombreCliente, correoCliente, fechaReserva, callback) {
+    // Método para insertar una nueva reserva en la base de datos
+    insertarReserva(idDestino, usuarioCliente, fechaReserva, callback) {
         this.pool.getConnection(function (err, connection) {
             if (err) {
                 return callback("Error de acceso a la base de datos", null);
             } else {
-                connection.query("INSERT INTO reservas (destino_id, nombre_cliente, correo_cliente, fecha_reserva) VALUES (?, ?, ?, ?)",
-                    [idDestino, nombreCliente, correoCliente, fechaReserva],
+                connection.query("INSERT INTO reservas (destino_id, usuario_cliente, fecha_reserva) VALUES (?, ?, ?)",
+                    [idDestino, usuarioCliente, fechaReserva],
                     function (err, result) {
                         connection.release();
                         if (err) {
@@ -77,6 +80,7 @@ class DAODestinos {
         });
     }
 
+    // Método para insertar un nuevo comentario en la base de datos
     insertarComentario(idDestino, nombreUsuario, comentario, callback) {
         this.pool.getConnection(function (err, connection) {
             if (err) {
@@ -96,6 +100,7 @@ class DAODestinos {
         });
     }
 
+    // Método para obtener las imágenes asociadas a un destino por su ID desde la base de datos
     getImagenesByDestinoId(idDestino, callback) {
         this.pool.getConnection(function (err, connection) {
             if (err) {
@@ -113,6 +118,7 @@ class DAODestinos {
         });
     }
 
+    // Método para obtener los comentarios asociados a un destino por su ID desde la base de datos
     getComentariosByDestinoId(idDestino, callback) {
         this.pool.getConnection(function (err, connection) {
             if (err) {
