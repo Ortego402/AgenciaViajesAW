@@ -17,9 +17,8 @@
 
 /* Estilos para el contenido a la derecha del carrusel */
 .destino-info {
-  overflow: hidden; /* Oculta el contenido que desborda el contenedor */
   margin-top: 15px; /* Margen superior de 15px */
-  height: 400px; /* Altura fija del contenedor del contenido */
+  height: 100%; /* Altura fija del contenedor del contenido */
 }
 
 /* Estilos para la descripción del destino */

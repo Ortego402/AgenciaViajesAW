@@ -168,8 +168,8 @@ CREATE TABLE `reservas` (
 --
 
 INSERT INTO `reservas` (`id`, `destino_id`, `usuario_cliente`, `fecha_reserva`) VALUES
-(22, 1, 'ortego444', '2023-11-11'),
-(23, 1, 'ortego444', '2023-11-17');
+(22, 1, 'Admin1', '2023-11-11'),
+(23, 1, 'Admin1', '2023-11-17');
 
 -- --------------------------------------------------------
 
@@ -191,7 +191,7 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `nombre`, `apellidos`, `username`, `password`) VALUES
 (51, 'Admin', 'Admin', 'Admin1', '$2b$10$opAPmtDqA2iAOnFomjQreuoUDnq5CubaNUcNozHds1b7L/jmcCzEi');
-
+-- Constraseña del Admin1 = Administrador1-
 --
 -- Índices para tablas volcadas
 --
