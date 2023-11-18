@@ -12,16 +12,19 @@ daoDestino = new DAODestino(pool);
 // Página principal
 router.get('/', (req, res) => {
   daoDestino.getAllDestinos((err, results) => {
-      if (err) {
-          return res.status(500).json({ error: 'Error de la base de datos' });
-      }
-      return res.render('home.ejs', { results: results, session: req.session });
+    if (err) {
+      return res.status(500).json({ error: 'Error de la base de datos' });
+    }
+
+    return res.render('home.ejs', { results: results, session: req.session });
   });
 });
 
 // Página de destinos populares
 router.get('/populares', (req, res) => {
+
   return res.render("populares.ejs", { session: req.session });
+
 });
 
 // Página "Nosotros"
@@ -31,7 +34,9 @@ router.get('/nosotros', (req, res) => {
 
 // Página de servicios
 router.get('/servicios', (req, res) => {
+
   return res.render("servicios.ejs", { session: req.session });
+
 });
 
 
@@ -39,27 +44,55 @@ router.get('/servicios', (req, res) => {
 router.get('/buscar', (req, res) => {
   const searchTerm = req.query.nombreBuscar;
   daoDestino.searchDestinos(searchTerm, (err, results) => {
-      if (err) {
-          return res.status(500).json({ error: 'Error de la base de datos' });
-      }
-      return res.render('home.ejs', { results: results, session: req.session });
+    if (err) {
+      return res.status(500).json({ error: 'Error de la base de datos' });
+    }
+    return res.render('home.ejs', { results: results, session: req.session });
+
   });
 });
 
 // Publicar comentario en un destino específico
 router.post('/:id/comentarios', (req, res) => {
-    destinoSA.comentarDestino(req, res, (err) => {
-        return res.redirect(`/${req.params.id}?mensaje=${encodeURIComponent(err)}`);
+  destinoSA.comentarDestino(req, res, (err) => {
+    return res.redirect(`/${req.params.id}?mensaje=${encodeURIComponent(err)}`);
+  });
+
+  const { comentario } = req.body;
+  const id = req.params.id;
+
+  daoDestino.insertarComentario(id, req.session.username, comentario, (err) => {
+    daoDestino.getComentariosByDestinoId(id, (err, comentarios) => {
+      if (err) {
+        console.error('Error de la base de datos:', err);
+        return res.status(500).json({ error: 'Error de la base de datos' });
+      }
+
+      // Renderizar solo la lista de comentarios si la solicitud es AJAX
+      if (req.xhr) {
+        return res.render('comentarios-lista', { comentarios: comentarios }, (err, html) => {
+          if (err) {
+            console.error('Error al renderizar la vista parcial:', err);
+            return res.status(500).json({ error: 'Error al renderizar la vista parcial' });
+          }
+
+          // Enviar solo el HTML de la vista parcial
+          return res.send(html);
+        });
+      }
+
+      return res.redirect(`/${req.params.id}?mensaje=${encodeURIComponent(err)}`);
     });
+  });
 });
 
 // Reservar un destino específico
 router.post('/:id/reservar', (req, res) => {
   const { fecha_reserva } = req.body;
   const id = req.params.id;
-  
+
   daoDestino.insertarReserva(id, req.session.username, fecha_reserva, (err) => {
-      return res.redirect(`/${req.params.id}?mensaje=${encodeURIComponent(err)}`);
+    return res.redirect(`/${req.params.id}?mensaje=${encodeURIComponent(err)}`);
   });
 });
 
@@ -72,18 +105,22 @@ router.get('/:id', (req, res) => {
 
   let mensaje = '';
   if (reservaConfirmada) {
-      mensaje = '¡Reserva completada! Gracias por realizar la reserva.';
+    mensaje = '¡Reserva completada! Gracias por realizar la reserva.';
   } else if (comentarioConfirmado) {
-      mensaje = 'Comentario realizado correctamente.';
+    mensaje = 'Comentario realizado correctamente.';
   } else if (req.query.reserva === 'null' || req.query.comentario === 'null') {
-      mensaje = '¡Ups! Ha ocurrido un error al realizar la acción.';
+    mensaje = '¡Ups! Ha ocurrido un error al realizar la acción.';
   }
 
-  daoDestino.getDestinoById(id, (err, result) => {
+
+  // Obtener información del destino
+  this.DAODestino.getDestinoById(id, (err, result) => {
+
+    daoDestino.getDestinoById(id, (err, result) => {
       if (err) {
         return res.status(500).json({ error: 'Error de la base de datos' });
       }
-      
+
       // Obtener imágenes del destino
       daoDestino.getImagenesByDestinoId(id, (err, results) => {
         if (err) {
@@ -92,15 +129,17 @@ router.get('/:id', (req, res) => {
 
         // Obtener comentarios del destino
         daoDestino.getComentariosByDestinoId(id, (err, comentarios) => {
+
           if (err) {
             return res.status(500).json({ error: 'Error de la base de datos' });
           }
-          else{
-            return res.render('destino.ejs', { result: result, results: results, comentarios: comentarios, session: req.session, mensaje: mensaje });
+          else {
+            return res.render('destino', { result: result, results: results, comentarios: comentarios, session: req.session, mensaje: mensaje });
           }
         });
       });
     });
   });
+});
 
 module.exports = router;
