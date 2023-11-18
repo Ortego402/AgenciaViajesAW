@@ -116,7 +116,7 @@ class DAOUsuarios {
     getNombresDestinos(id_destino, callback) {
         this.pool.getConnection(function (err, connection) {
             if (err) {
-                return callback("Error de acceso a la base de datos", null);
+                return callback("Error al conectarse a la base de datos", null);
             } else {
                 connection.query("SELECT id, nombre FROM destinos WHERE id IN (?)", [id_destino], function (err, results) {
                     connection.release();

@@ -112,10 +112,6 @@ router.get('/:id', (req, res) => {
     mensaje = '¡Ups! Ha ocurrido un error al realizar la acción.';
   }
 
-
-  // Obtener información del destino
-  this.DAODestino.getDestinoById(id, (err, result) => {
-
     daoDestino.getDestinoById(id, (err, result) => {
       if (err) {
         return res.status(500).json({ error: 'Error de la base de datos' });
@@ -134,12 +130,12 @@ router.get('/:id', (req, res) => {
             return res.status(500).json({ error: 'Error de la base de datos' });
           }
           else {
-            return res.render('destino', { result: result, results: results, comentarios: comentarios, session: req.session, mensaje: mensaje });
+            return res.render('destino.ejs', { result: result, results: results, comentarios: comentarios, session: req.session, mensaje: mensaje });
           }
         });
       });
     });
   });
-});
+
 
 module.exports = router;

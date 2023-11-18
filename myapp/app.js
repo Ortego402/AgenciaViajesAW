@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
 
-var destinoRouter = require('./routes/destinos');
+const destinoRouter = require('./routes/destinos');
 var usersRouter = require('./routes/users');
 
 const app = express();
@@ -31,8 +31,11 @@ app.set("views", path.join(__dirname, 'views')); // Carpeta de vistas
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Usa los enrutadores
-app.use('/', destinoRouter);
-app.use('/users', usersRouter);
+app.use('/', destinoRouter); // Ruta raíz ahora manejada por el enrutador de destinos
+app.use('/users', usersRouter); // Cambiado a '/users' para evitar conflictos
+
+// Resto del código...
+
 
 // Captura el error 404 y lo pasa al manejador de errores
 app.use(function(req, res, next) {

@@ -3,6 +3,7 @@ const router = express.Router();
 const mysql = require("mysql");
 const config = require("../config/dbConfig");
 const DAOUser = require("../dao/DAOUser");
+const bcrypt = require('bcrypt'); // Agrega esta línea para requerir bcrypt
 
 // Crear un pool de conexiones a la base de datos de MySQL 
 const pool = mysql.createPool(config.mysqlConfig);
@@ -11,14 +12,15 @@ daoUser = new DAOUser(pool);
 
 // Página de inicio de sesión
 router.get('/login', (req, res) => {
+    console.log("hola")
     let mensaje = "";
-    return res.render("login", { session: req.session, mensaje: mensaje });
+    return res.render('login.ejs', { session: req.session, mensaje: mensaje });
 });
 
 // Página de registro
 router.get('/registro', (req, res) => {
     let mensaje = "";
-    return res.render("registro", { session: req.session, mensaje: mensaje });
+    return res.render('registro.ejs', { session: req.session, mensaje: mensaje });
 });
 
 // Eliminar reserva del usuario
@@ -45,9 +47,9 @@ router.get('/reservas_usuario', (req, res) => {
         reservas = reservas || [];
         const destinoIds = reservas.map(reserva => reserva.destino_id);
         // Obtener nombres de destinos correspondientes a los IDs de reservas
-        this.DAOUser.getNombresDestinos(destinoIds, (err, nombresDestinos) => {
+        daoUser.getNombresDestinos(destinoIds, (err, nombresDestinos) => {
             if (err) {
-                return res.status(500).send('Error en la base de datos');
+                return res.status(500).send(err);
             }
             
             // Combina la información de reserva y nombres de destinos
@@ -63,7 +65,7 @@ router.get('/reservas_usuario', (req, res) => {
                     fecha_reserva: fechaFormateada
                 });
             });
-            return res.render('reservas', { session: req.session, results: reservasConNombresDestinos });
+            return res.render('reservas.ejs', { session: req.session, results: reservasConNombresDestinos });
         });
     });
 });
@@ -75,7 +77,7 @@ router.get('/perfil', (req, res) => {
         if (err) {
             return res.status(500).json({ error: 'Error de la base de datos' });
         }
-        return res.render('perfil', { result: result[0], session: req.session, mensaje: mensaje });
+        return res.render('perfil.ejs', { result: result[0], session: req.session, mensaje: mensaje });
     });
 });
 
@@ -110,7 +112,7 @@ router.post('/registrar', (req, res) => {
                 return callback('Error al hashear la contraseña', null);
             }
 
-            daoUser.registerUser.insertUser(nombre, apellido, username, hash, (err, result) => {
+            daoUser.insertUser(nombre, apellido, username, hash, (err, result) => {
                 if (err) {
                     return res.status(500).json({ error: 'Error interno del servidor' });
                 }
@@ -128,17 +130,17 @@ router.post('/inicio_sesion', (req, res) => {
 
     daoUser.getUserByUsername(username, (err, user) => {
         if (err) {
-            return res.status(500).json({ error: 'Error interno del servidor' });
+            return res.render('login.ejs', { mensaje: 'Usuario no encontrado.' });
         }
         else{
             bcrypt.compare(password, user.password, (bcryptErr, result) => {
                 if (bcryptErr) {
-                    return res.render('login', { mensaje: 'Error al comparar contraseñas.' });
+                    return res.render('login.ejs', { mensaje: 'Error al comparar contraseñas.' });
                 } else if (result) {
                     req.session.username = username;
                     return res.redirect('/'); // Redirige a la página principal si no hay errores
                 } else {
-                    return res.render('login', { mensaje: 'Contraseña incorrecta.' });
+                    return res.render('login.ejs', { mensaje: 'Contraseña incorrecta.' });
                 }
             });
         }
