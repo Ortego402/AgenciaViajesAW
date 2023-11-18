@@ -4,12 +4,15 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
+const cookieParser = require("cookie-parser");
 
 var destinoRouter = require('./routes/destinos');
 var usersRouter = require('./routes/users');
 
 const app = express();
 const port = 3000;
+
+app.use(cookieParser());
 
 // Configuración de la sesión
 app.use(session({

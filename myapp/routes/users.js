@@ -34,15 +34,44 @@ router.post('/reservas_usuario', (req, res) => {
 
 // Mostrar reservas del usuario
 router.get('/reservas_usuario', (req, res) => {
-    daoUser.reservasUser(req, res, (err, results) => {
-        return res.render('reservas', { session: req.session, results: results });
+    const username = req.session.username;
+
+    daoUser.reservasUser(username, (err, reservas) => {        
+        if (err) {
+            return res.status(500).send('Error en la base de datos');
+        }
+
+        // Verificar si reservas es null o undefined, y asignar un array vacío si es así
+        reservas = reservas || [];
+        const destinoIds = reservas.map(reserva => reserva.destino_id);
+        // Obtener nombres de destinos correspondientes a los IDs de reservas
+        this.DAOUser.getNombresDestinos(destinoIds, (err, nombresDestinos) => {
+            if (err) {
+                return res.status(500).send('Error en la base de datos');
+            }
+            
+            // Combina la información de reserva y nombres de destinos
+            let reservasConNombresDestinos = [];
+            reservas.forEach(reserva => {
+                const nombreDestino = nombresDestinos.find(destino => destino.id == reserva.destino_id);
+                const fechaReserva = new Date(reserva.fecha_reserva);
+                const fechaFormateada = fechaReserva.toLocaleDateString('en-US'); // 'en-US' representa el formato YYYY/MM/DD, ajusta según tu necesidad
+
+                reservasConNombresDestinos.push({
+                    id: reserva.id,
+                    destino_nombre: nombreDestino ? nombreDestino.nombre : 'Nombre de destino no encontrado',
+                    fecha_reserva: fechaFormateada
+                });
+            });
+            return res.render('reservas', { session: req.session, results: reservasConNombresDestinos });
+        });
     });
 });
 
 // Página de perfil del usuario
 router.get('/perfil', (req, res) => {
     const mensaje = req.query.mensaje || "";
-    daoUser.getUserByUsername(req.session.username, (err, result) => {
+    daoUser.checkUsername(req.session.username, (err, result) => {
         if (err) {
             return res.status(500).json({ error: 'Error de la base de datos' });
         }
@@ -52,7 +81,9 @@ router.get('/perfil', (req, res) => {
 
 // Actualizar perfil del usuario
 router.post('/actualizar_perfil', (req, res) => {
-    daoUser.actualizarPerfil(req.body.nombre, req.body.apellidos, req.body.username, (err) => {
+    const { nombre, apellidos, username } = req.body;
+
+    daoUser.updateUser(req, username, nombre, apellidos, (err)  => {
         res.redirect('/perfil?mensaje=' + encodeURIComponent(err));
     });
 });
@@ -74,24 +105,43 @@ router.post('/registrar', (req, res) => {
             return res.render('registro', { mensaje: 'Las credenciales no cumplen con los requisitos.', username, nombre, apellido });
         }
 
-        daoUser.registerUser(nombre, apellido, username, password, (err, result) => {
+        bcrypt.hash(password, 10, (err, hash) => {
             if (err) {
-                return res.status(500).json({ error: 'Error interno del servidor' });
+                return callback('Error al hashear la contraseña', null);
             }
-            req.session.username = username;
 
-            return res.redirect('/');
+            daoUser.registerUser.insertUser(nombre, apellido, username, hash, (err, result) => {
+                if (err) {
+                    return res.status(500).json({ error: 'Error interno del servidor' });
+                }
+                req.session.username = username;
+    
+                return res.redirect('/');
+            });
         });
     });
 });
 
 // Iniciar sesión del usuario
 router.post('/inicio_sesion', (req, res) => {
-    daoUser.iniciarSesion(req, res, (err) => {
+    const { username, password } = req.body;
+
+    daoUser.getUserByUsername(username, (err, user) => {
         if (err) {
-            return res.render('login', { mensaje: err }); // Muestra el mensaje de error
+            return res.status(500).json({ error: 'Error interno del servidor' });
         }
-        return res.redirect('/'); // Redirige a la página principal si no hay errores
+        else{
+            bcrypt.compare(password, user.password, (bcryptErr, result) => {
+                if (bcryptErr) {
+                    return res.render('login', { mensaje: 'Error al comparar contraseñas.' });
+                } else if (result) {
+                    req.session.username = username;
+                    return res.redirect('/'); // Redirige a la página principal si no hay errores
+                } else {
+                    return res.render('login', { mensaje: 'Contraseña incorrecta.' });
+                }
+            });
+        }
     });
 });
 

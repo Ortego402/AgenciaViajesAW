@@ -6,17 +6,6 @@ class DestinoSA {
         this.DAODestino = new DAODestino(pool);
     }
 
-    // Método para mostrar todos los destinos
-    mostrarDestinos(req, res, callback) {
-        this.DAODestino.getAllDestinos((err, results) => {
-            if (err) {
-                callback(err);
-            } else {
-                callback(null, results);
-            }
-        });
-    }
-
     // Método para mostrar un destino específico con sus imágenes y comentarios
     mostrarDestino(req, res, callback) {
         const id = req.params.id;
@@ -57,42 +46,7 @@ class DestinoSA {
         });
     }
 
-    // Método para buscar destinos por nombre o descripción
-    buscarDestinos(req, res, callback) {
-        const searchTerm = req.query.nombreBuscar;
-        this.DAODestino.searchDestinos(searchTerm, (err, destinos) => {
-            if (err) {
-                callback(err, null);
-            }
-            callback(null, destinos);
-        });
-    }
 
-    // Método para reservar un destino
-    reservarDestino(req, res, callback) {
-        const { fecha_reserva } = req.body;
-        const id = req.params.id;
-    
-        this.DAODestino.insertarReserva(id, req.session.username, fecha_reserva, (err) => {
-            if (err) {
-                return callback("¡Ups! Algo salió mal, vuelve a intentarlo más tarde.");
-            }
-            return callback("Reserva realizada con éxito.");
-        });
-    }
-
-    // Método para dejar un comentario en un destino
-    comentarDestino(req, res, callback) {
-        const { comentario } = req.body;
-        const id = req.params.id;
-
-        this.DAODestino.insertarComentario(id, req.session.username, comentario, (err, result) => {
-            if (err) {
-                return callback("¡Ups! Algo salió mal, vuelve a intentarlo más tarde.");
-            }
-            return callback("Comentario realizado con éxito.");
-        });
-    }
 }
 
 module.exports = DestinoSA;

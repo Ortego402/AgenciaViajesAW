@@ -11,7 +11,7 @@ daoDestino = new DAODestino(pool);
 
 // Página principal
 router.get('/', (req, res) => {
-  daoDestino.mostrarDestinos(req, res, (err, results) => {
+  daoDestino.getAllDestinos((err, results) => {
       if (err) {
           return res.status(500).json({ error: 'Error de la base de datos' });
       }
@@ -37,7 +37,8 @@ router.get('/servicios', (req, res) => {
 
 // Página de búsqueda de destinos
 router.get('/buscar', (req, res) => {
-  daoDestino.buscarDestinos(req, res, (err, results) => {
+  const searchTerm = req.query.nombreBuscar;
+  daoDestino.searchDestinos(searchTerm, (err, results) => {
       if (err) {
           return res.status(500).json({ error: 'Error de la base de datos' });
       }
@@ -47,8 +48,11 @@ router.get('/buscar', (req, res) => {
 
 // Publicar comentario en un destino específico
 router.post('/:id/comentarios', (req, res) => {
-  daoDestino.comentarDestino(req, res, (err) => {
-      daoDestino.obtenerComentarios(req.params.id, (err, comentarios) => {
+  const { comentario } = req.body;
+  const id = req.params.id;
+
+  daoDestino.insertarComentario(id, req.session.username, comentario, (err) => {
+      daoDestino.getComentariosByDestinoId(id, (err, comentarios) => {
           if (err) {
               console.error('Error de la base de datos:', err);
               return res.status(500).json({ error: 'Error de la base de datos' });
@@ -74,20 +78,76 @@ router.post('/:id/comentarios', (req, res) => {
 
 // Reservar un destino específico
 router.post('/:id/reservar', (req, res) => {
-  daoDestino.reservarDestino(req, res, (err) => {
+  const { fecha_reserva } = req.body;
+  const id = req.params.id;
+  
+  daoDestino.insertarReserva(id, req.session.username, fecha_reserva, (err) => {
       return res.redirect(`/${req.params.id}?mensaje=${encodeURIComponent(err)}`);
   });
 });
 
 // Mostrar un destino específico
 router.get('/:id', (req, res) => {
-  const mensaje = req.query.mensaje || '';
-  daoDestino.mostrarDestino(req, res, (err, result, results, comentarios, mensajeDestino) => {
+
+  const id = req.params.id;
+  const reservaConfirmada = req.query.reserva === 'confirmada';
+  const comentarioConfirmado = req.query.comentario === 'confirmada';
+
+  let mensaje = '';
+  if (reservaConfirmada) {
+      mensaje = '¡Reserva completada! Gracias por realizar la reserva.';
+  } else if (comentarioConfirmado) {
+      mensaje = 'Comentario realizado correctamente.';
+  } else if (req.query.reserva === 'null' || req.query.comentario === 'null') {
+      mensaje = '¡Ups! Ha ocurrido un error al realizar la acción.';
+  }
+
+  // Obtener información del destino
+  this.DAODestino.getDestinoById(id, (err, result) => {
       if (err) {
-          return res.status(500).json({ error: 'Error de la base de datos' });
+          callback(err, null, null, null, null);
       }
-      return res.render('destino', { result: result, results: results, comentarios: comentarios, session: req.session, mensaje: mensaje });
+
+      // Obtener imágenes del destino
+      this.DAODestino.getImagenesByDestinoId(id, (err, results) => {
+          if (err) {
+              callback(err, null, null, null, null);
+          }
+
+          // Obtener comentarios del destino
+          this.DAODestino.getComentariosByDestinoId(id, (err, comentarios) => {
+              if (err) {
+                  callback(err, null, null, null, null);
+              }
+              else{
+                  callback(null, result, results, comentarios, mensaje);
+              }
+          });
+      });
   });
-});
+
+  daoDestino.getDestinoById(id, (err, result) => {
+      if (err) {
+        return res.status(500).json({ error: 'Error de la base de datos' });
+      }
+      
+      // Obtener imágenes del destino
+      this.DAODestino.getImagenesByDestinoId(id, (err, results) => {
+        if (err) {
+          return res.status(500).json({ error: 'Error de la base de datos' });
+        }
+
+        // Obtener comentarios del destino
+        this.DAODestino.getComentariosByDestinoId(id, (err, comentarios) => {
+          if (err) {
+            return res.status(500).json({ error: 'Error de la base de datos' });
+          }
+          else{
+            return res.render('destino', { result: result, results: results, comentarios: comentarios, session: req.session, mensaje: mensaje });
+          }
+        });
+      });
+    });
+  });
 
 module.exports = router;
