@@ -1,0 +1,19 @@
+<!-- comentarios-lista.ejs -->
+<% if (comentarios.length === 0) { %>
+    <h6 class="comentario-text m-3">
+        ¡Sé el primero en comentar tu opinión sobre el viaje!
+    </h6>
+<% } else { %>
+    <% comentarios.forEach(function (comentario) { %>
+        <!-- Elemento de comentario -->
+        <div class="comentario border border-dark bg-secondary bg-opacity-25 mb-2 rounded-2">
+            <!-- Contenido del comentario -->
+            <p class="comentario-text">
+                <strong><%= comentario.nombre_usuario %>:</strong> <%= comentario.comentario %>
+                <br>
+                <!-- Fecha del comentario -->
+                <small class="fecha-comentario"><%= comentario.fecha_comentario %></small>
+            </p>
+        </div>
+    <% }); %>
+<% } %>
