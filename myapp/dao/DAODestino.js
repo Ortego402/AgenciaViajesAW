@@ -73,7 +73,7 @@ class DAODestinos {
                         if (err) {
                             return callback("Error de acceso a la base de datos", null);
                         } else {
-                            return callback(null, result);
+                            return callback("confirmada", result);
                         }
                     });
             }
@@ -93,7 +93,7 @@ class DAODestinos {
                         if (err) {
                             return callback("Error de acceso a la base de datos");
                         } else {
-                            return callback(null);
+                            return callback("confirmada");
                         }
                     });
             }
