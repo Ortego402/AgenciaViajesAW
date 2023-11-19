@@ -32,12 +32,12 @@
             <% if (!session.username) { %>
                 <!-- Usuario no autenticado: muestra el botón de login --> 
                 <a href="/users/login" class="btn text-dark border-0">
-                    <img src="images/notRegistred.png" alt="Iniciado" class="profile">
+                    <img src="../public/images/notRegistred.png" alt="Iniciado" class="profile">
                 </a>                
             <% } else { %>
                 <!-- Usuario autenticado: muestra otro ícono o lo que desees -->
                 <button class="btn btn-dark dropdown-toggle p-2" type="button" id="perfilDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="images/persona.png" alt="Iniciado"  class="profile">
+                    <img src="../public/images/persona.png" alt="Iniciado"  class="profile">
                 </button>
                 <!-- Menú desplegable del perfil -->
                 <ul class="dropdown-menu" aria-labelledby="perfilDropdown">

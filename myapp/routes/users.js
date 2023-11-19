@@ -36,6 +36,7 @@ router.post('/reservas_usuario', (req, res) => {
 // Mostrar reservas del usuario
 router.get('/reservas_usuario', (req, res) => {
     const username = req.session.username;
+    console.log(username)
     daoUser.reservasUser(username, (err, reservas) => {        
         if (err) {
             return res.status(500).send('Error en la base de datos 123');
@@ -71,6 +72,7 @@ router.get('/reservas_usuario', (req, res) => {
 // Página de perfil del usuario
 router.get('/perfil', (req, res) => {
     const mensaje = req.query.mensaje || "";
+    console.log(mensaje)
     daoUser.checkUsername(req.session.username, (err, result) => {
         if (err) {
             return res.status(500).json({ error: 'Error de la base de datos' });

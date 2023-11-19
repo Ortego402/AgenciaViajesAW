@@ -18,7 +18,7 @@ class DAOUsuarios {
             }
         });
     }
-    
+
     // Método para comprobar si un nombre de usuario ya existe en la base de datos
     checkUsername(username, callback) {
         const checkUsernameQuery = 'SELECT * FROM usuarios WHERE username = ?';
@@ -52,40 +52,40 @@ class DAOUsuarios {
             if (err) {
                 return callback('Error de acceso a la base de datos');
             }
-    
+
             connection.query(checkUsernameQuery, [username], (checkUsernameErr, checkUsernameResult) => {
                 if (checkUsernameErr) {
                     connection.release();
                     return callback('Error de acceso a la base de datos');
                 }
-    
+
                 // Comprobar el nombre de usuario según sus requisitos
                 if (checkUsernameResult.length > 0 && username !== req.session.username) {
                     connection.release();
                     return callback('El nombre de usuario ya existe.');
                 }
-    
+
                 // Obtener las reservas asociadas al usuario antes de modificar el nombre de usuario
                 connection.query('SELECT * FROM reservas WHERE usuario_cliente = ?', [req.session.username], (reservasErr, reservasResult) => {
                     if (reservasErr) {
                         connection.release();
                         return callback('Error al obtener las reservas del usuario');
                     }
-    
+
                     // Actualizar datos en la base de datos
                     connection.query('UPDATE usuarios SET nombre = ?, apellidos = ?, username = ? WHERE username = ?', [nombre, apellidos, username, req.session.username], (updateUserErr, updateUserResult) => {
                         if (updateUserErr) {
                             connection.release();
                             return callback('Error al actualizar usuario en la base de datos');
                         }
-    
+                        req.session.username = username;
                         // Actualizar el atributo usuario_cliente en la tabla de reservas
                         connection.query(updateReservasQuery, [username, req.session.username], (updateReservasErr, updateReservasResult) => {
                             connection.release();
                             if (updateReservasErr) {
                                 return callback('Error al actualizar el atributo usuario_cliente en las reservas');
                             }
-    
+
                             return callback("Perfil actualizado correctamente.");
                         });
                     });
@@ -103,8 +103,6 @@ class DAOUsuarios {
                 connection.query("SELECT * FROM reservas WHERE usuario_cliente = ? ORDER BY fecha_reserva asc", [username], function (err, results) {
                     connection.release();
                     if (err) {
-                        console.log("--------------------------------------aqui");
-                        console.log(err);
                         return callback("Error de acceso a la base de datos", null);
                     } else {
                         return callback(null, results);
@@ -114,20 +112,32 @@ class DAOUsuarios {
         });
     }
 
-    // Método para obtener los nombres de los destinos asociados a un ID específico
+    // Método para obtener los nombres de los destinos asociados a un array de IDs
     getNombresDestinos(id_destino, callback) {
+        // Verificar si id_destino es null o undefined, y asignar un array vacío si es así
+        id_destino = id_destino || [];
+
         this.pool.getConnection(function (err, connection) {
             if (err) {
                 return callback("Error al conectarse a la base de datos", null);
             } else {
-                connection.query("SELECT id, nombre FROM destinos WHERE id IN (?)", [id_destino], function (err, results) {
+                // Verificar si id_destino es un array no vacío
+                if (id_destino.length > 0) {
+                    connection.query("SELECT id, nombre FROM destinos WHERE id IN (?)", [id_destino], function (err, results) {
+                        console.log(err)
+                        console.log(results)
+                        connection.release();
+                        if (err) {
+                            return callback("Error de acceso a la base de datos dao", null);
+                        } else {
+                            return callback(null, results);
+                        }
+                    });
+                } else {
+                    // Si id_destino es un array vacío, retorna un array vacío sin realizar la consulta
                     connection.release();
-                    if (err) {
-                        return callback("Error de acceso a la base de datos", null);
-                    } else {
-                        return callback(null, results);
-                    }
-                });
+                    return callback(null, []);
+                }
             }
         });
     }
