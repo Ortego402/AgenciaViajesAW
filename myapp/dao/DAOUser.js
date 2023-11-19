@@ -86,7 +86,7 @@ class DAOUsuarios {
                                 return callback('Error al actualizar el atributo usuario_cliente en las reservas');
                             }
     
-                            return callback(null);
+                            return callback("Perfil actualizado correctamente.");
                         });
                     });
                 });

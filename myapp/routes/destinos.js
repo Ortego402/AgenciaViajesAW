@@ -73,8 +73,6 @@ router.post('/:id/reservar', (req, res) => {
 
 // Mostrar un destino específico
 router.get('/:id', (req, res) => {
-  console.log(req.query.reserva)
-  console.log(req.query.comentario)
   const id = req.params.id;
   const reservaConfirmada = req.query.reserva === 'confirmada';
   const comentarioConfirmado = req.query.comentario === 'confirmada';

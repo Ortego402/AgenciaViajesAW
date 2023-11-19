@@ -23,10 +23,11 @@
     <main class="main-color">
         <!-- Título de la sección de destinos disponibles -->
         <h2 class="text-center p-2 titulo-dest mb-3">DESTINOS DISPONIBLES</h2>
-        <!-- Cuadrícula de destinos -->
-        <div class="destinos-grid">
-            <!-- Iteración sobre los resultados para mostrar destinos -->
-            <% results.forEach(function(destino, index) { %>
+        <% if (results.length > 0) { %>
+            <!-- Cuadrícula de destinos -->
+            <div class="destinos-grid">
+                <!-- Iteración sobre los resultados para mostrar destinos -->
+                <% results.forEach(function(destino, index) { %>
                 <!-- Enlace a la página del destino -->
                 <a href="/<%= destino.id %>" class="decoration">
                     <!-- Tarjeta de destino -->
@@ -44,8 +45,12 @@
                             </div>
                         </div>
                     </div>
-                </a>
-            <% }); %>
+                    <% }); %>
+                </div>
+            <% } else { %>
+                <!-- Mensaje cuando no hay resultados -->
+                <p class="text-center">Los destinos que buscas no se encuentran disponibles en este momento.</p>
+            <% } %>
         </div>
     </main>
 

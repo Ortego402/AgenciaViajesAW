@@ -29,7 +29,7 @@ router.post('/reservas_usuario', (req, res) => {
         if (err) {
             return res.status(500).send('Error al eliminar la reserva');
         }
-        return res.redirect('/reservas_usuario');
+        return res.redirect('/users/reservas_usuario');
     });
 });
 
@@ -84,7 +84,7 @@ router.post('/actualizar_perfil', (req, res) => {
     const { nombre, apellidos, username } = req.body;
 
     daoUser.updateUser(req, username, nombre, apellidos, (err)  => {
-        res.redirect('/perfil?mensaje=' + encodeURIComponent(err));
+        res.redirect('/users/perfil?mensaje=' + encodeURIComponent(err));
     });
 });
 
