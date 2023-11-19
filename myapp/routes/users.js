@@ -12,7 +12,6 @@ daoUser = new DAOUser(pool);
 
 // Página de inicio de sesión
 router.get('/login', (req, res) => {
-    console.log("hola")
     let mensaje = "";
     return res.render('login.ejs', { session: req.session, mensaje: mensaje });
 });
@@ -37,12 +36,11 @@ router.post('/reservas_usuario', (req, res) => {
 // Mostrar reservas del usuario
 router.get('/reservas_usuario', (req, res) => {
     const username = req.session.username;
-
     daoUser.reservasUser(username, (err, reservas) => {        
         if (err) {
-            return res.status(500).send('Error en la base de datos');
+            return res.status(500).send('Error en la base de datos 123');
         }
-
+        
         // Verificar si reservas es null o undefined, y asignar un array vacío si es así
         reservas = reservas || [];
         const destinoIds = reservas.map(reserva => reserva.destino_id);

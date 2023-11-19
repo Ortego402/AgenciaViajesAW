@@ -54,9 +54,6 @@ router.get('/buscar', (req, res) => {
 
 // Publicar comentario en un destino específico
 router.post('/:id/comentarios', (req, res) => {
-  destinoSA.comentarDestino(req, res, (err) => {
-    return res.redirect(`/${req.params.id}?mensaje=${encodeURIComponent(err)}`);
-  });
 
   const { comentario } = req.body;
   const id = req.params.id;
@@ -92,6 +89,9 @@ router.post('/:id/reservar', (req, res) => {
   const id = req.params.id;
 
   daoDestino.insertarReserva(id, req.session.username, fecha_reserva, (err) => {
+    if(err){
+      return res.status(500).json({ error: 'Error de la base de datos' });
+    }
     return res.redirect(`/${req.params.id}?mensaje=${encodeURIComponent(err)}`);
   });
 });

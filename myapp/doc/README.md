@@ -2,6 +2,11 @@
 
 # ENTREGA 2:
 
+reserva solucinado no referencia bien si no esta registrado al darle al botonn no te lleva a login
+pagina azul cuando solo hay un elemento
+no sale el mensaje de exito en reserva ni comentario
+
+
 # ENTREGA 3:
 • Sistema de comentarios:
 o Agregar una sección de comentarios en cada página de destino, que muestre los

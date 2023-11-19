@@ -103,6 +103,8 @@ class DAOUsuarios {
                 connection.query("SELECT * FROM reservas WHERE usuario_cliente = ? ORDER BY fecha_reserva asc", [username], function (err, results) {
                     connection.release();
                     if (err) {
+                        console.log("--------------------------------------aqui");
+                        console.log(err);
                         return callback("Error de acceso a la base de datos", null);
                     } else {
                         return callback(null, results);
