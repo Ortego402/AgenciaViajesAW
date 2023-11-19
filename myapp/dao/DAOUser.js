@@ -45,7 +45,7 @@ class DAOUsuarios {
     }
 
     // Método para actualizar los datos de un usuario en la base de datos
-    updateUser(req, username, nombre, apellidos, callback) {
+    updateUser(req, res, username, nombre, apellidos, callback) {
         const checkUsernameQuery = 'SELECT * FROM usuarios WHERE username = ?';
         const updateReservasQuery = 'UPDATE reservas SET usuario_cliente = ? WHERE usuario_cliente = ?';
         this.pool.getConnection(function (err, connection) {
@@ -124,8 +124,6 @@ class DAOUsuarios {
                 // Verificar si id_destino es un array no vacío
                 if (id_destino.length > 0) {
                     connection.query("SELECT id, nombre FROM destinos WHERE id IN (?)", [id_destino], function (err, results) {
-                        console.log(err)
-                        console.log(results)
                         connection.release();
                         if (err) {
                             return callback("Error de acceso a la base de datos dao", null);

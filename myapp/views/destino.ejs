@@ -97,13 +97,21 @@
                                             </p>
                                             <!-- Precio del destino y botón de reserva -->
                                             <div class="mt-auto d-flex justify-content-between align-items-center">
-                                                <h4 class="price end-0 mb-0">Por solamente: <%= result.precio %>€</h4>
+                                                <% if (precioConDescuento < result.precio) { %>
+                                                    <h4 class="mb-0">
+                                                        <span class="text-danger">Por primera visita 10%:</span>
+                                                        <%= precioConDescuento %>€
+                                                    </h4>
+                                                <% } else { %>
+                                                    <h4 class="price end-0 mb-0">Por solamente: <%= precioConDescuento %>€</h4>
+                                                <% } %>
                                                 <% if (session.username !=undefined) { %>
                                                     <button onclick="mostrarPopup()" type="button" class="reservar-btn mt-auto btn btn-danger px-3 py-3">Reservar</button>
-                                                    <% } else { %>
-                                                        <a href="/users/login" class="reservar-btn mt-auto btn btn-danger px-3 py-3">Reservar</a>
-                                                        <% } %>
+                                                <% } else { %>
+                                                    <a href="/users/login" class="reservar-btn mt-auto btn btn-danger px-3 py-3">Reservar</a>
+                                                <% } %>
                                             </div>
+
                                         </div>
 
                                         <!-- Ventana emergente para reservas -->
@@ -128,7 +136,7 @@
                             </div>
 
                             <!-- Formulario de comentarios -->
-                            <% if (session.username != undefined) { %>
+                            <% if (session.username !=undefined) { %>
                                 <div class="comentario-form m-5">
                                     <h5>Deja un comentario:</h5>
                                     <form action="/<%= result.id %>/comentarios" method="post" th:object="${comentario}">
@@ -143,34 +151,39 @@
                                         <button type="submit" class="btn btn-primary">Enviar comentario</button>
                                     </form>
                                 </div>
-                            <% } %>
-
-                            <!-- Lista de comentarios -->
-                            <div class="comentarios-lista m-5">
-                                <h5>Comentarios:</h5>
-                                <!-- Comprobación de si hay comentarios -->
-                                <% if (comentarios.length === 0) { %>
-                                    <!-- Mensaje si no hay comentarios -->
-                                    <h6 class="comentario-text m-3">
-                                        ¡Sé el primero en comentar tu opinión sobre el viaje!
-                                    </h6>
-                                <!-- Iteración sobre los comentarios -->
-                                <% } else { %>
-                                    <% comentarios.forEach(function(comentario) { %>
-                                        <!-- Elemento de comentario -->
-                                        <div class="comentario border border-dark bg-secondary bg-opacity-25 mb-2 rounded-2">
-                                            <!-- Contenido del comentario -->
-                                            <p class="comentario-text">
-                                                <strong><%= comentario.nombre_usuario %>:</strong> <%= comentario.comentario %>
-                                                <br>
-                                                <!-- Fecha del comentario -->
-                                                <small class="fecha-comentario"><%= comentario.fecha_comentario %></small>
-                                            </p>
-                                        </div>
-                                    <% }); %>
                                 <% } %>
-                            </div>       
-    </main>
+
+                                    <!-- Lista de comentarios -->
+                                    <div class="comentarios-lista m-5">
+                                        <h5>Comentarios:</h5>
+                                        <!-- Comprobación de si hay comentarios -->
+                                        <% if (comentarios.length===0) { %>
+                                            <!-- Mensaje si no hay comentarios -->
+                                            <h6 class="comentario-text m-3">
+                                                ¡Sé el primero en comentar tu opinión sobre el viaje!
+                                            </h6>
+                                            <!-- Iteración sobre los comentarios -->
+                                            <% } else { %>
+                                                <% comentarios.forEach(function(comentario) { %>
+                                                    <!-- Elemento de comentario -->
+                                                    <div class="comentario border border-dark bg-secondary bg-opacity-25 mb-2 rounded-2">
+                                                        <!-- Contenido del comentario -->
+                                                        <p class="comentario-text">
+                                                            <strong>
+                                                                <%= comentario.nombre_usuario %>:
+                                                            </strong>
+                                                            <%= comentario.comentario %>
+                                                                <br>
+                                                                <!-- Fecha del comentario -->
+                                                                <small class="fecha-comentario">
+                                                                    <%= comentario.fecha_comentario %>
+                                                                </small>
+                                                        </p>
+                                                    </div>
+                                                    <% }); %>
+                                                        <% } %>
+                                    </div>
+            </main>
 
             <!-- Scripts externos -->
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

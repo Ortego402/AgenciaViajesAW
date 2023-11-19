@@ -37,11 +37,11 @@ router.post('/reservas_usuario', (req, res) => {
 router.get('/reservas_usuario', (req, res) => {
     const username = req.session.username;
     console.log(username)
-    daoUser.reservasUser(username, (err, reservas) => {        
+    daoUser.reservasUser(username, (err, reservas) => {
         if (err) {
             return res.status(500).send('Error en la base de datos 123');
         }
-        
+
         // Verificar si reservas es null o undefined, y asignar un array vacío si es así
         reservas = reservas || [];
         const destinoIds = reservas.map(reserva => reserva.destino_id);
@@ -50,7 +50,7 @@ router.get('/reservas_usuario', (req, res) => {
             if (err) {
                 return res.status(500).send(err);
             }
-            
+
             // Combina la información de reserva y nombres de destinos
             let reservasConNombresDestinos = [];
             reservas.forEach(reserva => {
@@ -72,7 +72,6 @@ router.get('/reservas_usuario', (req, res) => {
 // Página de perfil del usuario
 router.get('/perfil', (req, res) => {
     const mensaje = req.query.mensaje || "";
-    console.log(mensaje)
     daoUser.checkUsername(req.session.username, (err, result) => {
         if (err) {
             return res.status(500).json({ error: 'Error de la base de datos' });
@@ -85,7 +84,7 @@ router.get('/perfil', (req, res) => {
 router.post('/actualizar_perfil', (req, res) => {
     const { nombre, apellidos, username } = req.body;
 
-    daoUser.updateUser(req, username, nombre, apellidos, (err)  => {
+    daoUser.updateUser(req, res, username, nombre, apellidos, (err) => {
         res.redirect('/users/perfil?mensaje=' + encodeURIComponent(err));
     });
 });
@@ -117,7 +116,10 @@ router.post('/registrar', (req, res) => {
                     return res.status(500).json({ error: 'Error interno del servidor' });
                 }
                 req.session.username = username;
-    
+                // Verificar si es la primera vez y establecer la cookie "primeraVisita"
+                res.cookie("primeraVisita", "true");
+                
+                console.log("Cookies recibidas:", req.headers.cookie);
                 return res.redirect('/');
             });
         });
@@ -132,12 +134,15 @@ router.post('/inicio_sesion', (req, res) => {
         if (err) {
             return res.render('login.ejs', { mensaje: 'Usuario no encontrado.' });
         }
-        else{
+        else {
             bcrypt.compare(password, user.password, (bcryptErr, result) => {
                 if (bcryptErr) {
                     return res.render('login.ejs', { mensaje: 'Error al comparar contraseñas.' });
                 } else if (result) {
                     req.session.username = username;
+                    res.cookie("primeraVisita", "false");
+                    console.log("Cookies recibidas:", req.headers.cookie);
+
                     return res.redirect('/'); // Redirige a la página principal si no hay errores
                 } else {
                     return res.render('login.ejs', { mensaje: 'Contraseña incorrecta.' });

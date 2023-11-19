@@ -104,7 +104,10 @@ router.get('/:id', (req, res) => {
             return res.status(500).json({ error: 'Error de la base de datos 3' });
           }
           else {
-            return res.render('destino.ejs', { result: result, results: results, comentarios: comentarios, session: req.session, mensaje: mensaje });
+            const primeraVisita = req.cookies["primeraVisita"] === "true";
+            const precioConDescuento = primeraVisita ? result.precio * 0.9 : result.precio;
+
+            return res.render('destino.ejs', { result: result, results: results, comentarios: comentarios, session: req.session, mensaje: mensaje, precioConDescuento: precioConDescuento });
           }
         });
       });
