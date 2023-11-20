@@ -99,7 +99,7 @@
                                             <div class="mt-auto d-flex justify-content-between align-items-center">
                                                 <% if (precioConDescuento < result.precio) { %>
                                                     <h4 class="mb-0">
-                                                        <span class="text-danger">Por primera visita 10%:</span>
+                                                        <span class="text-danger">Por primera visita 10%: <s><%= result.precio %>€</s></span>
                                                         <%= precioConDescuento %>€
                                                     </h4>
                                                 <% } else { %>
