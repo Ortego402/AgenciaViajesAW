@@ -10,7 +10,7 @@
 /* Estilos para el carrusel */
 #carouselExample {
   width: 100%; /* El carrusel ocupa el 100% del ancho del contenedor padre */
-  max-height: 400px; /* Altura máxima del carrusel */
+  max-height: 600px; /* Altura máxima del carrusel */
   overflow: hidden; /* Oculta las imágenes que excedan el tamaño del contenedor */
   margin: 0 auto; /* Centra el carrusel en la página */
 }

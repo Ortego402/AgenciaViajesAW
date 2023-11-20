@@ -119,7 +119,6 @@ router.post('/registrar', (req, res) => {
                 // Verificar si es la primera vez y establecer la cookie "primeraVisita"
                 res.cookie("primeraVisita", "true");
                 
-                console.log("Cookies recibidas:", req.headers.cookie);
                 return res.redirect('/');
             });
         });
@@ -141,7 +140,6 @@ router.post('/inicio_sesion', (req, res) => {
                 } else if (result) {
                     req.session.username = username;
                     res.cookie("primeraVisita", "false");
-                    console.log("Cookies recibidas:", req.headers.cookie);
 
                     return res.redirect('/'); // Redirige a la página principal si no hay errores
                 } else {
@@ -158,6 +156,7 @@ router.get('/logout', (req, res) => {
         if (err) {
             return res.status(500).send('Error interno del servidor');
         }
+        res.cookie("primeraVisita", "false");
         return res.redirect('/');
     });
 });
