@@ -2,8 +2,6 @@
 
 # ENTREGA 2:
 
--Usar session correctamente.
-
 -Usar middleware, para tratar errores 404 y 500.
 
 -Responsive del header y nav.

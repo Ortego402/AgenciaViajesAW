@@ -1,9 +1,13 @@
 var createError = require('http-errors');
+const config = require("./config/dbConfig");
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
+var mysqlsession = require("express-mysql-session");
+var MySQLStore = mysqlsession(session);
+var sessionStore = new MySQLStore(config.mysqlConfig);
 
 const destinoRouter = require('./routes/destinos');
 var usersRouter = require('./routes/users');
@@ -20,7 +24,8 @@ app.use(cookieParser());
 app.use(session({
   secret: 'Epicscape', // Secreto para firmar la cookie de sesión
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
+  store: sessionStore
 }));
 
 // Configuración del motor de vistas y carpeta de vistas
