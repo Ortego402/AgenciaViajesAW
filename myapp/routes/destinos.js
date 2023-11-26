@@ -52,14 +52,27 @@ router.get('/buscar', (req, res) => {
   });
 });
 
-// Publicar comentario en un destino específico
 router.post('/:id/comentarios', (req, res) => {
   const { comentario } = req.body;
   const id = req.params.id;
   daoDestino.insertarComentario(id, req.session.username, comentario, (err) => {
-      return res.redirect(`/${req.params.id}?comentario=${encodeURIComponent(err)}`);
+    if (err != "confirmada") {
+      return res.status(500).json({ error: "¡Ups! Ha ocurrido un error al realizar la acción." });
+    }
+
+    // Obtener comentarios actualizados del destino
+    daoDestino.getComentariosByDestinoId(id, (err, comentarios) => {
+      if (err) {
+        return res.status(500).json({ error: 'Error de la base de datos' });
+      }
+
+      // Enviar la lista de comentarios como respuesta
+      return res.status(200).json({ comentarios: comentarios });
     });
   });
+});
+
+  
 
 // Reservar un destino específico
 router.post('/:id/reservar', (req, res) => {
