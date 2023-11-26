@@ -72,8 +72,6 @@ router.post('/:id/comentarios', (req, res) => {
   });
 });
 
-  
-
 // Reservar un destino específico
 router.post('/:id/reservar', (req, res) => {
   const { fecha_reserva } = req.body;

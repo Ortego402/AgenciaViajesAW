@@ -52,7 +52,7 @@ function actualizarListaComentarios(comentarios) {
         comentariosLista.append(mensaje);
     } else {
         $.each(comentarios, function(index, comentario) {
-            const comentarioElemento = $('<div></div>').addClass('comentario border border-dark bg-secondary bg-opacity-25 mb-2 rounded-2');
+            const comentarioElemento = $('<div></div>').addClass('comentario border border-dark bg-secondary bg-opacity-25 mb-2 rounded-2').hide();
 
             const contenidoComentario = $('<p></p>').addClass('comentario-text').html(`
                 <strong>${comentario.nombre_usuario}:</strong> ${comentario.comentario}<br>
@@ -61,10 +61,12 @@ function actualizarListaComentarios(comentarios) {
 
             comentarioElemento.append(contenidoComentario);
             comentariosLista.append(comentarioElemento);
+
+            // Aplicar fadeIn al comentario recién añadido
+            comentarioElemento.fadeIn('slow');
         });
     }
 }
-
 
 // Función para mostrar la ventana emergente
 function mostrarPopup() {
