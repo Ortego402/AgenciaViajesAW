@@ -28,6 +28,34 @@ function enviarComentario() {
     });
 }
 
+// Función reserva con Ajax
+function reservarDestino() {
+    const destinoId = $('#destinoId').val();
+    const fechaReserva = $('#fecha_reserva').val();
+
+    // Realizar la petición AJAX con jQuery
+    $.ajax({
+        url: `/${destinoId}/reservar`,
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({ fecha_reserva: fechaReserva }),
+        success: function(data) {
+            // Manejar la respuesta del servidor
+            if (data.error) {
+                mostrarMensaje('error', data.error);
+            } else {
+                mostrarMensaje('success', 'Reserva realizada correctamente.');
+                // Cerrar el popup después de la reserva exitosa
+                cerrarPopup();
+            }
+        },
+        error: function(error) {
+            console.error('Error:', error);
+            mostrarMensaje('error', '¡Ups! Ha ocurrido un error al realizar la reserva.');
+        }
+    });
+}
+
 // Reemplaza tu función mostrarMensaje
 function mostrarMensaje(tipo, mensaje) {
     const mensajeContainer = $('#mensaje-container');

@@ -78,7 +78,11 @@ router.post('/:id/reservar', (req, res) => {
   const id = req.params.id;
 
   daoDestino.insertarReserva(id, req.session.username, fecha_reserva, (err) => {
-    return res.redirect(`/${req.params.id}?reserva=${encodeURIComponent(err)}`);
+      if (err == "confirmada") {
+          return res.status(200).json({ success: true });
+      } else {
+          return res.status(500).json({ error: 'Error al realizar la reserva'});
+      }
   });
 });
 

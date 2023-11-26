@@ -64,16 +64,16 @@ class DAODestinos {
     insertarReserva(idDestino, usuarioCliente, fechaReserva, callback) {
         this.pool.getConnection(function (err, connection) {
             if (err) {
-                return callback("Error de acceso a la base de datos", null);
+                return callback("Error de acceso a la base de datos");
             } else {
                 connection.query("INSERT INTO reservas (destino_id, usuario_cliente, fecha_reserva) VALUES (?, ?, ?)",
                     [idDestino, usuarioCliente, fechaReserva],
                     function (err, result) {
                         connection.release();
                         if (err) {
-                            return callback("Error de acceso a la base de datos", null);
+                            return callback("Error de acceso a la base de datos");
                         } else {
-                            return callback("confirmada", result);
+                            return callback("confirmada");
                         }
                     });
             }
