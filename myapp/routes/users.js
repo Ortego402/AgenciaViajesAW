@@ -10,6 +10,17 @@ const pool = mysql.createPool(config.mysqlConfig);
 
 daoUser = new DAOUser(pool);
 
+// Middleware de autenticación
+function isAuthenticated(req, res, next) {
+    if (req.session.username) {
+      // Usuario autenticado, permitir acceso
+      next();
+    } else {
+      // Usuario no autenticado, redirigir a la página de inicio de sesión
+      res.redirect('/users/login');
+    }
+  }  
+
 // Página de inicio de sesión
 router.get('/login', (req, res) => {
     let mensaje = "";
@@ -23,7 +34,7 @@ router.get('/registro', (req, res) => {
 });
 
 // Eliminar reserva del usuario
-router.post('/reservas_usuario', (req, res) => {
+router.post('/reservas_usuario', isAuthenticated,(req, res) => {
     const idReserva = req.body.reservaId;
     daoUser.eliminarReserva(idReserva, (err) => {
         if (err) {
@@ -34,7 +45,7 @@ router.post('/reservas_usuario', (req, res) => {
 });
 
 // Mostrar reservas del usuario
-router.get('/reservas_usuario', (req, res) => {
+router.get('/reservas_usuario', isAuthenticated,(req, res) => {
     const username = req.session.username;
     console.log(username)
     daoUser.reservasUser(username, (err, reservas) => {
@@ -70,7 +81,7 @@ router.get('/reservas_usuario', (req, res) => {
 });
 
 // Página de perfil del usuario
-router.get('/perfil', (req, res) => {
+router.get('/perfil', isAuthenticated,(req, res) => {
     const mensaje = req.query.mensaje || "";
     daoUser.checkUsername(req.session.username, (err, result) => {
         if (err) {
@@ -81,7 +92,7 @@ router.get('/perfil', (req, res) => {
 });
 
 // Actualizar perfil del usuario
-router.post('/actualizar_perfil', (req, res) => {
+router.post('/actualizar_perfil', isAuthenticated,(req, res) => {
     const { nombre, apellidos, username } = req.body;
 
     daoUser.updateUser(req, res, username, nombre, apellidos, (err) => {
@@ -151,7 +162,7 @@ router.post('/inicio_sesion', (req, res) => {
 });
 
 // Cerrar sesión del usuario
-router.get('/logout', (req, res) => {
+router.get('/logout', isAuthenticated,(req, res) => {
     req.session.destroy((err) => {
         if (err) {
             return res.status(500).send('Error interno del servidor');

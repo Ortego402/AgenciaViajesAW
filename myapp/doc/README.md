@@ -2,7 +2,7 @@
 
 # ENTREGA 2:
 
--Usar middleware, para tratar errores 404 y 500.
+-Tratar errores 404 y 500.
 
 -Responsive del header y nav.
 
