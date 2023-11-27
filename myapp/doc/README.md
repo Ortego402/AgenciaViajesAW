@@ -2,8 +2,6 @@
 
 # ENTREGA 2:
 
--Tratar errores 404 y 500.
-
 -Responsive del header y nav.
 
 # ENTREGA 3:

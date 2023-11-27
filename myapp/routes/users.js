@@ -13,13 +13,13 @@ daoUser = new DAOUser(pool);
 // Middleware de autenticación
 function isAuthenticated(req, res, next) {
     if (req.session.username) {
-      // Usuario autenticado, permitir acceso
-      next();
+        // Usuario autenticado, permitir acceso
+        next();
     } else {
-      // Usuario no autenticado, redirigir a la página de inicio de sesión
-      res.redirect('/users/login');
+        // Usuario no autenticado, redirigir a la página de inicio de sesión
+        res.redirect('/users/login');
     }
-  }  
+}
 
 // Página de inicio de sesión
 router.get('/login', (req, res) => {
@@ -34,7 +34,7 @@ router.get('/registro', (req, res) => {
 });
 
 // Eliminar reserva del usuario
-router.post('/reservas_usuario', isAuthenticated,(req, res) => {
+router.post('/reservas_usuario', isAuthenticated, (req, res) => {
     const idReserva = req.body.reservaId;
     daoUser.eliminarReserva(idReserva, (err) => {
         if (err) {
@@ -45,7 +45,7 @@ router.post('/reservas_usuario', isAuthenticated,(req, res) => {
 });
 
 // Mostrar reservas del usuario
-router.get('/reservas_usuario', isAuthenticated,(req, res) => {
+router.get('/reservas_usuario', isAuthenticated, (req, res) => {
     const username = req.session.username;
     console.log(username)
     daoUser.reservasUser(username, (err, reservas) => {
@@ -81,7 +81,7 @@ router.get('/reservas_usuario', isAuthenticated,(req, res) => {
 });
 
 // Página de perfil del usuario
-router.get('/perfil', isAuthenticated,(req, res) => {
+router.get('/perfil', isAuthenticated, (req, res) => {
     const mensaje = req.query.mensaje || "";
     daoUser.checkUsername(req.session.username, (err, result) => {
         if (err) {
@@ -92,7 +92,7 @@ router.get('/perfil', isAuthenticated,(req, res) => {
 });
 
 // Actualizar perfil del usuario
-router.post('/actualizar_perfil', isAuthenticated,(req, res) => {
+router.post('/actualizar_perfil', isAuthenticated, (req, res) => {
     const { nombre, apellidos, username } = req.body;
 
     daoUser.updateUser(req, res, username, nombre, apellidos, (err) => {
@@ -129,7 +129,7 @@ router.post('/registrar', (req, res) => {
                 req.session.username = username;
                 // Verificar si es la primera vez y establecer la cookie "primeraVisita"
                 res.cookie("primeraVisita", "true");
-                
+
                 return res.redirect('/');
             });
         });
@@ -162,7 +162,7 @@ router.post('/inicio_sesion', (req, res) => {
 });
 
 // Cerrar sesión del usuario
-router.get('/logout', isAuthenticated,(req, res) => {
+router.get('/logout', isAuthenticated, (req, res) => {
     req.session.destroy((err) => {
         if (err) {
             return res.status(500).send('Error interno del servidor');
@@ -170,6 +170,22 @@ router.get('/logout', isAuthenticated,(req, res) => {
         res.cookie("primeraVisita", "false");
         return res.redirect('/');
     });
+});
+
+// Captura el error 404 y lo pasa al manejador de errores
+router.use(function (req, res, next) {
+    next(createError(404));
+});
+
+// Manejador de errores
+router.use(function (err, req, res, next) {
+    // Establece las variables locales, solo proporcionando el error en desarrollo
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+    // Renderiza la página de error
+    res.status(err.status || 500);
+    res.render('error.ejs');
 });
 
 module.exports = router;
