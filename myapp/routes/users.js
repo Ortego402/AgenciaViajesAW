@@ -172,20 +172,5 @@ router.get('/logout', isAuthenticated, (req, res) => {
     });
 });
 
-// Captura el error 404 y lo pasa al manejador de errores
-router.use(function (req, res, next) {
-    next(createError(404));
-});
-
-// Manejador de errores
-router.use(function (err, req, res, next) {
-    // Establece las variables locales, solo proporcionando el error en desarrollo
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-    // Renderiza la página de error
-    res.status(err.status || 500);
-    res.render('error.ejs');
-});
 
 module.exports = router;

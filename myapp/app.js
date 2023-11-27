@@ -39,6 +39,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', destinoRouter); // Ruta raíz ahora manejada por el enrutador de destinos
 app.use('/users', usersRouter); // Cambiado a '/users' para evitar conflictos
 
+// Captura el error 404 y lo pasa al manejador de errores
+app.use(function (req, res, next) {
+  next(createError(404));
+});
+
+// Manejador de errores
+app.use(function (err, req, res, next) {
+  // Establece las variables locales, solo proporcionando el error en desarrollo
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // Renderiza la página de error
+  res.status(err.status || 500);
+  res.render('error.ejs');
+});
+
 // Inicia el servidor en el puerto especificado
 app.listen(port, () => {
   console.log(`Servidor escuchando en el puerto ${port}`);

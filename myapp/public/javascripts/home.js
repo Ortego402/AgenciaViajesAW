@@ -1,38 +1,76 @@
-document.addEventListener('DOMContentLoaded', function () {
-    var menuBtn = document.querySelector('.menu-btn');
-    var menuContent = document.querySelector('.menu-content');
-    var navbarLinks = document.querySelectorAll('.navbar a');
+$(document).ready(function () {
+    var $menuBtn = $('.menu-btn');
+    var $menuContent = $('.menu-content');
+    var $navbarLinks = $('.navbar a');
 
     // Función para generar las opciones del menú desplegable
     function generateDropdownOptions() {
-        menuContent.innerHTML = ''; // Limpiar las opciones existentes
+        $menuContent.html(''); // Limpiar las opciones existentes
 
-        navbarLinks.forEach(function (link) {
-            var option = document.createElement('a');
-            console.log(option)
-            option.href = link.href;
-            option.textContent = link.textContent;
-            option.classList.add('dropdown-item');
-
-            // Agregar cada opción al menú desplegable
-            menuContent.appendChild(option);
+        $navbarLinks.each(function () {
+            var $option = $('<a>').attr('href', $(this).attr('href')).text($(this).text()).addClass('dropdown-item');
+            $menuContent.append($option);
         });
     }
 
-    menuBtn.addEventListener('click', function () {
-        if (menuContent.style.display === 'block') {
-            menuContent.style.display = 'none';
+    $menuBtn.click(function () {
+        if ($menuContent.is(':visible')) {
+            $menuContent.hide();
         } else {
-            menuContent.style.display = 'block';
+            $menuContent.show();
             generateDropdownOptions();
         }
     });
 
-    window.addEventListener('resize', function () {
+    $(window).resize(function () {
         // Ocultar el menú desplegable cuando la pantalla es lo suficientemente grande
-        if (window.innerWidth > 768) {
-            menuContent.style.display = 'none';
+        if ($(window).width() > 768) {
+            $menuContent.hide();
         }
     });
 });
 
+
+// Función para validar la contraseña
+function validatePassword(input) {
+    var password = input.value;
+    var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$/;
+    var errorMessage = $('#passwordError');
+
+    if (!regex.test(password)) {
+        errorMessage.text('La contraseña debe tener mínimo 8 caracteres, 1 mayúscula, 1 número y 1 carácter especial.');
+        input.setCustomValidity('Invalid');
+    } else {
+        errorMessage.text('');
+        input.setCustomValidity('');
+    }
+}
+
+// Función para validar la confirmación de la contraseña
+function validateConfirmPassword(input) {
+    var password = $('#password').val();
+    var confirmPassword = input.value;
+    var errorMessage = $('#confirmPasswordError');
+
+    if (password !== confirmPassword) {
+        errorMessage.text('Las contraseñas no coinciden.');
+        input.setCustomValidity('Invalid');
+    } else {
+        errorMessage.text('');
+        input.setCustomValidity('');
+    }
+}
+
+// Función para alternar la visibilidad de la contraseña
+function togglePassword(inputId, buttonId) {
+    var passwordInput = $('#' + inputId);
+    var showPasswordBtn = $('#' + buttonId);
+
+    if (passwordInput.attr('type') === 'password') {
+        passwordInput.attr('type', 'text');
+        showPasswordBtn.text('Ocultar');
+    } else {
+        passwordInput.attr('type', 'password');
+        showPasswordBtn.text('Mostrar');
+    }
+}
