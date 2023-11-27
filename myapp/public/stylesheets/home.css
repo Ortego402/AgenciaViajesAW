@@ -288,3 +288,57 @@ footer {
 .btn-eliminar:hover {
     background-color: #bb2d3b; /* Cambia el color de fondo al pasar el ratón por encima */
 }
+
+/* Ocultar la barra de navegación y colorear el fondo en pantallas pequeñas */
+@media screen and (max-width: 768px) {
+    nav {
+        display: none !important; /* Añadir !important para forzar la aplicación */
+    }
+    main {
+        background-color: #e2f5ff; /* Aplicar el color de fondo directamente al main */
+    }
+    .menu-btn.show {
+        display: block;
+    }
+}
+
+
+/* Estilos para el botón de menú desplegable */
+.menu-btn {
+    display: none;
+    background-color: #0090a3;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Estilos para el menú desplegable */
+.menu-content {
+    display: none;
+    position: absolute;
+    background-color: #006471;
+    min-width: 160px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    top: 30%; /* Centrar verticalmente en relación con el contenedor padre */
+    left: 70%; /* Centrar horizontalmente en relación con el contenedor padre */
+    transform: translate(-50%, -50%); /* Centrar completamente */
+}
+
+
+/* Estilos para los elementos del menú desplegable */
+.menu-content a {
+    color: #fff;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border-radius: 10px;
+}
+
+/* Estilos para resaltar el elemento activo en el menú desplegable */
+.menu-content a:hover {
+    background-color: #e4e4e4;
+}
