@@ -1,9 +1,5 @@
 # AgenciaViajesAW
 
-# ENTREGA 2:
-
--Responsive del header y nav.
-
 # ENTREGA 3:
 # o Agregar una sección de comentarios en cada página de destino, que muestre los comentarios existentes y permita a los usuarios agregar nuevos comentarios.
 # o Mostrar el nombre del usuario, fecha y contenido del comentario.
