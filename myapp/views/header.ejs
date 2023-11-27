@@ -1,7 +1,7 @@
 <!-- Encabezado de la página -->
-<header class="container-fluid container-header" id="ch">
+<header class="container-fluid container-header flex-sm-row flex-column" id="ch">
     <!-- Columna 2 con el logo y el nombre del sitio -->
-    <div class="col-sm d-flex align-items-center">
+    <div class="col-sm d-flex align-items-center mb-3 mb-sm-0">
         <!-- Contenedor para el logo -->
         <div class="mb-1 d-flex">
             <!-- Imagen del logo -->
@@ -15,7 +15,7 @@
         </a>
     </div>
     <!-- Columna 3 con el formulario de búsqueda -->
-    <div class="col-sm">
+    <div class="col-sm mb-3 mb-sm-0"><!-- Agregamos la clase mb-3 para agregar un margen inferior y mb-sm-0 para evitar el margen inferior en pantallas más grandes -->
         <!-- Formulario de búsqueda -->
         <form action="/buscar" method="get">
             <!-- Contenedor para la caja de búsqueda y el botón de búsqueda -->
@@ -48,5 +48,4 @@
             <% } %>
         </div>
     </div>
-    
 </header>
