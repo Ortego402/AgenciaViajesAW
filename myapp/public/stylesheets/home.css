@@ -206,6 +206,10 @@ nav a {
     text-decoration: none;
 }
 
+#searchResultsContainer {
+    margin: 0 auto; /* Centra el contenedor en la página si es necesario */
+}
+
 /* Estilos para el pie de página */
 footer {
     background-color: #7bae7d;

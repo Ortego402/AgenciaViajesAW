@@ -47,10 +47,17 @@ router.get('/buscar', (req, res) => {
     if (err) {
       return res.status(500).json({ error: 'Error de la base de datos' });
     }
-    return res.render('home.ejs', { results: results, session: req.session });
-
+    if (req.xhr) {
+      // If it's an AJAX request, return only the partial HTML for the search results
+      console.log(results)
+      return res.render('destinoList.ejs', { results: results });
+    } else {
+      // If it's a regular request, render the full page
+      return res.render('home.ejs', { results: results, session: req.session });
+    }
   });
 });
+
 
 router.post('/:id/comentarios', (req, res) => {
   const { comentario } = req.body;

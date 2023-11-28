@@ -7,7 +7,7 @@
             <!-- Imagen del logo -->
             <img src="../images/logo.png" class="img img-fluid" alt="Imagen">
         </div>
-        
+
         <!-- Enlace al inicio con el nombre del sitio como botón -->
         <a href="/" class="btn text-dark border-0">
             <!-- Título del sitio -->
@@ -17,7 +17,7 @@
     <!-- Columna 3 con el formulario de búsqueda -->
     <div class="col-sm mb-3 mb-sm-0"><!-- Agregamos la clase mb-3 para agregar un margen inferior y mb-sm-0 para evitar el margen inferior en pantallas más grandes -->
         <!-- Formulario de búsqueda -->
-        <form action="/buscar" method="get">
+        <form id="searchForm" action="/buscar" method="get">
             <!-- Contenedor para la caja de búsqueda y el botón de búsqueda -->
             <div class="buscador input-group">
                 <!-- Caja de búsqueda -->
@@ -25,27 +25,28 @@
                 <button class="boton img-fluid" type="submit"><i class="bi bi-search"></i></button>
             </div>
         </form>
+
     </div>
     <!-- Columna 4 con el botón de usuario -->
     <div class="col-sm d-flex align-items-center justify-content-end ms-md-auto me-md-0">
         <div class="mb-1">
             <% if (!session.username) { %>
-                <!-- Usuario no autenticado: muestra el botón de login --> 
+                <!-- Usuario no autenticado: muestra el botón de login -->
                 <a href="/users/login" class="btn text-dark border-0">
                     <img src="../images/notRegistred.png" alt="Iniciado" class="profile">
-                </a>                
-            <% } else { %>
-                <!-- Usuario autenticado: muestra otro ícono o lo que desees -->
-                <button class="btn btn-dark dropdown-toggle p-2" type="button" id="perfilDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="../images/persona.png" alt="Iniciado"  class="profile">
-                </button>
-                <!-- Menú desplegable del perfil -->
-                <ul class="dropdown-menu" aria-labelledby="perfilDropdown">
-                    <li><a class="dropdown-item" href="/users/perfil">Perfil</a></li>
-                    <li><a class="dropdown-item" href="/users/reservas_usuario">Reservas</a></li>
-                    <li><a class="dropdown-item" href="/users/logout">Cerrar Sesión</a></li>
-                </ul>
-            <% } %>
+                </a>
+                <% } else { %>
+                    <!-- Usuario autenticado: muestra otro ícono o lo que desees -->
+                    <button class="btn btn-dark dropdown-toggle p-2" type="button" id="perfilDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="../images/persona.png" alt="Iniciado" class="profile">
+                    </button>
+                    <!-- Menú desplegable del perfil -->
+                    <ul class="dropdown-menu" aria-labelledby="perfilDropdown">
+                        <li><a class="dropdown-item" href="/users/perfil">Perfil</a></li>
+                        <li><a class="dropdown-item" href="/users/reservas_usuario">Reservas</a></li>
+                        <li><a class="dropdown-item" href="/users/logout">Cerrar Sesión</a></li>
+                    </ul>
+                    <% } %>
         </div>
     </div>
 </header>

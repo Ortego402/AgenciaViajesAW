@@ -1,0 +1,32 @@
+<% if (results.length> 0) { %>
+    <!-- Iteración sobre los resultados para mostrar destinos -->
+    <% results.forEach(function(destino, index) { %>
+        <!-- Enlace a la página del destino -->
+        <a href="/<%= destino.id %>" class="decoration">
+            <!-- Tarjeta de destino -->
+            <div class="card card-destino">
+                <!-- Imagen del destino -->
+                <img src="<%= destino.imagen %>" class="card-img-top" alt="<%= destino.nombre %>">
+                <!-- Cuerpo de la tarjeta -->
+                <div class="card-body">
+                    <!-- Contenido superior de la tarjeta (nombre y precio) -->
+                    <div class="card-top">
+                        <!-- Nombre del destino -->
+                        <p class="card-title"><strong>
+                                <%= destino.nombre %>
+                            </strong></p>
+                        <!-- Precio del destino -->
+                        <h6 class="card-price"><strong>
+                                <%= destino.precio %>€
+                            </strong></h6>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <% }); %>
+            <% } else { %>
+                <!-- Mensaje cuando no hay resultados -->
+                <div class="text-center">
+                    <p>Los destinos que buscas no se encuentran disponibles en este momento.</p>
+                </div>
+                <% } %>

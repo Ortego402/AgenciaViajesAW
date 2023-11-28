@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <!-- Configuración del documento -->
     <meta charset="UTF-8">
@@ -14,50 +15,61 @@
     <title>EpicScape | Bienvenido</title>
     <link rel="icon" href="images/logo.png" type="image/x-icon">
 </head>
+
 <body>
     <!-- Inclusión del encabezado y la barra de navegación -->
     <%- include('header.ejs') %>
-    <%- include('nav.ejs') %>
+        <%- include('nav.ejs') %>
 
-    <!-- Contenido principal -->
-    <main class="main-color">
-        <!-- Título de la sección de destinos disponibles -->
-        <h2 class="text-center p-2 titulo-dest mb-3">DESTINOS DISPONIBLES</h2>
-        <% if (results.length > 0) { %>
-            <!-- Cuadrícula de destinos -->
-            <div class="destinos-grid">
-                <!-- Iteración sobre los resultados para mostrar destinos -->
-                <% results.forEach(function(destino, index) { %>
-                <!-- Enlace a la página del destino -->
-                <a href="/<%= destino.id %>" class="decoration">
-                    <!-- Tarjeta de destino -->
-                    <div class="card card-destino">
-                        <!-- Imagen del destino -->
-                        <img src="<%= destino.imagen %>" class="card-img-top" alt="<%= destino.nombre %>">
-                        <!-- Cuerpo de la tarjeta -->
-                        <div class="card-body">
-                            <!-- Contenido superior de la tarjeta (nombre y precio) -->
-                            <div class ="card-top">
-                                <!-- Nombre del destino -->
-                                <p class="card-title"><strong><%= destino.nombre %></strong></p>
-                                <!-- Precio del destino -->
-                                <h6 class="card-price"><strong><%= destino.precio %>€</strong></h6>
-                            </div>
-                        </div>
-                    </div>
-                    <% }); %>
-                </a>
-            <% } else { %>
-                <!-- Mensaje cuando no hay resultados -->
-                <p class="text-center">Los destinos que buscas no se encuentran disponibles en este momento.</p>
-            <% } %>
-        </div>
-    </main>
+            <!-- Contenido principal -->
+            <main class="main-color">
+                <!-- Título de la sección de destinos disponibles -->
+                <h2 class="text-center p-2 titulo-dest mb-3">DESTINOS DISPONIBLES</h2>
 
-    <!-- Inclusión del pie de página -->
-    <%- include('footer.ejs') %>
-    <script src="/javascripts/home.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+                <!-- Contenedor para los resultados de búsqueda -->
+                <div id="searchResultsContainer" class="<%= results.length > 0 ? 'destinos-grid' : '' %>">
+                    <% if (results.length> 0) { %>
+                        <!-- Iteración sobre los resultados para mostrar destinos -->
+                        <% results.forEach(function(destino, index) { %>
+                            <!-- Enlace a la página del destino -->
+                            <a href="/<%= destino.id %>" class="decoration">
+                                <!-- Tarjeta de destino -->
+                                <div class="card card-destino">
+                                    <!-- Imagen del destino -->
+                                    <img src="<%= destino.imagen %>" class="card-img-top" alt="<%= destino.nombre %>">
+                                    <!-- Cuerpo de la tarjeta -->
+                                    <div class="card-body">
+                                        <!-- Contenido superior de la tarjeta (nombre y precio) -->
+                                        <div class="card-top">
+                                            <!-- Nombre del destino -->
+                                            <p class="card-title"><strong>
+                                                    <%= destino.nombre %>
+                                                </strong></p>
+                                            <!-- Precio del destino -->
+                                            <h6 class="card-price"><strong>
+                                                    <%= destino.precio %>€
+                                                </strong></h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <% }); %>
+                                <% } else { %>
+                                    <!-- Mensaje cuando no hay resultados -->
+                                    <div class="text-center">
+                                        <p>Los destinos que buscas no se encuentran disponibles en este momento.</p>
+                                    </div>
+                                    <% } %>
+                </div>
+
+            </main>
+
+
+            <!-- Inclusión del pie de página -->
+            <%- include('footer.ejs') %>
+                <script src="/javascripts/home.js"></script>
+                <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
