@@ -22,9 +22,7 @@ router.get('/', (req, res) => {
 
 // Página de destinos populares
 router.get('/populares', (req, res) => {
-
   return res.render("populares.ejs", { session: req.session });
-
 });
 
 // Página "Nosotros"
@@ -34,9 +32,7 @@ router.get('/nosotros', (req, res) => {
 
 // Página de servicios
 router.get('/servicios', (req, res) => {
-
   return res.render("servicios.ejs", { session: req.session });
-
 });
 
 

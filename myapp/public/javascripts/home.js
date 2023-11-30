@@ -91,7 +91,7 @@ $(document).ready(function () {
                 // Update the destinos-grid div with the received partial HTML
                 console.log(data);
                 $("#searchResultsContainer").empty();
-                
+
                 // Use append instead of html to add the new content without removing existing
                 $("#searchResultsContainer").append(data);
 
@@ -116,7 +116,7 @@ function enviarComentario() {
         method: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({ comentario: comentario }),
-        success: function(data) {
+        success: function (data) {
             // Manejar la respuesta del servidor
             if (data.error) {
                 mostrarMensaje('error', data.error);
@@ -128,9 +128,64 @@ function enviarComentario() {
                 comentarioInput.val('');
             }
         },
-        error: function(error) {
+        error: function (error) {
             console.error('Error:', error);
             mostrarMensaje('error', '¡Ups! Ha ocurrido un error al realizar la acción.');
         }
     });
 }
+
+function realizarLogout() {
+    // Realizar la petición AJAX con jQuery
+    $.ajax({
+        type: 'GET',
+        url: '/users/logout',
+        success: function () {
+            console.log('Logout exitoso');
+            // Redirigir a la página de inicio de sesión después del logout
+            window.location.href = '/';
+        },
+        error: function (error) {
+            console.error('Error al realizar la solicitud de logout', error);
+            // Mostrar un mensaje de error en caso de fallo en el logout
+            mostrarMensaje('error', '¡Ups! Ha ocurrido un error al cerrar sesión.');
+        }
+    });
+}
+
+// Función para cargar contenido mediante Ajax
+function cargarContenido(url) {
+    console.log(url)
+    $.ajax({
+        type: 'GET',
+        url: url,
+        success: function (data) {
+            console.log(data)
+            // Actualizar el contenido principal con la respuesta del servidor
+            $('html').html(data);
+        },
+        error: function (error) {
+            console.error('Error al cargar la página', error);
+        }
+    });
+}
+
+// Asociar la función de logout al evento de clic en el enlace de logout
+$(document).ready(function () {
+    $('#logoutLink').on('click', function (e) {
+        e.preventDefault();
+        realizarLogout();
+    });
+
+    // Asociar la función al evento de clic en el enlace de perfil
+    $('#perfilLink').on('click', function (e) {
+        e.preventDefault();
+        cargarContenido('/users/perfil');
+    });
+
+    // Asociar la función al evento de clic en el enlace de reservas
+    $('#reservasLink').on('click', function (e) {
+        e.preventDefault();
+        cargarContenido('/users/reservas_usuario');
+    });
+});

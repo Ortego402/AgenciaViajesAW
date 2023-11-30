@@ -161,16 +161,14 @@ router.post('/inicio_sesion', (req, res) => {
     });
 });
 
-// Cerrar sesión del usuario
-router.get('/logout', isAuthenticated, (req, res) => {
+router.get('/logout', (req, res) => {
     req.session.destroy((err) => {
         if (err) {
             return res.status(500).send('Error interno del servidor');
         }
-        res.cookie("primeraVisita", "false");
-        return res.redirect('/');
+        res.clearCookie('primeraVisita');  // Cambié esto de res.cookie a res.clearCookie
+        return res.sendStatus(200); // Respondemos con éxito
     });
 });
-
 
 module.exports = router;

@@ -19,17 +19,7 @@
 <body>
     <!-- Inclusión del encabezado y la barra de navegación -->
     <%- include('header.ejs') %>
-        <!-- Barra de navegación -->
-        <button class="menu-btn show">&#9776; Menú</button>
-        <nav class="navbar">
-            <a href="/nosotros" class="botonnav border-end border-1">Nosotros</a>
-            <a href="/servicios" class="botonnav border-end border-1 activo">Servicios</a>
-            <a href="/populares" class="botonnav">Populares</a>
-        </nav>
-
-        <!-- Contenedor para las opciones del menú desplegable -->
-        <div class="menu-content" id="menuDropdown"></div>
-
+    <%- include('nav.ejs') %>
         <!-- Barra de navegación de migas de pan -->
         <nav style="--bs-breadcrumb-divider: '/';" aria-label="breadcrumb" class="breadcrumb-nav border border-1 border-top-0 border-dark">
             <ol class="breadcrumb align-items-center me-auto my-auto">
@@ -89,9 +79,9 @@
         </main>
 
         <!-- Inclusión de los scripts de JavaScript -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <script src="/javascripts/home.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
         <!-- Inclusión del pie de página -->
         <%- include('footer.ejs') %>

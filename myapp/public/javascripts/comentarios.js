@@ -117,3 +117,7 @@ function validarFormulario() {
     }
     return true; // Permite que el formulario se envíe
 }
+
+$("#cancelar").click(function (evento) {
+    alert("Seguro que quieres cancelar la reserva");
+});
