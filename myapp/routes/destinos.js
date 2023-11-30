@@ -58,21 +58,26 @@ router.get('/buscar', (req, res) => {
 router.post('/:id/comentarios', (req, res) => {
   const { comentario } = req.body;
   const id = req.params.id;
-  daoDestino.insertarComentario(id, req.session.username, comentario, (err) => {
-    if (err != "confirmada") {
-      return res.status(500).json({ error: "¡Ups! Ha ocurrido un error al realizar la acción." });
-    }
-
-    // Obtener comentarios actualizados del destino
-    daoDestino.getComentariosByDestinoId(id, (err, comentarios) => {
-      if (err) {
-        return res.status(500).json({ error: 'Error de la base de datos' });
+  if(comentario == ""){
+    return res.status(500).json({ success: false, error: 'El comentario no puede ser vacio.' });
+  }
+  else{
+    daoDestino.insertarComentario(id, req.session.username, comentario, (err) => {
+      if (err != "confirmada") {
+        return res.status(500).json({ success: false, error: "¡Ups! Ha ocurrido un error al realizar la acción." });
       }
-
-      // Enviar la lista de comentarios como respuesta
-      return res.status(200).json({ comentarios: comentarios });
+  
+      // Obtener comentarios actualizados del destino
+      daoDestino.getComentariosByDestinoId(id, (err, comentarios) => {
+        if (err) {
+          return res.status(500).json({ success: false, error: 'Error de la base de datos' });
+        }
+  
+        // Enviar la lista de comentarios como respuesta
+        return res.status(200).json({ success: true, comentarios: comentarios });
+      });
     });
-  });
+  }
 });
 
 // Reservar un destino específico

@@ -89,7 +89,6 @@ $(document).ready(function () {
             data: { nombreBuscar: searchTerm },
             success: function (data) {
                 // Update the destinos-grid div with the received partial HTML
-                console.log(data);
                 $("#searchResultsContainer").empty();
 
                 // Use append instead of html to add the new content without removing existing
@@ -103,37 +102,6 @@ $(document).ready(function () {
         });
     }
 });
-
-
-function enviarComentario() {
-    const destinoId = $('#destinoId').val();
-    const comentarioInput = $('#comentario');
-    const comentario = comentarioInput.val();
-
-    // Realizar la petición AJAX con jQuery
-    $.ajax({
-        url: `/${destinoId}/comentarios`,
-        method: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify({ comentario: comentario }),
-        success: function (data) {
-            // Manejar la respuesta del servidor
-            if (data.error) {
-                mostrarMensaje('error', data.error);
-            } else {
-                // Actualizar la lista de comentarios en el DOM
-                actualizarListaComentarios(data.comentarios);
-                mostrarMensaje('success', 'Comentario publicado correctamente.');
-                // Limpiar el campo de comentario
-                comentarioInput.val('');
-            }
-        },
-        error: function (error) {
-            console.error('Error:', error);
-            mostrarMensaje('error', '¡Ups! Ha ocurrido un error al realizar la acción.');
-        }
-    });
-}
 
 function realizarLogout() {
     // Realizar la petición AJAX con jQuery

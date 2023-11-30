@@ -1,3 +1,4 @@
+// Comentar en un destino
 function enviarComentario() {
     const destinoId = $('#destinoId').val();
     const comentarioInput = $('#comentario');
@@ -12,7 +13,7 @@ function enviarComentario() {
         success: function(data) {
             // Manejar la respuesta del servidor
             if (data.error) {
-                mostrarMensaje('error', data.error);
+                mostrarMensaje('danger', data.error);
             } else {
                 // Actualizar la lista de comentarios en el DOM
                 actualizarListaComentarios(data.comentarios);
@@ -22,10 +23,10 @@ function enviarComentario() {
             }
         },
         error: function(error) {
-            console.error('Error:', error);
-            mostrarMensaje('error', '¡Ups! Ha ocurrido un error al realizar la acción.');
+            // Capturar y mostrar el mensaje de error del servidor
+            mostrarMensaje('danger', JSON.parse(error.responseText).error);
         }
-    });
+    });    
 }
 
 // Función reserva con Ajax
@@ -51,7 +52,7 @@ function reservarDestino() {
         },
         error: function(error) {
             console.error('Error:', error);
-            mostrarMensaje('error', '¡Ups! Ha ocurrido un error al realizar la reserva.');
+            mostrarMensaje('danger', '¡Ups! Ha ocurrido un error al realizar la reserva.');
         }
     });
 }
