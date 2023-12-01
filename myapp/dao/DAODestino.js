@@ -124,7 +124,7 @@ class DAODestinos {
             if (err) {
                 return callback("Error de acceso a la base de datos", null);
             } else {
-                connection.query("SELECT * FROM comentarios WHERE destino_id = ?", [idDestino], function (err, comentarios) {
+                connection.query("SELECT * FROM comentarios WHERE destino_id = ? ORDER BY fecha_comentario DESC", [idDestino], function (err, comentarios) {
                     connection.release();
                     if (err) {
                         return callback("Error de acceso a la base de datos", null);
